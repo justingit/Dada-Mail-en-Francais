@@ -1,4 +1,4 @@
-Bonjour!
+Bonjour, 
 
 Voici une traduction partielle de «Dada Mail» en français. 
 
