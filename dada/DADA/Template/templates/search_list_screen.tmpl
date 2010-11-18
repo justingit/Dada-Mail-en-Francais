@@ -1,0 +1,72 @@
+<!-- begin search_list_screen.tmpl --> 
+
+
+<!-- tmpl_include list_type_switch_widget.tmpl -->
+
+
+<h1>
+ R&eacute;sultats de la recherche sur &quot;<!-- tmpl_var list_type_label -->&quot; pour: <em><!-- tmpl_var keyword escape="HTML" --></em>
+</h1> 
+
+
+<!-- tmpl_if subscribers --> 
+ <form name="email_form" action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+
+
+
+<table width="100%">
+ <tr>
+  <td>
+   <p>
+    R&eacute;sultats de la recherche
+    <strong>
+     <!-- tmpl_var name="screen_start" -->
+    </strong>
+    &agrave; 
+    <strong>
+     <!-- tmpl_var name="screen_finish" -->
+    </strong>
+   </p>
+  </td>
+  <td align="right">
+   <p>
+    &nbsp;
+    
+   </p>
+  </td>
+ </tr>
+</table>
+
+
+
+  <!-- tmpl_include view_list_table_widget.tmpl -->  
+  <!-- tmpl_include view_list_prev_next_table.tmpl -->
+  
+ <p align="center">
+  <a href="#" onclick="SetChecked(1);return false;">
+   Tout cocher
+  </a>
+  :: 
+  <a href="#" onclick="SetChecked(0);return false;">
+   Tout d&eacute;cocher
+  </a>
+ </p>
+ <input type=hidden name="process" value="delete" />
+ <input type=hidden name="f"       value="checker" />
+ <input type=hidden name="type" value="<!-- tmpl_var type -->" />
+ <div class="buttonfloat">
+  <input type="submit" class="processing" value="D&eacute;sinscrire les emails coch&eacute;s" />
+ </div>
+</form>
+
+<!-- tmpl_else --> 
+
+<p class="error"> 
+ Rien trouv&eacute;.
+</p>
+
+<!-- /tmpl_if --> 
+
+<!-- tmpl_include list_search_form_widget.tmpl --> 
+
+<!-- end search_list_screen.tmpl --> 

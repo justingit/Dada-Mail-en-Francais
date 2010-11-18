@@ -1,0 +1,96 @@
+<!-- begin delete_email_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl -->
+
+<!-- tmpl_include list_type_switch_widget.tmpl -->
+
+<p>
+ G&eacute;rer les abonn&eacute;s (<!-- tmpl_var type_title -->)
+&#187;
+ <strong>Effacer</strong>
+&#187;
+ V&eacute;rifier
+&#187;
+ D&eacute;sinscrire
+</p>
+
+<!-- tmpl_if GLOBAL_UNSUBSCRIBE -->
+	
+	<!-- tmpl_if can_use_global_unsubscribe --> 
+	
+		<p class="positive">
+		 * La d&eacute;sinscription Globale est activ&eacute;e.
+		</p>
+		
+	<!--/tmpl_if-->
+	
+<!--/tmpl_if-->
+
+
+<fieldset>
+	
+	<legend>Enlever plusieurs abonn&eacute;s</legend>
+	
+	
+	<fieldset style="background:#e6e6e6">
+	<legend>Coller les adresses ci-dessous&nbsp;:</legend>
+	<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+
+    <p>
+      <label for="delete_list">
+              Entrez
+     </label> 
+     les adresses (une adresse par ligne)&nbsp;:
+</p>
+
+
+
+ <textarea name="delete_list" id="delete_list" rows="5" cols="40"></textarea>
+
+
+ <input type="hidden" name="process" value="1" />
+ <input type="hidden" name="f"       value="delete_email" />
+ <input type="hidden" name="type"    value="<!-- tmpl_var type -->" />
+
+ <div class="buttonfloat">
+  <input type="reset"  class="cautionary" value="Annuler les changements" />
+  <input type="submit" class="processing" value="Soumettre la liste d'adresses" />
+ </div>
+</form>
+<div class="floatclear"></div>
+
+</fieldset>
+
+<fieldset style="background:#e6e6e6">
+	<legend>Importer d'un fichier</legend>
+
+ <p>
+  Vous pouvez aussi 
+  <label for="delete_email_file">
+   importer 
+  </label>
+  un fichier texte qui contient les adresses que vous voulez d&eacute;sinscrire&nbsp;:
+ </p> 
+
+<form enctype="multipart/form-data" action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+
+ <input type="file" name="delete_email_file" />
+
+ <input type="hidden" name="process" value="1" />
+ <input type="hidden" name="f"       value="delete_email" />
+ <input type="hidden" name="type"    value="<!-- tmpl_var type -->" />
+
+ <div class="buttonfloat">
+  <input type="reset"  class="cautionary" value="Annuler les changements" />
+  <input type="submit" class="processing" value="Soumettre la liste d'adresses" />
+ </div>
+</form>
+<div class="floatclear"></div>
+
+</fieldset>
+</fieldset>
+
+ 
+
+
+<!-- end delete_email_screen.tmpl -->

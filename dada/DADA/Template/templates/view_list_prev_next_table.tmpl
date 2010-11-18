@@ -1,0 +1,33 @@
+<!-- begin view_list_prev_next_table.tmpl -->
+
+<table width="100%">
+ <tr>
+  
+<!-- tmpl_if use_previous_screen -->
+	  
+	  <td>
+	   <p>
+	    <a href="<!-- tmpl_var name="S_PROGRAM_URL" -->?f=<!-- tmpl_var flavor default="view_list" -->&amp;d&eacute;part=<!-- tmpl_var name="previous_screen" -->&amp;longueur=<!-- tmpl_var name="view_list_subscriber_number" -->&amp;type=<!-- tmpl_var type -->&amp;mot cl&eacute;=<!-- tmpl_var keyword escape="HTML"-->">
+	     &lt;- pr&eacute;c&eacute;dent <!-- tmpl_var name="view_list_subscriber_number" -->
+	    </a>
+	   </p>
+	  </td>
+	  
+<!--/tmpl_if-->
+
+<!-- tmpl_if show_next_screen_link -->
+	  
+	  <td  align="right">
+	   <p>
+	    <a href="<!-- tmpl_var name="S_PROGRAM_URL" -->?f=<!-- tmpl_var flavor default="view_list" -->&amp;d&eacute;part=<!-- tmpl_var name="next_screen" -->&amp;longueur=<!-- tmpl_var name="view_list_subscriber_number" -->&amp;type=<!-- tmpl_var type -->&amp;mot cl&eacute;=<!-- tmpl_var keyword escape="HTML"-->">
+	     suivant <!-- tmpl_var name="view_list_subscriber_number" --> -&gt;
+	    </a>
+	   </p>
+	  </td>
+	  
+<!-- /tmpl_if -->
+  
+ </tr>
+</table>
+
+<!-- end view_list_prev_next_table.tmpl -->

@@ -1,0 +1,31 @@
+<!-- begin error_mx_lookup_failed.screen.tmpl --> 
+
+<h1>
+ Adresse email invalide
+</h1> 
+
+<p>L'adresse email que vous avez donn&eacute;e,</p>
+
+<blockquote>
+ <p>
+  <strong>
+	 <!-- tmpl_var subscriber.email -->
+ 	
+</strong> 
+</p>
+</blockquote> 
+ 
+<p>, n'est pas correcte car il n'y a pas de nom de domaine. Il est possible que vous ayez fait une faute de frappe. Vous pouvez
+
+<a href="#" onclick="history.back(); return false">
+ revenir en arri&egrave;re
+</a> 
+
+et r&eacute;encoder votre adresse, ou utiliser le formulaire ci-dessous&nbsp;:</p> 
+
+<!-- tmpl_var subscription_form --> 
+
+
+<!-- tmpl_include error_footer_widget.tmpl -->
+
+<!-- end error_mx_lookup_failed.screen.tmpl --> 

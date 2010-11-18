@@ -1,0 +1,180 @@
+<!-- begin edit_html_type_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl -->
+
+<!-- tmpl_if done -->
+	<!-- tmpl_var GOOD_JOB_MESSAGE -->
+<!--/tmpl_if-->
+
+<p>
+ Vous pouvez modifier plusieurs des &eacute;crans HTML  
+ <!-- tmpl_var PROGRAM_NAME --> produits sp&eacute;cifiquement pour votre liste.
+</p>
+
+<p> <!-- tmpl_var PROGRAM_NAME --> utilise des balises mod&egrave;les pour repr&eacute;senter les donn&eacute;es qui changent r&eacute;guli&egrave;rement. 
+ Une liste de balises pertinentes est pr&eacute;sente &agrave; la fin de cet &eacute;cran.
+</p>
+
+<!-- tmpl_if template_oldstyle_backwards_compatibility --> 
+	<p class="alert">Old Style template tag support is enabled.</p>
+<!-- tmpl_else --> 
+	<p class="alert">Old Style template tag support has been disabled.</p>
+<!-- /tmpl_if -->
+
+
+<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post" name="default_form">
+
+
+
+<fieldset> 
+<legend>
+	&Eacute;cran de confirmation de l'inscription :
+ </legend>
+<p>
+	
+	 Ce texte appara&icirc;t apr&egrave;s que quelqu'un ait entr&eacute; son adresse email pour s'inscrire &agrave; votre liste.
+</p>
+<p>
+ <textarea name="html_confirmation_message" id="html_confirmation_message" rows="10" cols="50" style="<!-- tmpl_var text_area_style -->"><!-- tmpl_var html_confirmation_message --></textarea> 
+</p>
+
+</fieldset> 
+
+<fieldset> 
+	
+ <legend>&Eacute;cran d'inscription r&eacute;ussie&nbsp;:
+ </legend>
+ 
+<p>
+ Ce texte appara&icirc;t apr&egrave;s que l'abonn&eacute; ait cliqu&eacute; sur le lien de confirmation de l'abonnement.
+</p>
+<p>
+ <textarea name="html_subscribed_message" id="html_subscribed_message" rows="10" cols="50" style="<!-- tmpl_var text_area_style -->"><!-- tmpl_var html_subscribed_message --></textarea>
+</p>
+</fieldset> 
+	
+<fieldset> 
+
+ <legend>&Eacute;cran de confirmation de d&eacute;sinscription&nbsp;:
+ </legend>
+ <p>
+ Ce texte appara&icirc;t apr&egrave;s que quelqu'un ait entr&eacute; son adresse pour se d&eacute;sabonner de votre liste.
+</p>
+ <p>
+ <textarea name="html_unsub_confirmation_message" id="html_unsub_confirmation_message" rows="10" cols="50" style="<!-- tmpl_var text_area_style -->"><!-- tmpl_var html_unsub_confirmation_message --></textarea>
+</p>
+
+</fieldset> 
+<fieldset>
+	<legend>&Eacute;cran de d&eacute;sinscription r&eacute;ussie&nbsp;:</legend>
+<p> Ce texte appara&icirc;t quand quelqu'un se d&eacute;sinscrit.
+</p>
+<p>
+ <textarea name="html_unsubscribed_message" id="html_unsubscribed_message" rows="10" cols="50" style="<!-- tmpl_var text_area_style -->"><!-- tmpl_var html_unsubscribed_message --></textarea>
+</p>
+</fieldset> 
+
+
+<input type="hidden" name="process" value="1" />
+<input type="hidden" name="f"       value="edit_html_type" />
+<div class="buttonfloat">
+ <input type="reset"  class="cautionary" value="Annuler tous les changements" />
+ <input type="submit" class="processing" value="Enregistrer tous les changements" />
+</div>
+<div class="floatclear"></div>
+
+
+
+</form>
+
+<fieldset>
+	<legend>
+   <a href="#" onclick="toggleDisplay('template_tags');return false;">
+    +/- 
+   </a> Balises mod&egrave;les disponibles
+   </legend>    
+   
+   <div id="template_tags" style="display:none;width:90%">
+
+
+<table class="tagchart">
+ <tr align="center">
+  <td>
+   <strong>
+    Cette balise
+   </strong>
+  </td>
+  <td>
+   <strong>
+    est remplac&eacute;e par
+   </strong>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var  subscriber.email --&gt;</code>
+  </td>
+  <td>
+   l'adresse email de l'abonn&eacute;.
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var  list_settings.list_name --&gt;</code>
+  </td>
+  <td>
+   Le nom de votre liste.
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var  list_settings.info --&gt;</code>
+  </td>
+  <td>
+   La description de votre liste.
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var  list_settings.privacy_policy --&gt;</code>
+  </td>
+  <td>
+   La politique de confidentialit&eacute; de votre liste.
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var  list_settings.list_owner_email --&gt;</code>
+  </td>
+  <td>
+   L'adresse email du propri&eacute;taire de la liste.
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var  list_settings.admin_email --&gt;</code>
+  </td>
+  <td>
+   L'adresse email de l'administrateur de la liste.
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var  PROGRAM_URL --&gt;</code>
+  </td>
+  <td>
+   L'URL du programme
+   (<a href="<!-- tmpl_var PROGRAM_URL -->" target="_blank"><!-- tmpl_var PROGRAM_URL --></a>).
+  </td>
+ </tr>
+</table>
+
+</div> 
+
+</fieldset> 
+
+
+ 
+
+<!-- end edit_html_type_screen.tmpl -->
+ 

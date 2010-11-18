@@ -1,0 +1,137 @@
+<!-- begin profile_update_email_confirm.tmpl --> 
+
+<h2>Mettre &agrave; jour votre profil et vos abonnements &agrave; des listes, Changer,</h2>
+
+ 	<ul> 
+	 <li>
+	  <h2>
+		<!-- tmpl_var profile.email -->
+	 </h2>
+	</li> 
+	</ul> 
+	
+	<h2>&Agrave;:</h2> 
+	
+	<ul> 
+		<li>
+			<h2>
+				 <!-- tmpl_var profile.update_email -->
+			</h2>
+		</li> 
+	</ul> 
+
+	
+	<!-- tmpl_if comment --> 
+	<br /> 
+	[ ] Copier mon profil en utilisant <!-- tmpl_var profile.update_email --> comme la nouvelle adresse email du profil. 
+	<!-- /tmpl_if --> 
+	
+	
+<p>Voici un sommaire des mises &agrave; jour de vos abonnements&nbsp;:</p> 
+
+<!-- tmpl_if subscriptions --> 
+
+	<!-- tmpl_loop subscriptions --> 
+
+		<h3>Liste: <!-- tmpl_var list_settings.list_name --></h3> 
+	
+		<!-- tmpl_if status --> 
+			<ul> 
+				<li>
+					<p class="positive">La mise &agrave; jour de votre abonnement est r&eacute;ussie&nbsp;!</p> 
+				</li> 
+			</ul> 
+		
+		<!-- tmpl_else --> 
+			<p class="error">
+				Il semble qu'il y ait un ou des probl&egrave;me(s)&nbsp;:
+			</p> 
+			<ul> 
+			
+			<!-- tmpl_if invalid_email --> 
+				<li>
+					<p class="error">
+					La nouvelle adresse email n'est pas valide.
+				</p>
+			</li> 
+		
+			<!-- /tmpl_if --> 
+		
+			<!-- tmpl_if subscribed --> 
+		
+				<li>	<p class="error">
+					La nouvelle adresse email est d&eacute;j&agrave; inscrite.
+				</p>
+				</li>
+			<!-- /tmpl_if --> 
+		
+		
+		    <!-- tmpl_if closed_list --> 
+					<li><p class="error">
+					Cette liste est ferm&eacute;e, et de nouveaux-elles abonn&eacute;-es ne peuvent &ecirc;tre ajout&eacute;-es que par le propri&eacute;taire de la liste. 
+				</p>
+				</li>
+			<!-- /tmpl_if --> 
+	
+		    <!-- tmpl_if  mx_lookup_failed --> 
+					<li><p class="error">
+					La recherche MX a &eacute;chou&eacute;. 
+				</p>
+				</li>
+			<!-- /tmpl_if --> 
+		
+			<!-- tmpl_if black_listed --> 
+					<li><p>Votre nouvelles adresse est sur liste noire. </p> 
+					</li>
+			<!-- /tmpl_if --> 
+	
+		     <!-- tmpl_if not_white_listed -->
+			<li> 
+				<p class="error">
+					La nouvelle adresse n'est pas sur la liste blanche de la mailing list.
+				</p>	
+			</li>
+			<!-- /tmpl_if --> 
+		
+		</ul> 
+		
+			
+		   <!-- tmpl_if comment --> 
+			Ces erreurs peuvent aussi survenir, mais probablement pas. 
+		 	* over_subscription_quota
+		    * already_sent_sub_confirmation
+		    * settings_possibly_corrupted
+		    * no_list
+			<!-- /tmpl_if --> 
+	
+			<p>	
+				<a href="<!-- tmpl_var PROGRAM_URL -->?f=u&list=<!-- tmpl_var list_settings.list -->&email=<!-- tmpl_var profile.email -->" target="_blank">
+					Commencer le processus de d&eacute;sinscription pour <!-- tmpl_var profile.update_email --> de, <!-- tmpl_var list_settings.list_name -->
+				</a>.
+			</p>
+		
+		<!-- /tmpl_if --> 
+
+	<!-- /tmpl_loop --> 
+<!-- tmpl_else --> 
+
+	<p class="alert">
+		Vous n'&ecirc;tes actuellement abonn&eacute; &agrave; aucune liste.
+	</p> 
+	
+<!-- /tmpl_if --> 
+
+<form action="<!-- tmpl_var PROGRAM_URL -->" method="post"> 
+	<input type="hidden" name="confirmed" value="1" /> 
+	<input type="hidden" name="auth_code" value="<!-- tmpl_var auth_code -->" /> 
+	<input type="hidden" name="email" value="<!-- tmpl_var profile.email -->" /> 
+	<input type="hidden" name="f" value="profile_update_email" /> 
+	
+	<div class="buttonfloat">
+<input type="submit" value="Mettre &agrave; jour mon profil et mes abonnements!" class="processing" />	</div>
+	<div class="floatclear"></div>
+	
+</form> 
+
+
+<!-- end profile_update_email_confirm.tmpl --> 

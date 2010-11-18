@@ -1,0 +1,45 @@
+<!-- begin html_code_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl -->
+
+
+<fieldset>
+<legend>
+HTML</legend>
+
+
+ <p>
+  Copiez le code contenu dans la case de texte et ajoutez-le dans n'importe quelle page de votre site.
+ </p>
+
+ <textarea name="code" cols="50" rows="12">
+    <!-- tmpl_var subscription_form escape="HTML" --> 
+ </textarea>
+</fieldset>
+
+
+<fieldset>
+<legend>
+JavaScript</legend>
+
+
+<p>
+ Le code javascript inclus sera automatiquement mis &agrave; jour si vous choisissez d'ajouter ou d'enlever un ou plusieurs champ(s) du profile d'un-e abonn&eacute;-e ou de changer les pr&eacute;f&eacute;rences de la mailing list.
+</p>
+
+
+<input type="text" class="full" value="&lt;script type=&quot;text/javascript&quot; src=&quot;<!-- tmpl_var PROGRAM_URL -->/subscription_form_js/<!-- tmpl_var list -->/&quot;&gt;&lt;/script&gt;" />
+
+</fieldset>
+
+<fieldset style="background:#fff">
+<legend>
+Aper&ccedil;u de travail</legend>
+<!-- tmpl_var subscription_form  -->
+
+</fieldset> 
+
+ 
+
+
+<!-- end html_code_screen.tmpl -->

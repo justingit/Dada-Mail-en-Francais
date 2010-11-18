@@ -1,0 +1,124 @@
+<!-- begin delete_email_screen_filtered.tmpl -->
+
+
+<p>
+ G&eacute;rer les abonn&eacute;s (<!-- tmpl_var type_title -->)
+&#187;
+Effacer
+&#187;
+ <strong>
+ V&eacute;rifier
+</strong> 
+&#187;
+ D&eacute;sinscrire
+</p>
+
+
+<form name="email_form" action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+ <input type="hidden" name="process" value="delete" />
+ <input type="hidden" name="f"       value="checker" />
+ <input type="hidden" name="type"    value="<!-- tmpl_var type -->" />
+ 
+<!-- tmpl_if should_add_to_black_list -->
+	 
+	 <input type="hidden" name="add_to_black_list" value="1" />
+	
+<!--/tmpl_if-->
+ 
+<!-- tmpl_if have_subscribed_addresses -->
+	 
+	<fieldset> 
+	 <legend>
+	  Adresses v&eacute;rifi&eacute;es
+	 </legend>
+	
+	 <p>
+	  Ces adresses ont &eacute;t&eacute; v&eacute;rifi&eacute;es avec succ&egrave;s.
+	 <p>
+	 
+
+ 
+<!-- tmpl_loop name="addresses_to_remove" --> 
+	 
+	 <input type="checkbox" name="address" value="<!-- tmpl_var email -->" checked="checked" /> &nbsp; <!-- tmpl_var email -->
+	 <br />
+	 
+<!--/tmpl_loop-->
+ 
+
+</fieldset> 
+
+
+
+ <div class="buttonfloat">
+  <input type="button" class="cautionary" value="R&eacute;entrer la liste de mail" onclick="history.back()" />
+  <input type="submit" class="processing" value="D&eacute;sinscrire les adresses coch&eacute;es <!-- tmpl_var type_title -->" />
+ </div>
+</form> 
+<div class="floatclear"></div>
+
+
+<!--/tmpl_if--> 
+
+<!-- tmpl_if not_subscribed_addresses --> 
+	
+	<fieldset> 
+	 <legend>
+		Adresses non inscrites
+		</legend>
+	
+	<p>
+	 Ces adresses ne font pas partie de votre <!-- tmpl_var type_title --> pour l'instant.
+	</p>
+	
+	<ul>
+	 
+	<!-- tmpl_loop name="not_subscribed_addresses" -->
+		 
+		 <li>
+		  <p>
+		   <!-- tmpl_var email -->
+		  </p>
+		 </li>
+		 
+	<!--/tmpl_loop-->
+	 
+	</ul>
+	
+	</fieldset>
+
+<!--/tmpl_if-->
+
+<!-- tmpl_if have_invalid_addresses -->
+	
+	
+	<fieldset> 
+	 <legend>
+	Adresses email invalides
+	 </legend>
+
+
+	<p>
+	 Ces adresses n'ont pas &eacute;t&eacute; v&eacute;rifi&eacute;es avec succ&egrave;s. 
+	</p>
+	
+	<ul>
+	 
+	<!-- tmpl_loop name="invalid_addresses" -->
+		 
+		 <li>
+		  <p>
+		   <!-- tmpl_var email -->
+		  </p>
+		 </li>
+		 
+	<!--/tmpl_loop-->
+	 
+	</ul>
+	
+	</fieldset>
+	
+	
+<!--/tmpl_if--> 
+
+<!-- end delete_email_screen_filtered.tmpl -->

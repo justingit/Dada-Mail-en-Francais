@@ -1,0 +1,83 @@
+<!-- begin multiple_list_sending_widget.tmpl --> 
+
+	<!-- tmpl_if comment --> 
+		I'm being  bit lazy here, as I should see if they have an SQL backend 
+		(which, is what can_have_subscriber_fields does, just not explicitly)
+	<!-- /tmpl_if --> 
+	
+	<!-- tmpl_if can_have_subscriber_fields -->
+
+	<!-- tmpl_if MULTIPLE_LIST_SENDING --> 
+
+ 	   <fieldset>
+     
+		 <legend>
+	       <a href="#" id="multiple_list_sending" onclick="toggleDisplay('multiple_list_sending_widget');return false;">
+	      +/- 
+	     </a>Envoi &agrave; plusieurs listes en m&ecirc;me temps
+	     </legend>    
+     
+	     <div id="multiple_list_sending_widget" style="display:none;width:90%">
+	
+		
+
+				 <p class="alert">
+				  * L'envoi de plusieurs listes a &eacute;t&eacute; activ&eacute;
+				 </p>
+				 <p>
+				  Envoyer <em>aussi</em> une copie de ce message aux abonn&eacute;-es deslistes suivantes&nbsp;:
+				</p>
+				<p>
+				   <a href="#" onclick="SetListChecked(1);return false;">
+				    Tout cocher
+				   </a>
+				   :: 
+				   <a href="#" onclick="SetListChecked(0);return false;">
+				    Tout d&eacute;cocher
+				   </a>
+				  </p>
+
+				 <div class="simplebox" style="max-height:150px;overflow:auto;">
+			  
+					<!-- tmpl_var global_list_sending_checkbox_widget --> 
+	
+		 		</div>
+	
+		  <p>
+		   <a href="#" onclick="SetListChecked(1);return false;">
+		    Tout cocher
+		   </a>
+		   :: 
+		   <a href="#" onclick="SetListChecked(0);return false;">
+			Tout d&eacute;cocher		   </a>
+		  </p>
+	
+		<!-- tmpl_if MULTIPLE_LIST_SENDING_TYPE_INDIVIDUAL --> 
+			<p>
+			 <input type="checkbox" name="multi_list_send_no_dupes" id="multi_list_send_no_dupes" value="1" checked="checked" />
+		
+			<label for="multi_list_send_no_dupes">
+			 Envoyer seulement un message par abonn&eacute;-e
+			 </label>
+			<br /> 
+			Les abonn&eacute;-es &agrave; plus d'une liste ne recevront qu'une copie du message.
+		  </p>
+		<!-- tmpl_else --> 
+			<input type="hidden" name="multi_list_send_no_dupes" id="multi_list_send_no_dupes" value="1" />
+		<!-- /tmpl_if --> 
+		
+		
+		</div> 
+	
+	    </fieldset>
+	<!-- /tmpl_if --> 
+		
+		<!-- tmpl_else --> 
+	
+			<!-- multiple list sending is not supported (apparently) -->
+	
+		<!-- /tmpl_if -->
+	
+	
+	
+<!-- end multiple_list_sending_widget.tmpl --> 

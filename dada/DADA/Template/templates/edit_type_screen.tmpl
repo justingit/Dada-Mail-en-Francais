@@ -1,0 +1,525 @@
+<!-- begin edit_type_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl -->
+
+<!-- tmpl_if done -->
+    <!-- tmpl_var GOOD_JOB_MESSAGE -->
+<!--/tmpl_if-->
+
+<p>
+	Vous pouvez personnaliser les messages que 
+<!-- tmpl_var PROGRAM_NAME -->
+	envoie. 
+<!-- tmpl_var PROGRAM_NAME -->
+	utilise des balises de mod&egrave;les pour repr&eacute;senter les donn&eacute;es qui peuvent changer r&eacute;guli&egrave;rement. Utilisez les balises de mod&egrave;le pour repr&eacute;senter les informations comme les liens d'inscription ou de d&eacute;sinscription, ou le nom de votre liste. La liste compl&egrave;te des balises disponibles est visible ci-dessous.
+</p>
+
+<!-- tmpl_if template_oldstyle_backwards_compatibility --> 
+	<p class="alert">Old Style template tag support is enabled.</p>
+<!-- tmpl_else --> 
+	<p class="alert">Old Style template tag support has been disabled.</p>
+<!-- /tmpl_if -->
+
+
+<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post" name="default_form">
+
+
+
+	<fieldset>
+		<legend>
+			Message de la liste
+		</legend>
+		<p>
+			Faites en sorte de placer la balise, <code>&lt;!-- tmpl_var message_body --&gt;</code> dans le corps de ce message email&nbsp;!
+		</p>
+
+		<fieldset>
+			<legend>
+				Ent&ecirc;tes
+			</legend>
+	    <p>
+	     <label for="mailing_list_message_from_phrase" class="label_by_5" >De:</label> <input type="text" name="mailing_list_message_from_phrase" id="mailing_list_message_from_phrase" value="<!-- tmpl_var mailing_list_message_from_phrase escape=HTML -->" class="midi" /> &lt;<!-- tmpl_var list_owner_email -->&gt;
+	    </p>
+
+	    <p>
+	     <label for="mailing_list_message_to_phrase" class="label_by_5" >&Agrave;:</label> <input type="text" name="mailing_list_message_to_phrase" id="mailing_list_message_to_phrase" value="<!-- tmpl_var mailing_list_message_to_phrase escape=HTML -->" class="midi" /> &lt;<code>&lt;!-- tmpl_var subscriber.email --&gt;</code>&gt;
+	    </p>
+
+	    <p>
+	     <label for="mailing_list_message_subject" class="label_by_5" >Sujet:</label> <input type="text" name="mailing_list_message_subject" id="mailing_list_message_subject" value="<!-- tmpl_var mailing_list_message_subject escape=HTML -->" class="midi" />
+	    </p>
+
+	</fieldset> 
+
+
+		<fieldset>
+			<legend>
+				Message en texte brut&nbsp;: 
+			</legend>
+
+
+		<p>
+			Ceci est le message de la liste (mode texte). La fin de l'email devrait, au minimum indiquer comment se d&eacute;sinscrire. 
+		</p>
+		<p>
+	<textarea name="mailing_list_message" id="mailing_list_message" rows="10" cols="50" ><!-- tmpl_var mailing_list_message escape=HTML -->
+	</textarea> 
+		</p>
+
+			</fieldset> 
+
+			<fieldset>
+				<legend>
+					Message formatt&eacute; en HTML&nbsp;:
+				</legend>
+		</p>
+
+			Ceci est la version HTML du message de la liste. La fin de l'email devrait, au minimum indiquer comment se d&eacute;sinscrire de la liste. 
+		</p>
+		<p>
+	<textarea name="mailing_list_message_html" id="mailing_list_message_html" rows="10" cols="50" ><!-- tmpl_var mailing_list_message_html escape=HTML -->
+	</textarea> 
+		</p>
+	</fieldset> 
+
+	</fieldset>
+
+
+
+<fieldset>
+	<legend>
+		Email de confirmation d'inscription
+	</legend>
+	<p>
+		Ce message email est envoy&eacute; quand quelqu'un demande &agrave; s'abonner &agrave; une liste. 
+	</p>
+	<p>
+		Veillez &agrave; placer la balise, <code>&lt;!-- tmpl_var list_confirm_subscribe_link --&gt;</code> dans le corps de ce message&nbsp;!
+	</p>
+	
+	<!-- tmpl_if list_settings.no_confirm_email --> 
+		<p class="positive">Closed-Loop Opt-In est activ&eacute;.</p>
+	<!-- tmpl_else --> 
+		<p class="error">Closed-Loop Opt-In est d&eacute;sactiv&eacute;.</p>
+	<!-- /tmpl_if --> 
+	
+	
+	<p>
+	 <label for="confirmation_message_subject" class="label_by_5">Sujet:</label><input type="text" name="confirmation_message_subject" id="confirmation_message_subject" value="<!-- tmpl_var confirmation_message_subject escape=HTML -->" class="midi" />
+	</p>
+	
+	<p><label for="confirmation_message">Message texte brut:</label>
+<textarea name="confirmation_message" id="confirmation_message" rows="10" cols="50" ><!-- tmpl_var confirmation_message escape=HTML --></textarea> 
+	</p>
+</fieldset>
+<fieldset>
+	<legend>
+		Message d'inscription r&eacute;ussie 
+	</legend>
+	<p>
+		Ce message est envoy&eacute; apr&egrave;s que la personne ait r&eacute;pondu &agrave; l'email de confirmation d'inscription. 
+	</p>
+	
+	<!-- tmpl_if list_settings.send_sub_success_email --> 
+			<p class="positive">Envoi de messages d'inscription r&eacute;ussie est activ&eacute;.</p>
+	<!-- tmpl_else --> 
+		<p class="error">Envoi de messages d'inscription r&eacute;ussie est d&eacute;sactiv&eacute;.</p>
+	<!-- /tmpl_if --> 
+	
+	<p>
+	 <label for="subscribed_message_subject" class="label_by_5">Sujet:</label> <input type="text" name="subscribed_message_subject" id="subscribed_message_subject" value="<!-- tmpl_var subscribed_message_subject escape=HTML -->" class="midi" />
+	</p>
+	
+	<p><label for="subscribed_message">Message texte brut:</label>
+	
+	<textarea name="subscribed_message" id="subscribed_message" rows="10" cols="50" ><!-- tmpl_var subscribed_message escape=HTML -->
+</textarea> 
+	</p>
+</fieldset>
+<fieldset>
+	<legend>
+		Message de d&eacute;sinscription r&eacute;ussie
+	</legend>
+	<p>
+		Ce message est envoy&eacute; apr&egrave;s que la personne ait r&eacute;pondu &agrave; l'email de confirmation de d&eacute;sinscription. 
+	</p>
+	
+	<!-- tmpl_if list_settings.unsub_confirm_email --> 
+			<p class="positive">Closed-Loop Opt-Out is est activ&eacute;.</p>
+	<!-- tmpl_else --> 
+		<p class="error">Closed-Loop Opt-Out est d&eacute;sactiv&eacute;.</p>
+	<!-- /tmpl_if --> 
+	
+	<p>
+		Veillez &agrave; placer la balise, <code>&lt;!-- tmpl_var list_confirm_subscribe_link --&gt;</code> dans le corps de ce message&nbsp;!
+	</p>
+	
+		<p>
+	 <label for="unsub_confirmation_message_subject" class="label_by_5">Sujet:</label> <input type="text" name="unsub_confirmation_message_subject" id="unsub_confirmation_message_subject" value="<!-- tmpl_var unsub_confirmation_message_subject escape=HTML -->" class="midi" />
+	</p>
+	
+	<p><label for="unsub_confirmation_message">Message texte brut:</label>
+	
+	
+<textarea name="unsub_confirmation_message" id="unsub_confirmation_message" rows="10" cols="50" ><!-- tmpl_var unsub_confirmation_message escape=HTML -->
+</textarea> 
+	</p>
+</fieldset>
+<fieldset>
+	<legend>
+		Message de d&eacute;sinscription r&eacute;ussie
+	</legend>
+	<p>
+		Ce message est envoy&eacute; apr&egrave;s que la personne ait r&eacute;pondu &agrave; l'email de confirmation de d&eacute;sinscription.
+	</p>
+	
+	<!-- tmpl_if list_settings.send_unsub_success_email --> 
+			<p class="positive">Envoi de messages d'inscrition r&eacute;ussie est activ&eacute;.</p>
+	<!-- tmpl_else --> 
+		<p class="error">Envoi de messages d'inscrition r&eacute;ussie est d&eacute;sactiv&eacute;.</p>
+	<!-- /tmpl_if --> 
+	
+	
+
+
+		<p>
+	 <label for="unsubscribed_message_subject" class="label_by_5">Sujet:</label> <input type="text" name="unsubscribed_message_subject" id="unsubscribed_message_subject" value="<!-- tmpl_var unsubscribed_message_subject escape=HTML -->" class="midi" />
+	</p>
+	
+	<p><label for="unsubscribed_message">Message texte brut:</label>
+	
+	
+<textarea name="unsubscribed_message" id="unsubscribed_message" rows="10" cols="50" ><!-- tmpl_var unsubscribed_message escape=HTML -->
+</textarea> 
+	</p>
+</fieldset>
+
+
+<fieldset>
+	<legend>
+		
+	Message d'invitation &agrave; une liste	
+	</legend>
+
+	<fieldset>
+		<legend>
+			Ent&ecirc;tes: 
+		</legend>
+    <p>
+     <label for="invite_message_from_phrase" class="label_by_5">De:</label> <input type="text" name="invite_message_from_phrase" id="invite_message_from_phrase" value="<!-- tmpl_var invite_message_from_phrase escape=HTML -->" class="midi" /> &lt;<!-- tmpl_var list_owner_email -->&gt;
+    </p>
+    
+    <p>
+     <label for="<!-- tmpl_var subscriber.email -->" class="label_by_5">&Agrave;:</label> <input type="text" name="invite_message_to_phrase" id="invite_message_to_phrase" value="<!-- tmpl_var invite_message_to_phrase escape=HTML -->" class="midi" /> &lt;<code>&lt;!-- tmpl_var subscriber.email --&gt;</code>&gt;
+    </p>
+
+    <p>
+     <label for="invite_message_subject" class="label_by_5">Sujet:</label> <input type="text" name="invite_message_subject" id="invite_message_subject" value="<!-- tmpl_var invite_message_subject escape=HTML -->" class="midi" />
+    </p>
+    
+	
+	
+	</fieldset>
+
+	<fieldset>
+		<legend>
+			Message texte brut: 
+		</legend>
+	<p>
+<textarea name="invite_message_text" id="invite_message_text" rows="10" cols="50" ><!-- tmpl_var invite_message_text escape=HTML -->
+</textarea> 
+	</p>
+</fieldset> 
+
+
+	<fieldset>
+		<legend>
+			Message en HTML: 
+		</legend>
+	<p>
+<textarea name="invite_message_html" id="invite_message_html" rows="10" cols="50" ><!-- tmpl_var invite_message_html escape=HTML -->
+</textarea> 
+	</p>
+</fieldset> 
+
+</fieldset>
+
+
+
+
+
+
+
+
+
+<fieldset>
+	<legend>
+		Pas autoris&eacute; &agrave; poster un message
+	</legend>
+
+    <p>
+    <label for="not_allowed_to_post_message_subject" class="label_by_5">Sujet:</label> <input type="text" name="not_allowed_to_post_message_subject" id="not_allowed_to_post_message_subject" value="<!-- tmpl_var not_allowed_to_post_message_subject escape=HTML -->" class="midi" />
+    </p>
+    
+    <p><label for="not_allowed_to_post_message">Message texte brut:</label>
+    
+<p>
+	Ce message est envoy&eacute; si vous utilisez le plugin Dada Bridge qui vous permet d'envoyer les emails d'une mailing list en envoyant un email &agrave; une adresse particuli&egrave;re. Les gens qui ne sont pas autoris&eacute;s &agrave; poster recevront ce message.
+</p>
+<p>
+<textarea name="not_allowed_to_post_message" id="not_allowed_to_post_message" rows="10" cols="50" ><!-- tmpl_var not_allowed_to_post_message escape=HTML -->
+</textarea> 
+</p>
+</fieldset>
+<fieldset>
+	<legend>
+		Message Vous &ecirc;tes d&eacute;j&agrave; inscrit: 
+	</legend>
+	<p>
+		Ce message est envoy&eacute; uniquement si quelqu'un qui est d&eacute;j&agrave; inscrit &agrave; une liste essaie de s'inscrire &agrave; nouveau &agrave; la m&ecirc;me liste et que vous avez r&eacute;gl&eacute; les pr&eacute;f&eacute;rences pour qu'un message soit envoy&eacute; &agrave; la place de faire appara&icirc;tre un message dans la fen&egrave;tre du navigateur. 
+<!-- tmpl_if list_settings.email_your_subscribed_msg  -->
+	<p class="positive">
+		Activ&eacute;. 
+	</p>
+<!--tmpl_else-->
+	<p class="error">
+		Les messages "Vous &ecirc;tes inscrits" sont pour l'instant affich&eacute;s dans la fen&egrave;tre du navigateur et ce message n'est pas envoy&eacute;. 
+	</p>
+<!--/tmpl_if-->
+	</p>
+
+    <p>
+    <label for="you_are_already_subscribed_message_subject" class="label_by_5">Sujet:</label> <input type="text" name="you_are_already_subscribed_message_subject" id="you_are_already_subscribed_message_subject" value="<!-- tmpl_var you_are_already_subscribed_message_subject escape=HTML -->" class="midi" />
+    </p>
+    
+    <p><label for="you_are_already_subscribed_message">Message texte brut:</label>
+    
+	<p>
+<textarea name="you_are_already_subscribed_message" id="you_are_already_subscribed_message" rows="10" cols="50" ><!-- tmpl_var you_are_already_subscribed_message escape=HTML -->
+</textarea> 
+	</p>
+</fieldset>
+<fieldset>
+	<legend>
+		Envoyer un message archiv&eacute; &agrave; un ami 
+	</legend>
+
+	<!-- tmpl_if list_settings.archive_send_form --> 
+		<p class="positive">
+		 Le formulaire "Envoyer une archive" est activ&eacute;.
+		</p> 
+	<!-- tmpl_else --> 
+	<p class="error">
+	 "Envoyer une archive" est d&eacute;sactiv&eacute;.
+	</p>	
+	<!-- /tmpl_if --> 
+
+    <p>
+        <label for="send_archive_message_subject" class="label_by_5">Sujet:</label> <input type="text" name="send_archive_message_subject" id="send_archive_message_subject" value="<!-- tmpl_var send_archive_message_subject escape=HTML -->" class="midi" />
+    </p>
+
+
+
+	<fieldset>
+		<legend>
+			Message texte brut: 
+		</legend>
+		
+	<p>
+<textarea name="send_archive_message" id="send_archive_message" rows="10" cols="50" ><!-- tmpl_var send_archive_message escape=HTML -->
+</textarea> 
+	</p>
+</fieldset> 
+
+<fieldset>
+	<legend>
+		Message HTML: 
+	</legend>
+	
+	<p>
+		<label for="send_archive_message_html">
+			Envoyer le message archiv&eacute; &agrave; un ami (mode HTML): 
+		</label>
+		<br />
+<textarea name="send_archive_message_html" id="send_archive_message_html" rows="10" cols="50" ><!-- tmpl_var send_archive_message_html escape=HTML -->
+</textarea> 
+	</p>
+</fieldset> 
+
+</fieldset>
+
+<fieldset>
+	<legend>
+   <a href="#" onclick="toggleDisplay('adv_options');return false;">
+    +/- 
+   </a>  Options avanc&eacute;es
+   </legend>    
+   
+   <div id="adv_options" style="display:none;width:90%">
+
+<table cellpadding="5">
+	<tr>
+	 <td>
+		<input type="checkbox" id="enable_email_template_expr" name="enable_email_template_expr" value="1" <!-- tmpl_if enable_email_template_expr -->checked="checked"<!--/tmpl_if --> /> 
+	 </td>
+	 <td>
+		
+		<p>
+			<label for="enable_email_template_expr">
+			 Activer l'utilisation de mod&egrave;les de syntaxe avanc&eacute;s pour les messages email. 
+			</label>
+		</p>
+	</td>
+</tr>
+</table>
+	
+</div> 
+
+</fieldset>
+
+
+
+<input type="hidden" name="process" value="1" />
+<input type="hidden" name="f" value="edit_type" />
+<div class="buttonfloat">
+	<input type="reset" class="cautionary" value="Annuler tous les changements" />
+	<input type="submit" class="alertive" name="revert" value="R&eacute;initialiser toutes les valeurs" />
+	<input type="submit" class="processing" value="Enregistrer tous les changements" />
+</div>
+<div class="floatclear">
+</div>
+
+</form>
+
+
+
+<fieldset>
+	<legend>
+   <a href="#" onclick="toggleDisplay('template_tags');return false;">
+    +/- 
+   </a> Balises de mod&egrave;les disponibles
+   </legend>    
+   
+   <div id="template_tags" style="display:none;width:90%">
+	
+	
+	
+<table class="tagchart">
+	<tr align="center">
+		<td>
+			<strong>
+				Cette balise 
+			</strong>
+		</td>
+		<td>
+			<strong>
+				est remplac&eacute;e par 
+			</strong>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<code>&lt;!-- tmpl_var message_body --&gt;</code>
+		</td>
+		<td>
+			<strong>
+				utilis&eacute; uniquement (et n&eacute;c&eacute;ssairement) dans le mod&egrave;le de &quot;Message de mailing list&quot;</strong>. Cette balise sera remplac&eacute;e par votre message r&eacute;el. 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<code>&lt;!-- tmpl_var list_settings.list_name --&gt;</code> 
+		</td>
+		<td>
+			Le nom de votre liste. 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<code>&lt;!-- tmpl_var list_settings.info --&gt;</code> 
+		</td>
+		<td>
+			La description de votre liste. 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<code>&lt;!-- tmpl_var list_subscribe_link --&gt;</code> 
+		</td>
+		<td>
+			Le lien pour s'inscrire. 
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<code>&lt;!-- tmpl_var list_unsubscribe_link --&gt;</code> 
+		</td>
+		<td>
+			Le lien pour se d&eacute;sinscrire. 
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<code>&lt;!-- tmpl_var list_confirm_subscribe_link --&gt;</code> 
+		</td>
+		<td>
+			Le lien de confirmation d'inscription. 
+		</td>
+	</tr>
+	<t
+	<tr>
+		<td>
+			<code>&lt;!-- tmpl_var list_confirm_unsubscribe_link --&gt;</code> 
+		</td>
+		<td>
+			Le lien de confirmation de d&eacute;sinscription. 
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<code>&lt;!-- tmpl_var list_settings.privacy_policy --&gt;</code> 
+		</td>
+		<td>
+			La politique de confidentialit&eacute; de votre liste. 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<code>&lt;!-- tmpl_var list_settings.list_owner_email --&gt;</code> 
+		</td>
+		<td>
+			L'email du propri&eacute;taire de la liste. 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<code>&lt;!-- tmpl_var list_settings.admin_email --&gt;</code>
+		</td>
+		<td>
+			L'email de l'administrateur de la liste. 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<code>&lt;!-- tmpl_var PROGRAM_URL --&gt;</code>
+		</td>
+		<td>
+			The URL of the program (<a href="<!-- tmpl_var PROGRAM_URL -->" target="_blank">
+<!-- tmpl_var PROGRAM_URL -->
+			</a>
+			). 
+		</td>
+	</tr>
+</table>
+
+</div> 
+
+</fieldset>
+
+ 
+
+
+<!-- end edit_type_screen.tmpl -->

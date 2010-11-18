@@ -1,0 +1,104 @@
+<!-- begin send_url_process_screen.tmpl -->
+
+<!-- tmpl_if problems -->
+	
+	<p class="error">
+	 Des probl&egrave;mes se sont pr&eacute;sent&eacute;s lors de l'envoi d'une page web. 
+	 La cause peut être parmi les suivantes:
+	</p>
+	<ul>
+	 <li>
+	  <p>
+	   L'URL que vous avez entr&eacute; n'est pas correcte.
+	  </p>
+	 </li>
+	 <li>
+	  <p>
+	   Il est possible que l'URL que vous essayez d'envoyer bloque la requ&egrave;te pour aller chercher l'information n&eacute;c&eacute;ssaire.
+	  </p>
+	 </li>
+	 <li>
+	  <p>
+	   L'URL que vous tenter d'atteindre peut &ecirc;tre temporairement inop&eacute;rationnelle.
+	  </p>
+	 </li>
+	 <li>
+	  <p>
+	   Parfois les requ&egrave;tes pour des pages venant du serveur qui h&eacute;berge le script sont bloqu&eacute;es. C'est une pr&eacute;caution contre des boucles infinies cr&eacute;&eacute;e par des programmes mal &eacute;crits. Votre administrateur syst&egrave;me devra probablement changer les r&eacute;glages du serveur.
+	  </p>
+	 </li>
+	</ul>
+	
+<!-- tmpl_else -->
+	
+	
+	<!-- tmpl_if archive_no_send --> 
+	
+		<!-- tmpl_if process_test -->
+			
+			<p> 
+			 Votre message n'a <strong>pas</strong> &eacute;t&eacute; enregistr&eacute; et n'a <strong>pas</strong> &eacute;t&eacute; envoy&eacute;.
+			</p>
+		
+		<!-- tmpl_else -->
+			
+			<p> 
+			 Votre message a &eacute;t&eacute; enregistr&eacute; mais pas envoy&eacute;.
+			</p>
+			
+			
+		<!--/tmpl_if--> 
+	
+	
+	<!-- tmpl_else --> 
+
+
+		<!-- tmpl_if test -->
+			
+			<p>
+			 Votre 
+			 <strong>
+			  <em>
+			   message test 
+			  </em>
+			 </strong>
+			 <!-- yeah! no! --> 
+			 <!--  and your Testers list (a href="!-- tmpl_var PROGRAM_URL --?f=view_list&amp;type=testers"view/a) --> 
+			 
+		 est envoy&eacute; au destinataire test <!-- tmpl_var test_recipient -->
+			</p>
+			
+		<!-- tmpl_else -->
+			
+			<p>
+			 Votre message est envoy&eacute; &agrave; tous les abonn&eacute;s de votre liste.
+			</p>
+			
+		<!--/tmpl_if-->
+
+<!--/tmpl_if--> 
+
+
+<div style="text-align:center">
+ <!-- tmpl_include sending_monitor_button_widget.tmpl -->
+</div> 
+
+	<!-- tmpl_if archived -->
+	
+	<p>
+	 <em>
+	  Ce message a &eacute;t&eacute; 
+	  <a href="<!-- tmpl_var S_PROGRAM_URL-->?flavor=view_archive&amp;id=<!-- tmpl_var message_id -->">
+	   archiv&eacute;</a>.
+	 </em>
+	</p>
+	
+	<!--/tmpl_if-->
+	
+<!--/tmpl_if-->
+
+
+
+
+
+<!-- end send_url_process_screen.tmpl -->

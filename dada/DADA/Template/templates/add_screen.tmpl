@@ -1,0 +1,241 @@
+<!-- begin add_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl --> 
+
+
+
+<!-- tmpl_include list_type_switch_widget.tmpl -->
+
+<p>
+ G&eacute;rer les abonn&eacute;s (<!-- tmpl_var type_title -->)
+&#187;
+ <strong>Ajouter</strong>
+&#187;
+ V&eacute;rifier
+&#187;
+ S'inscrire/Inviter
+</p>
+
+<!-- tmpl_if list_type_isa_list -->
+	
+	<!-- tmpl_if use_subscription_quota -->
+		
+		<!-- tmpl_if subscription_quota_reached -->
+			
+			<p class="error">
+			 Attention&nbsp;! Vous &ecirc;tes au nombre maximum autoris&eacute; d'abonn&eacute;-es (<!-- tmpl_var subscription_quota -->)! 
+			 Vous ne pouvez pas ajouter de nouveaux abonn&eacute;s.
+			</p>
+			
+		<!--tmpl_else-->
+			
+			<p class="error">
+			 Vous avez une limite de <!-- tmpl_var subscription_quota -->
+			 abonn&eacute;s autoris&eacute;e pour cette liste. Vous avez pour l'instant  
+			 <!-- tmpl_var num_subscribers --> abonn&eacute;-e-s.
+			</p>
+			
+		<!--/tmpl_if-->
+		
+	<!--/tmpl_if-->
+	
+<!--/tmpl_if-->
+
+<p>
+	
+
+<fieldset> 
+	
+	<legend>
+		 <a href="#" onclick="toggleDisplay('add_one');return false;">
+		+/- 
+	</a>
+		Ajouter une adresse
+	</legend>
+<div id ="add_one" style="display:none"> 
+	
+	<form name="via_add_one"  action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+	
+	 <input type="hidden" name="f"    id="f" value="add" />
+	 <input type="hidden" name="type" value="<!-- tmpl_var type -->" />
+	 <input type="hidden" name="process" value="1" />
+	 <input type="hidden" name="rand_string" id="rand_string" value="<!-- tmpl_var rand_string -->" />
+
+	<input type="hidden" name="method" value="via_add_one" /> 
+
+	 <p>
+	     <label for="email" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block">
+	      Adresse Email&nbsp;:
+	     </label>
+	    <input type="text" name="email" id="email" value=""  />
+	    </p>
+	
+		
+	<!-- tmpl_loop fields --> 
+	    <p>
+	     <label for="<!-- tmpl_var name escape=HTML -->" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block">
+	      <!-- tmpl_var name escape=HTML -->: 
+	     </label>
+	    <input type="text" name="<!-- tmpl_var name escape=HTML -->" id="<!-- tmpl_var name escape=HTML -->" value="<!-- tmpl_var value escape=HTML -->"  />
+	    </p>
+	<!--/tmpl_loop-->
+
+
+	 <div class="buttonfloat">
+	  <input type="reset"  class="cautionary" value="Annuler les changements" />
+	  <input type="submit" class="processing" value="Verify Subscriber..." />
+	 </div>
+	 <div class="floatclear"></div>
+
+</form> 
+	
+		
+</div> 
+
+</fieldset> 
+
+<fieldset style="background:#e6e6e6">
+	<legend>Ajouter plusieurs adresses</legend>
+
+    <p>
+      <label for="new_emails">
+            Entrer
+     </label> 
+     les  adresses des nouveaux abonn&eacute;s (un abonn&eacute; par ligne) en format <strong>CSV</strong> (s&eacute;par&eacute; par une virgule)&nbsp;: </p> 
+     
+     <p><code>Adresse Email<!-- tmpl_loop fields -->, <!-- tmpl_var name --><!-- /tmpl_loop --></code></p>
+
+
+
+<fieldset> 
+	<legend>Collez les adresses ci-dessous&nbsp;:</legend>
+
+<form name="paste_addresses"  action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+ <input type="hidden" name="f"    id="f" value="add" />
+ <input type="hidden" name="type" value="<!-- tmpl_var type -->" />
+ <input type="hidden" name="process" value="1" />
+ <input type="hidden" name="rand_string" id="rand_string" value="<!-- tmpl_var rand_string -->" />
+
+<input type="hidden" name="method" value="via_textarea" /> 
+
+
+
+ <p>
+  <textarea name="new_emails" id="new_emails" rows="5" cols="40"></textarea>
+ </p>
+
+
+ <div class="buttonfloat">
+  <input type="reset"  class="cautionary" value="Annuler les changements" />
+  <input type="submit" class="processing" value="V&eacute;rifier les adresses..." />
+ </div>
+ <div class="floatclear"></div>
+</form>
+
+
+
+
+</fieldset> 
+
+
+<fieldset> 
+	<legend>Importer depuis un fichier</legend>
+
+
+
+ <p>
+  Vous pouvez aussi  
+  <label for="new_email_file">
+   importer
+  </label>
+  un fichier texte dans le format <strong>CSV</strong> mentionn&eacute; ci-dessus.
+ </p>
+
+<form name="default_form" enctype="multipart/form-data" action="<!-- tmpl_var S_PROGRAM_URL -->" method="post" onSubmit="enable_check();">
+
+	<div id="statusbar" style="width:1px solid black"></div>
+	<div class="floatclear"></div>
+
+<input type="hidden" name="f"    id="f" value="add" />
+<input type="hidden" name="type" value="<!-- tmpl_var type -->" />
+<input type="file"   name="new_email_file" id="new_email_file" />
+<input type="hidden" name="process" value="1" />
+<input type="hidden" name="rand_string" id="rand_string" value="<!-- tmpl_var rand_string -->" />
+<input type="hidden" name="method" value="via_file_upload" /> 
+
+
+
+
+<script type="text/javascript">
+    //<![CDATA[
+
+        var check = 0; 
+        function enable_check() { 
+
+                check = 1;
+                do_check_status();
+        }
+
+        function do_check_status(){ 
+            if(check == 1){
+                update_status_bar();
+            }
+        }
+
+
+		 function update_status_bar(){ 
+			new Ajax.Updater(
+				'statusbar', '<!-- tmpl_var S_PROGRAM_URL -->', 
+				{ 
+				    method: 'post', 
+					parameters: {
+						rand_string:               $F('rand_string'),
+						new_email_file:            $F('new_email_file'), 
+						f:                         'check_status',
+
+						},
+
+				onCreate: 	 function() {
+				
+				},
+				onComplete: 	 function() {
+
+					$('statusbar').show(); 
+				
+				}
+
+
+				});
+		}
+        setInterval("do_check_status();",'1000');
+
+    //]]>
+</script>
+
+
+
+
+
+
+
+		
+
+	
+ <div class="buttonfloat">
+  <input type="reset"  class="cautionary" value="Annuler les changements" />
+  <input type="submit" class="processing" value="V&eacute;rifier les adresses..." />
+ </div>
+ <div class="floatclear"></div>
+</form>
+
+
+</fieldset> 
+
+    
+
+
+ </fieldset>
+
+
+
+<!-- end add_screen.tmpl -->

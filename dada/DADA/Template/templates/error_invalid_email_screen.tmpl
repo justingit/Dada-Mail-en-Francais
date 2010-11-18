@@ -1,0 +1,22 @@
+<!-- begin error_invalid_email_screen.tmpl --> 
+
+<h1>
+ Adresse email invalide
+</h1> 
+
+<p>
+ L'adresse que vous avez donn&eacute;e, 
+ <strong>
+  <!-- tmpl_var subscriber.email -->
+ </strong>, 
+ne passe pas la v&eacute;rification. Il est possible que vous ayez fait une faute de frappe. Vous pouvez 
+<a href="#" onclick="history.back(); return false">
+	revenir en arri&egrave;re
+</a> 
+et soumettre votre adresse &agrave; nouveau, ou utiliser le formulaire ci-dessous&nbsp;:</p> 
+
+<!-- tmpl_var subscription_form --> 
+
+<!-- tmpl_include error_footer_widget.tmpl -->
+
+<!-- end error_invalid_email_screen.tmpl --> 

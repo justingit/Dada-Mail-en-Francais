@@ -1,0 +1,393 @@
+<!-- begin view_list_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl --> 
+
+
+<!-- tmpl_include list_type_switch_widget.tmpl -->
+
+<!-- tmpl_if delete_email_count -->
+	
+	<p class="error">
+	 <!-- tmpl_var name="delete_email_count" --> adresse(s) de votre <!-- tmpl_var type_title --> ont &eacute;t&eacute; inscrites.
+	</p>
+	
+<!-- /tmpl_if -->
+
+<!-- tmpl_if email_count -->
+	
+	<p class="positive">
+	 <!-- tmpl_var name="email_count" --> adresse(s) de votre <!-- tmpl_var type_title --> ont &eacute;t&eacute; inscrites.
+	</p>
+	
+<!-- /tmpl_if -->
+
+<!-- tmpl_if approved_count --> 
+	<p class="positive">
+	 <!-- tmpl_var name="approved_count" --> adresse(s) a/ont &eacute;t&eacute; approuv&eacute;e(s) &agrave; l'inscription.
+	</p>
+<!-- /tmpl_if --> 
+<!-- tmpl_if denied_count --> 
+	<p class="positive">
+	 <!-- tmpl_var name="denied_count" --> adresse(s) a/ont &eacute;t&eacute; refus&eacute;e(s) &agrave; l'inscription.
+	</p>
+<!-- /tmpl_if -->
+
+
+
+
+<!-- tmpl_if list_type_isa_list -->
+	
+	<h1>
+	 Votre liste
+	</h1>
+	
+<!--/tmpl_if-->
+
+<!-- tmpl_if list_type_isa_authorized_senders -->
+	
+	<h1>
+	 Vos exp&eacute;diteurs autoris&eacute;s
+	</h1>
+	<p>
+	 Ceci montre les adresses autoris&eacute;es &agrave; envoyer des messages &agrave; la liste  (via le plugin Dada Bridge) autres que celle du propri&eacute;taire de la liste (pour les listes d'annonces) et sans mod&eacute;ration. 
+	</p>
+	
+<!--/tmpl_if-->
+
+
+<!-- tmpl_if list_type_isa_white_list -->
+	
+	<h1>
+	 Votre liste blanche
+	</h1>
+	<p>
+	 Votre liste blanche est une liste d'adresses qui sont autoris&eacute;es &agrave; s'inscrire &agrave; votre liste.
+	</p>
+	
+<!--/tmpl_if-->
+
+<!-- tmpl_if list_type_isa_black_list -->
+	
+	<h1>
+	 Votre liste noire
+	</h1>
+	<p class="alert">
+	 Votre liste noire est une liste d'adresses qui ne sont pas autoris&eacute;es &agrave; s'inscrire &agrave; votre liste. Vous pouvez y ajouter une adresse compl&egrave;te (linus@peanuts.com) ou juste une partie d'adresse (peanuts.com).</p>
+	
+	<p class="alert">Les adresses partielles filtreront les adresses enti&egrave;res - "peanuts.com" filtrera   "linus@peanuts.com" et "pigpen@peanuts.com"</p>
+		
+	<!-- tmpl_if can_use_global_black_list --> 
+		
+		<!-- tmpl_if GLOBAL_BLACK_LIST -->
+			
+			<p class="positive">
+			 * La liste noire globale a &eacute;t&eacute; activ&eacute;e.
+			</p>
+			
+		<!--/tmpl_if-->
+		
+	<!--/tmpl_if-->
+	
+	<!-- tmpl_if can_use_global_unsubscribe --> 
+		
+		<!-- tmpl_if GLOBAL_UNSUBSCRIBE -->
+			
+			<p class="positive">
+			 * La d&eacute;sinscription globale a &eacute;t&eacute; activ&eacute;e.
+			</p>
+			
+		<!--/tmpl_if-->
+		
+	<!--/tmpl_if-->
+	
+	<!-- tmpl_if black_list_changes_done -->
+	
+		<p class="positive">
+		 Les changement de votre liste noire sont enregistr&eacute;s&nbsp;!
+		</p>
+		
+	<!--/tmpl_if-->
+	
+<!--/tmpl_if-->
+
+<!-- tmpl_unless num_subscribers -->
+	
+	<p class="error">
+	 Pour l'instant il n'y a pas de <!-- tmpl_var type_title -->.
+	</p>
+	
+<!--/tmpl_unless-->
+
+<table width="100%">
+ <tr>
+  <td>
+   <p>
+    <!-- tmpl_var type_title -->
+    <strong>
+     <!-- tmpl_var name="screen_start" -->
+    </strong>
+    &agrave; 
+    <strong>
+     <!-- tmpl_var name="screen_finish" -->
+    </strong>
+   </p>
+  </td>
+  <td align="right">
+   <p>
+    Nombre total de <!-- tmpl_var type_title -->:
+    <strong>
+     <!-- tmpl_var name="num_subscribers" -->
+    </strong>
+    <!-- tmpl_unless list_type_isa_sub_request_list -->
+		<a href="<!-- tmpl_var S_PROGRAM_URL -->?f=add&amp;type=<!-- tmpl_var type -->">
+     		ajouter...
+    	</a>
+   	<!-- /tmpl_unless --> 
+	</p>
+  </td>
+ </tr>
+</table>
+
+
+<form name="email_form" action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+	
+ <!-- tmpl_include view_list_table_widget.tmpl --> 
+ <!-- tmpl_include view_list_prev_next_table.tmpl -->
+ <p align="center">
+  <a href="#" onclick="SetChecked(1);return false;">
+   Cocher tout
+  </a>
+  :: 
+  <a href="#" onclick="SetChecked(0);return false;">
+   D&eacute;cocher tout
+  </a>
+ </p>
+
+<!-- tmpl_unless list_type_isa_sub_request_list -->
+
+	 <input type=hidden name="process" value="delete" />
+	 <input type=hidden name="f"       value="checker" />
+	 <input type=hidden name="type" value="<!-- tmpl_var type -->" />
+	 <div class="buttonfloat">
+	  <input type="submit" class="alertive" value="D&eacute;sinscrire ceux qui sont coch&eacute;s '<!-- tmpl_var type_title -->' Subscribers" />
+	 </div>
+
+	<div class="floatclear"></div> 
+
+<!-- tmpl_else --> 
+	<div class="buttonfloat">
+	 <input type=hidden name="f"       value="subscription_requests" />
+	
+	<!-- hopefully ,this is, "sub_request_list" --> 
+	 <input type=hidden name="type" value="<!-- tmpl_var type -->" />
+	 <input type="submit" name="process" class="processing" value="Approuver les requ&egrave;tes d'abonnement coch&eacute;es" />
+	 <input type="submit" name="process" class="alertive" value="Supprimer les requ&egrave;tes d'abonnement coch&eacute;es" />
+	</div>
+	<div class="floatclear"></div>
+<!-- /tmpl_unless --> 
+
+</form>
+
+<!-- tmpl_unless list_type_isa_sub_request_list -->
+	<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="get">
+	 <input type=hidden name="f"       value="remove_all_subscribers" />
+	 <input type=hidden name="type" value="<!-- tmpl_var type -->" />
+	 <div class="buttonfloat">
+	  <input type="submit" class="alertive" value="Tout d&eacute;sinscrire '<!-- tmpl_var type_title -->' Abonn&eacute;-es" />
+	 </div>
+	</form>
+	<div class="floatclear"></div>
+<!-- tmpl_else --> 
+	<!-- ... --> 
+<!-- /tmpl_unless --> 
+
+
+<!-- tmpl_if list_type_isa_black_list -->
+
+
+
+
+	<!-- tmpl_if can_filter_subscribers_through_blacklist --> 
+	
+		<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post" name="blacklist_filter_form">
+		 <input type="hidden" name="f" value="filter_using_black_list" />
+		 <div class="buttonfloat">
+		  <input type="submit" class="cautionary" value="Filtrer vos abonn&eacute;-es &agrave; travers la liste noire..." />
+		 </div>
+		</form>
+	<!--/tmpl_if-->
+
+
+	<hr />
+
+
+	
+	
+
+
+	<fieldset>
+
+
+		
+		
+	 <legend>
+		  Options de liste noire
+     </legend>
+		
+		<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post" name="blacklist_option_form">
+		 <input type="hidden" name="f"       value="view_list" />
+		 <input type="hidden" name="type"    value="<!-- tmpl_var type -->" />
+		 <input type="hidden" name="process" value="set_black_list_prefs" />
+		
+		
+		 <table>
+		   <tr>
+		    <td>
+		     <p>
+		      <input type="checkbox" name="black_list" id="black_list" value="1" <!-- tmpl_if black_list -->checked="checked"<!--/tmpl_if--> />
+		     </p>
+		    </td>
+		    <td>
+		     <p>
+		      <label for="black_list">
+		       Activer la liste noire
+		      </label>
+		     </p>
+			<table> 
+				 <tr>
+				    <td>
+				     <p>
+				      <input type="checkbox" name="add_unsubs_to_black_list" id="add_unsubs_to_black_list" value="1" <!-- tmpl_if add_unsubs_to_black_list -->checked="checked"<!--/tmpl_if--> />
+				     </p>
+				    </td>
+				    <td>
+				     <p>
+				      <label for="add_unsubs_to_black_list">
+				       D&eacute;placer les abonn&eacute;-es qui ont &eacute;t&eacute; d&eacute;sinscrit-es vers la LIste Noire 
+				      </label>
+				     </p>
+				    </td>
+				   </tr>
+				   <tr>
+				    <td>
+				     <p>
+				      <input type="checkbox" name="allow_blacklisted_to_subscribe" id="allow_blacklisted_to_subscribe" value="1" <!-- tmpl_if allow_blacklisted_to_subscribe -->checked="checked"<!--/tmpl_if--> />
+				     </p>
+				    </td>
+				    <td>
+				     <p>
+				      <label for="allow_blacklisted_to_subscribe">
+				       Autoriser les abonn&eacute;es &agrave; s'inscrire m&ecirc;me s'ils sont sur la Liste NoireAllow Subscriptions From Subscribers of Black Listed Addresses
+				      </label>
+				     </p>
+				    </td>
+				   </tr>
+				   <tr>
+				    <td>
+				     <p>
+				      <input type="checkbox" name="allow_admin_to_subscribe_blacklisted" id="allow_admin_to_subscribe_blacklisted" value="1" <!-- tmpl_if allow_admin_to_subscribe_blacklisted -->checked="checked"<!--/tmpl_if--> />
+				     </p>
+				    </td>
+				    <td>
+				     <p>
+				      <label for="allow_admin_to_subscribe_blacklisted">
+				       Continuer &agrave; permettre les inscriptions d'adresses sur Liste Noire au panneau de contr&ocirc;le.
+				      </label>
+					  <br />
+					  Les adresses sur la liste noire auront besoin d'&ecirc;tre manuellement v&eacute;rifi&eacute;es et s&eacute;lectionn&eacute;es pour &ecirc;tre inscrites.  
+				     </p>
+				   </td>
+				  </tr>
+				</table> 
+		    </td>
+		   </tr>
+		  
+		 </table>
+
+		 <div class="buttonfloat">
+		  <input type=reset  class="cautionary" value="Clear Changes" />
+		  <input type=submit class="processing" value="Save Changes" />
+		 </div>
+		 <div class="floatclear"></div>
+		</form>
+	</fieldset>
+
+	
+<!--/tmpl_if-->
+
+
+<!-- tmpl_if list_type_isa_white_list -->
+	
+	<fieldset>
+
+
+
+		 <legend>
+	      Options de liste blanche
+		 </legend>
+		
+			<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post" name="white_list_option_form">
+			 <input type="hidden" name="f"       value="view_list" />
+			 <input type="hidden" name="type"    value="<!-- tmpl_var type -->" />
+			 <input type="hidden" name="process" value="set_white_list_prefs" />
+
+		 <table>
+		   <tr>
+		    <td>
+		     <p>
+		      <input type="checkbox" name="enable_white_list" id="enable_white_list" value="1" <!-- tmpl_if enable_white_list -->checked="checked"<!--/tmpl_if--> />
+		     </p>
+		    </td>
+		    <td>
+		     <p>
+		      <label for="enable_white_list">
+		       Activer la liste blanche
+		      </label>
+		     </p>
+		    </td>
+		   </tr>
+	      </table> 
+		 <div class="buttonfloat">
+		  <input type=reset  class="cautionary" value="Clear Changes" />
+		  <input type=submit class="processing" value="Save Changes" />
+		 </div>
+		      
+	     </form> 
+	
+	<div class="floatclear"></div> 
+	
+	
+	</fieldset>
+
+<!--/tmpl_if--> 
+
+
+
+<!-- tmpl_include list_search_form_widget.tmpl --> 
+
+
+	<hr />
+
+	<table cellpadding="5">
+	 <tr>
+	  <td>
+	   <form action="<!-- tmpl_var S_PROGRAM_URL -->" method="get" target="_blank">
+	    <input type="hidden" name="f"    value="text_list" />
+	    <input type="hidden" name="type" value="<!-- tmpl_var type -->" />
+	    <input type="submit" class="plain" value="Open <!-- tmpl_var type_title --> in New Window" />
+	   </form>
+	  </td>
+	  <td>
+	   <form action="<!-- tmpl_var S_PROGRAM_URL -->" method="get">
+	    <input type="hidden" name="f"    value="send_list_to_admin" />
+	    <input type="hidden" name="type" value="<!-- tmpl_var type -->" />
+	    <input type="submit" class="plain" value="Send <!-- tmpl_var type_title --> to List Owner" />
+	   </form>
+	  </td>
+	 </tr>
+	</table>
+
+
+
+
+<!-- end view_list_screen.tmpl -->

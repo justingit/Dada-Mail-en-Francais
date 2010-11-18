@@ -1,0 +1,42 @@
+<!-- begin delete_list_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl --> 
+
+
+<fieldset> 
+	
+<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post"> 
+	
+<p class="error">
+ &Ecirc;tes vous <em>s&ucirc;r-e</em> de vouloir effacer totalement cette liste&nbsp;?
+</p>
+<p>
+ <strong>
+  Cette action effacera la liste et est irr&eacute;versible.
+  
+ </strong>
+</p>
+<input type="hidden" name="f"       value="delete_list" />
+<input type="hidden" name="process" value="true" />
+
+<p>
+ <input type="checkbox" name="delete_backups" value="1" checked="checked" />
+ <strong>
+  Effacer les sauvegardes de la liste
+ </strong>
+</p>
+
+<div class="buttonfloat">
+ <input type="submit" class="alertive" value="Effacer votre liste (<!-- tmpl_var name="list_settings.list_name" ESCAPE="HTML" -->)" />
+</div>
+<div class="floatclear"></div>
+
+</form> 
+
+
+</fieldset>
+	
+
+
+
+<!-- end delete_list_screen.tmpl -->

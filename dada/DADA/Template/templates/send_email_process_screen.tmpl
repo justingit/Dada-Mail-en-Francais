@@ -1,0 +1,177 @@
+<!-- begin send_email_process_screen.tmpl -->
+
+	
+
+<!-- tmpl_if archive_no_send --> 
+
+	<!-- tmpl_if process_test -->
+		
+	<p> 
+	 Votre message n'a <strong>pas</strong> &eacute;t&eacute; sauv&eacute; et n'a <strong>pas</strong> &eacute;t&eacute; envoy&eacute;.
+	</p>
+	
+	<!-- tmpl_else -->
+		
+	<p> 
+	 Votre message a &eacute;t&eacute; sauv&eacute; mais pas envoy&eacute;.
+	</p>
+	
+	
+	<!--/tmpl_if--> 
+	
+	
+<!-- tmpl_else --> 
+
+	<!-- tmpl_if process_test -->
+		
+		<p>
+		 Votre 
+		 <strong>
+		  <em>
+		   message de test 
+		  </em>
+		 </strong>
+		 est envoy&eacute; au destinataire de test, <!-- tmpl_var test_recipient -->
+		 
+		 <!-- and your Testers list (a href="!-- tmpl_var PROGRAM_URL --?f=view_list&amp;type=testers">view/a) --> 
+		 
+		 .
+		</p>
+		
+	<!-- tmpl_else -->
+		
+		<!-- tmpl_if start_email -->
+			
+			<p>
+			 Votre mailing list sera envoy&eacute;e &agrave; chaque abonn&eacute;-e de votre liste en commen&ccedil;ant par  
+			 <strong>
+			  <!-- tmpl_var start_email -->
+			 </strong>.
+			</p>
+			
+		<!-- tmpl_else -->
+			
+			<!-- tmpl_if start_num -->
+				
+				<p>
+				 Votre mailing list sera envoy&eacute;e &agrave; chaque abonn&eacute;-e de votre liste en commen&ccedil;ant par  
+				 <strong>
+				  #<!-- tmpl_var start_num --></strong>
+				</p>
+				
+			<!--tmpl_else-->
+				
+				<p>
+				 Votre message  
+				 &quot;<strong><!-- tmpl_var message_subject --></strong>&quot;, 
+				 est envoy&eacute; &agrave; tous les abonn&eacute;s de votre liste.
+				</p>
+				
+			<!--/tmpl_if-->
+			
+		<!--/tmpl_if-->
+		
+	<!--/tmpl_if-->
+
+<!--/tmpl_if-->
+
+<div style="text-align:center">
+ <!-- tmpl_include sending_monitor_button_widget.tmpl -->
+</div> 
+
+	
+	<div class="simplebox" style="width:100%">
+	 <p>
+	  <strong>
+	   
+	<!-- tmpl_if process_test -->
+		   
+		   &Agrave;: 
+		   <em>
+			<!-- tmpl_var test_recipient -->
+		   </em>
+		   
+	<!-- tmpl_else -->
+		   
+		   &Agrave;: <!-- tmpl_var list_name -->
+		   
+	<!-- /tmpl_if -->
+	   
+	  </strong>
+	  <br />
+	  <strong>
+	   De: <!-- tmpl_var list_owner_email -->
+	  </strong>
+	  <br /> 
+	  <strong>
+	   Sujet: <!-- tmpl_var message_subject -->
+	  </strong>
+	  <br />
+	 </p>
+	 
+	<!-- tmpl_if text_message_body -->
+		 
+		 <hr />
+		 <p>
+		  <strong>
+		   Message Texte:
+		  </strong>
+		  <br />
+		  <!-- tmpl_var screen_text_message -->
+		 </p>
+		 
+	<!--/tmpl_if-->
+	
+	<!-- tmpl_if html_message_body -->
+		 
+		 <hr />
+		 <p>
+		  <strong>
+		    Message HTML:
+		  </strong>
+		  <br />
+		  <!-- tmpl_var screen_html_message -->
+		 </p>
+		 
+	<!--/tmpl_if-->
+	
+	<!-- tmpl_if have_attachments -->
+		 
+		 <p>
+		  <strong>
+		   Pi&egrave;ces jointes:
+		  </strong>
+		  <br />
+		  <ul>
+		   
+		<!-- tmpl_loop attachment_names -->
+			   
+			   <li>
+				<!-- tmpl_var name -->
+			   </li>
+			   
+		<!--/tmpl_loop-->
+		   
+		  </ul>
+		 </p>
+		 
+	<!--/tmpl_if -->
+	 
+	</div>
+	
+	<!-- tmpl_if message_archived -->
+		
+		<p>
+		 <em> 
+		  Ce message a &eacute;t&eacute; 
+		  <a href="<!-- tmpl_var S_PROGRAM_URL-->?flavor=view_archive&amp;id=<!-- tmpl_var message_id -->">
+		   archiv&eacute;
+		  </a>
+		  .
+		 </em>
+		</p>
+		
+
+<!--/tmpl_if--> 
+
+<!-- end send_email_process_screen.tmpl -->

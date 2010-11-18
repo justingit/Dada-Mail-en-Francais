@@ -1,0 +1,388 @@
+<!-- begin new_list_screen.tmpl -->
+
+<!-- tmpl_if name="errors" -->
+	
+	<p class="error">
+	 <!-- tmpl_var name="errors" -->  Le champ<!-- tmpl_var name="ending" --> 
+	 de ce formulaire  <!-- tmpl_var name="err_word" --> a &eacute;t&eacute; rempli incorrectement et doit &ecirc;tre corrig&eacute;. Veuillez corriger <!-- tmpl_var name="ending" --> 
+	 pour pouvoir cr&eacute;er votre nouvelle liste.
+	</p>
+	
+<!-- /tmpl_if -->
+
+
+	
+
+	<h2>
+	 Veuillez remplir tous les champs ci-dessous pour cr&eacute;er votre nouvelle liste: 
+	</h2>
+	
+	<!-- tmpl_unless name="help" -->
+	
+		<p style="text-align:right">
+		 <form action="<!-- tmpl_var name="S_PROGRAM_URL" -->" method="post">
+		  <input type="hidden" name="help" value="yes" />
+		  <input type="hidden" name="f"    value="new_list" />
+		  <input type="hidden" name="root_password" value="<!-- tmpl_var name="root_password" escape="HTML" -->" />
+		  <input type="submit" class="plain" value="Help!" />
+		 </form>
+		</p>
+	
+	<!-- /tmpl_unless -->
+
+
+	<form action="<!-- tmpl_var name="S_PROGRAM_URL" -->" method="post">
+	 <input type="hidden" name="f"       value="new_list" />
+	 <input type="hidden" name="process" value="true" />
+	 <input type="hidden" name="root_password" value="<!-- tmpl_var name="root_password" escape="HTML" -->" />
+
+
+<fieldset> 
+	
+	<p>
+	 Toutes les infos <em><strong>sauf</strong></em> le nom court de la lsite peuvent &ecirc;tre chang&eacute; plus tard. 
+	</p>
+	 <h2>
+	  Nom de liste
+	 </h2>
+ 
+	<!-- tmpl_if name="flags_list_name" -->
+	 
+		 <p class="error">
+		  <em>
+		   Vous n'avez pas donn&eacute; de nom de liste.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="flags_list_name_bad_characters" -->
+	 
+		 <p class="error">
+		  <em>
+		   Le nom de votre liste contient un ou des &lt;, &gt; ou, &quot;.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="help" -->
+	 
+		 <p class="positive">
+		  Le nom de votre liste sera utilis&eacute; par les utilisateurs et par <!-- tmpl_var name="PROGRAM_NAME" --> pour les distinguer l'une de l'autre.
+		 </p>
+	 
+	<!-- /tmpl_if -->
+ 
+	 <p>
+	  Quel est le nom de la liste ? Vous pouvez changer ce nom quand vous le souhaitez. Il ne peut pas contenir les caractères suivants : &lt;, &gt; ou, &quot;.</p>
+	  <p>
+	  <input type="text" name="list_name" value="<!-- tmpl_var name="list_name" escape="HTML" -->" class="full" maxlength="250" />
+	 </p>
+
+	 <h2>
+	  Nom Court de la liste
+	 </h2>
+ 
+	<!-- tmpl_if name="flags_list_exists" -->
+	 
+		 <p class="error">
+		  <em>
+		   Le nom court de cette liste est d&eacute;j&agrave; utilis&eacute;. Veuillez choisir un autre nom.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="flags_list" -->
+	 
+		 <p class="error">
+		  <em>
+		  Il faut que vous donniez un Nom Court à votre liste.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="flags_shortname_too_long" -->
+	 
+		 <p class="error">
+		  <em>
+		   Le Nom Court de votre liste ne peut contenir plus de 16 caract&egrave;res.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="flags_slashes_in_name" -->
+	 
+		 <p class="error">
+		  <em>
+		   Le Nom Court de votre liste ne peut pas contenir de barres obliques (&quot;/&quot; ou &quot;\&quot;).
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="flags_weird_characters" -->
+	 
+		 <p class="error">
+		  <em>
+		   Le Nom Court de votre liste contient des caract&egrave;res bizarres, et &ccedil;a peut poser probl&egrave;me. Veuillez utiliser uniquement des lettres sans accents ou des chiffres (par ex.: abc123).
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="flags_quotes" -->
+	 
+		 <p class="error">
+		  <em>
+		   Le Nom Court de votre liste ne peut pas contenir de guillemets.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	 <p>
+	  Quel est le "Nom Court" de la liste&nbsp;;?
+	  <br />
+	  Ce Nom Court sera utilisé par <!-- tmpl_var name="PROGRAM_NAME" --> et sera aussi utilisé dans les liens d'abonnement ou de désabonnement et dans les noms de fichiers. 
+	  Un Nom Court de liste devrait être en minuscules, de longueur maximum de 16 caractères, et sans autres caractères que des lettres sans accents ou des chiffres.
+  	</p>
+	<p>
+	  <input type="text" name="list" value="<!-- tmpl_var name="list" escape="HTML"-->" size="16" maxlength="16" />
+	 </p>
+	 <hr />
+
+	 <h2>
+	  Mot de passe
+	 </h2>
+ 
+	<!-- tmpl_if name="flags_password" -->
+	 
+		 <p class="error">
+		  <em>
+		   Il faut choisir un mot de passe pour votre liste.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="flags_password_is_root_password" -->
+	 
+		 <p class="error">
+		  <em>
+		   Le mot de passe que vous avez entré est le même que le mot de passe administrateur de <!-- tmpl_var PROGRAM_NAME -->. Veuillez choisir un autre mot de passe.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="help" -->
+	 
+		 <p class="positive">
+		  Un Mot De Passe de Liste est utilis&eacute; pour prot&eacute;ger votre liste et ses abonn&eacute;s. Il faudra vous en souvenir quand vous vous connecterez &agrave; votre tableau de bord&nbsp;&#8212; &ccedil;&agrave;d l'endroit o&ugrave; vous pouvez choisir les options de la liste et envoyer des messages. Veillez &agrave; choisir un mot de passe dificile &agrave; deviner en m&eacute;langeant majuscules, minuscules, et chiffres. Le mot de passe ne doit pas d&eacute;passer 16 caract&egrave;res.
+		 </p>
+	 
+	<!-- /tmpl_if -->
+ 
+	 <p>
+	  Choisissez un mot de passe pour prot&eacute;ger votre liste&nbsp;:
+  </p>
+	<p>
+	  <input type="password" name="password" value="<!-- tmpl_var name="password" escape="HTML"-->" size="16" maxlength="24" />
+	 </p>
+ 
+	<!-- tmpl_if name="flags_retype_password" -->
+	 
+		 <p class="error">
+		  <em>
+		   Veuillez entrer votre mot de passe encore une fois.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="flags_password_ne_retype_password" -->
+	 
+		 <p class="error">
+		  <em>
+		  Il y a une diff&eacute;rence entre les deux fois que vous avez entr&eacute; le mot de passe.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+ 
+	 <p>
+	  Veuillez entrer votre mot de passe encore une fois pour confirmer&nbsp;:
+  </p>
+	<p>
+	  <input type="password" name="retype_password" value="<!-- tmpl_var name="retype_password" escape="HTML"-->" size="16" maxlength="24" />
+	 </p>
+	 <hr />
+
+	 <h2>
+	  Propri&eacute;taire de la Liste
+	 </h2>
+ 
+	<!-- tmpl_if name="flags_invalid_list_owner_email" -->
+	 
+		 <p class="error">
+		  <em>
+		  Il faut que vous donniez une adresse email valide pour le propri&eacute;taire de la Liste.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="help" -->
+	 
+		 <p class="positive">
+		  Le propri&eacute;taire est la personne responsable de la liste. Son email sera utilis&eacute; pour chaque message envoy&eacute; par <!-- tmpl_var name="PROGRAM_NAME" -->quand il travaille sur votre liste.
+		 </p>
+	 
+	<!-- /tmpl_if -->
+ 
+	 <p>
+	  Quelle adresse email correspond au propri&eacute;taire de la liste&nbsp;?
+	  (Quand des emails sont envoy&eacute;s, ils le sont au nom de cette adresse)
+  </p>
+<p>
+	  <input type="text" name="list_owner_email" value="<!-- tmpl_var name="list_owner_email" escape="HTML"-->" class="full" maxlength="100" />
+	 </p>
+	 <hr />
+	 <h2>
+	  Description
+	</h2>
+ 
+	<!-- tmpl_if name="flags_list_info" -->
+	 
+		 <p class="error">
+		  <em>
+		   Veuillez donner une description &agrave; votre liste.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="help" -->
+	 
+		 <p class="positive">
+		  Une description de votre liste expliquera aux personnes qui pourraient s'abonner de quoi votre liste parle. Cette info sera montr&eacute;e sur la page principale de <!-- tmpl_var name="PROGRAM_NAME" -->, et aussi dans les mails de confirmation envoy&eacute;s aux personnes qui veulent s'inscrire.
+		 </p>
+	 
+	<!-- /tmpl_if -->
+ 
+	 <p>
+	  Veuillez &eacute;crire une courte description de votre liste:
+	  <br />
+	  <!-- wrap="virtual" --> 
+	  <textarea name="info" cols="50" rows="5"><!-- tmpl_var name="info" escape="HTML"--></textarea>
+	 </p>
+	 <hr />
+
+	 <h2>
+	  Politique de confidentialit&eacute;
+	 </h2>
+ 
+	<!-- tmpl_if name="flags_privacy_policy" -->
+	 
+		 <p class="error">
+		  <em>
+		   Il faut que vous d&eacute;terminiez une politique de confidentialit&eacute;
+pour votre liste.
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="help" -->
+	 
+		 <p class="positive">
+		  Une politique de confidentialit&eacute; permet &agrave; un-e abonn&eacute;-e de savoir exactement comment vous utiliserez les informations qu'il ou elle vous soumet (adresse email, etc.).
+		 </p>
+	 
+	<!-- /tmpl_if -->
+ 
+	 <p>
+	  Veuillez &eacute;crire une Politique de confidentialit&eacute; pour votre liste&nbsp;:
+	  <br />
+	  <!-- wrap="virtual" --> 
+	  <textarea name="privacy_policy" cols="50" rows="5"><!-- tmpl_var name="privacy_policy" escape="HTML"--></textarea>
+	 </p>
+	 <hr />
+
+	 <h2>
+	  Adresse Physique
+	 </h2>
+ 
+	<!-- tmpl_if name="flags_physical_address" -->
+	  
+		 <p class="error">
+		  <em>
+		   Vous devez associer une adresse physique &agrave; votre liste (rue, num&eacute;ro, ville, pays).
+		  </em>
+		 </p>
+	 
+	<!-- /tmpl_if -->
+
+	<!-- tmpl_if name="help" -->
+	 
+		 <p class="positive">
+		  Une adresse physique lie votre liste &agrave; une organisation ou une personne physique. &Ccedil;a vous mets aussi en r&egrave;gle avec les lois r&eacute;centes sur les mailing lists
+		 </p>
+	 
+	<!-- /tmpl_if -->
+ 
+	 <p>
+	  Veuillez entrer une adresse physique &agrave; votre liste (rue, num&eacute;ro, ville, pays) :
+	  <br />
+	  <!-- wrap="virtual" --> 
+	  <textarea name="physical_address" cols="50" rows="5"><!-- tmpl_var name="physical_address" escape="HTML"--></textarea>
+	 </p>
+
+</fieldset> 
+
+
+<!-- tmpl_if lists_exist --> 
+
+	<fieldset>
+
+		<legend>Options avanc&eacute;es</legend>
+
+	<table> 
+		<tr> 
+			<td> 
+				<p>
+					<input type="checkbox" name="clone_settings" id="clone_settings" value="1"  />
+				</p>
+			</td>
+
+			<td>
+				<p>
+					<label for="clone_settings">
+						Copier les r&eacute;glages de cette liste&nbsp;: <!-- tmpl_var list_popup_menu -->
+					</label>
+				</p> 
+			</td> 
+		</tr> 
+	</table> 
+
+			
+
+	</fieldset> 
+
+<!-- /tmpl_if --> 
+
+
+
+
+ <p style="text-align:center">
+  <input type="submit" class="processing" value="    Créer votre liste    " />
+ </p>
+
+
+</form>
+
+<!-- end new_list_screen.tmpl -->

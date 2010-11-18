@@ -1,0 +1,63 @@
+<!-- begin error_already_sent_sub_confirmation_screen.tmpl --> 
+
+<h1>Probl&egrave;mes de requ&egrave;te de confirmation</h1> 
+
+<p>
+ Il semble que l'on vous a envoy&eacute; une confirmation pour vous inscrire &agrave;&nbsp;:  
+</p>
+
+
+<p>
+ <blockquote> 
+   <strong>
+    <!-- tmpl_var list_settings.list_name -->   
+   </strong>
+ </blockquote> 
+ 
+<p>
+ Regardez dans votre bo&icirc;te mail pour trouver ce message de confirmation. 
+</p>
+
+<p>Si vous n'avez pas re&ccedil;u ce mail de confirmation, faites en sorte que cette adresse email&nbsp;: </p>
+
+ <blockquote>
+ <p>
+  <strong>
+   <a href="mailto:<!-- tmpl_var list_settings.list_owner_email -->"><!-- tmpl_var list_settings.list_owner_email --></a>
+  </strong>
+ </p>
+</blockquote>
+
+
+<p>soit dans votre <strong>carnet d'adresse</strong> ou dans votre <strong>liste blanche</strong>
+ .
+</p>
+
+<p>
+ <strong> 
+  <a href="<!-- tmpl_var PROGRAM_URL -->/subscriber_help/<!-- tmpl_var list_settings.list -->/">
+   Comment ajouter   <a href="mailto:<!-- tmpl_var list_settings.list_owner_email -->"><!-- tmpl_var list_settings.list_owner_email --></a> &agrave; votre carnet d'adresse ou votre liste blanche
+  </a>
+ </strong> 
+</p>
+
+<p>
+  Vous pouvez vous renvoyer cette confirmation en cliquant sur le bouton ci-dessous&nbsp;:
+</p>
+
+<form action="<!-- tmpl_var PROGRAM_URL -->" method="POST"> 
+<input type="hidden" name="f" value="resend_conf" />
+
+<input type="hidden" name="list" value="<!-- tmpl_var list_settings.list -->" />
+<input type="hidden" name="email" value="<!-- tmpl_var subscriber.email -->" /> 
+<input type="hidden" name="rm" value="s" /> 
+<input type="hidden" name="auth_code" value="<!-- tmpl_var auth_code -->" /> 
+
+<div style="text-align:center">
+ <input type="submit" value="R&eacute;envoyer la confirmation d'abonnement" /> 
+</div> 
+</form>
+
+<!-- tmpl_include error_footer_widget.tmpl --> 
+
+<!-- end error_already_sent_sub_confirmation_screen.tmpl --> 

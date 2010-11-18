@@ -1,0 +1,639 @@
+<!-- begin list_options_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl -->
+
+<!-- tmpl_if done -->
+	<!-- tmpl_var GOOD_JOB_MESSAGE -->
+<!--/tmpl_if-->
+
+<div style="width:100%"><!-- what's this all about? --> 
+
+	<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post" name="default_form">
+	
+<fieldset>
+
+<legend>
+ G&eacute;n&eacute;ral
+</legend>
+
+ <table cellspacing="5">
+  <tr>
+   <td>
+    <p>
+     <input type="checkbox" name="hide_list" id="hide_list" value="1" <!-- tmpl_if hide_list -->checked="checked"<!--/tmpl_if--> />
+    </p>
+   </td>
+   <td>
+    <p>
+     <label for="hide_list">
+      Cacher votre liste
+     </label>
+     <br />
+     Celle-ci ne sera pas list&eacute;e sur l'&eacute;cran principal de <a href="<!-- tmpl_var PROGRAM_URL -->" target="_blank">
+      <!-- tmpl_var PROGRAM_NAME --></a>. 
+     Cette liste aura toujours une 
+     <a href="<!-- tmpl_var PROGRAM_URL -->/list/<!-- tmpl_var list -->/" target="_blank">
+      page
+     </a>
+     et il sera toujours possible de s'inscrire ou de se d&eacute;sinscrire avec l'information ad&eacute;quate.
+    </p>
+    <p>
+     Vous devrez aussi entrer manuellement le nom court de cette liste quand vous vous connecterez au tableau de bord de celle-ci.
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <input type="checkbox" name="closed_list" id="closed_list" value="1" <!-- tmpl_if closed_list --> checked="checked" <!-- /tmpl_if --> />
+   </td>
+   <td>
+    <p>
+     <label for="closed_list">
+      Fermer votre liste
+     </label>
+     <br/>
+     Personne ne pourra s'abonner &agrave; cette liste.
+     De nouveaux-elles abonn&eacute;-es ne pourront &ecirc;tre ajout&eacute;-es que via le tableau de bord administration. La d&eacute;sinscription reste possible &agrave; tout moment.
+    </p>
+   </td>
+  </tr>
+ </table>
+ <table cellspacing="5" <!-- tmpl_unless can_use_mx_lookup -->class="disabled"<!--/tmpl_unless--> >
+  <tr>
+   <td>
+    <input type="checkbox" name="mx_check" id="mx_check" value="1" <!-- tmpl_if mx_check -->checked="checked"<!--/tmpl_if--> <!-- tmpl_unless can_use_mx_lookup -->disabled="disabled"<!--/tmpl_unless--> />
+   </td>
+   <td> 
+    <p>
+     <label for="mx_check">
+      V&eacute;rifier les noms de domaines lors de la validation des adresses email (MX Lookup)
+     </label>
+     <br />
+     Quand une adresse est propos&eacute;e &agrave; la validation, l'existence du nom de domaine sera v&eacute;rifi&eacute;e.
+    </p>
+<!-- tmpl_unless can_use_mx_lookup -->
+	    <p class="error">
+	     <em>
+	      D&eacute;sactiv&eacute;. Il faut installer le module Net::DNS.
+	     </em>
+	    </p>
+<!--/tmpl_unless-->
+    
+   </td>
+  </tr>
+ </table>
+</fieldset>
+
+
+
+<fieldset>
+
+<legend>
+ Confirmation d'abonnement
+</legend>
+
+
+ <table cellspacing="5" width="100%">
+	
+  <tr>
+   <td>
+    <input type="checkbox" name="no_confirm_email" id="no_confirm_email" value="1" <!-- tmpl_if no_confirm_email -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="no_confirm_email">
+      Envoyer un email de confirmation d'abonnement (Closed-Loop Opt-In)
+     </label>
+     <br /> 
+     <strong>
+      FORTEMENT recommand&eacute;&nbsp;: 
+     </strong>
+     Les abonn&eacute;-es devront r&eacute;pondre &agrave; un email de confirmation envoy&eacute; &agrave; leur adresse avant que leur adh&eacute;sion &agrave; une liste soit effective.
+    </p>
+   </td>
+  </tr>
+  
+  
+
+	
+<tr>
+ <td>
+  <input type="checkbox" name="skip_sub_confirm_if_logged_in" id="skip_sub_confirm_if_logged_in" value="1" <!-- tmpl_if skip_sub_confirm_if_logged_in -->checked="checked"<!--/tmpl_if--> />
+ </td>
+ <td width="99%">
+  <p>
+   <label for="skip_sub_confirm_if_logged_in">
+    Laisser tomber le processus de confirmation de l'abonnement si l'abonn&eacute;-e a d&eacute;j&agrave; un  profil <!-- tmpl_var PROGRAM_NAME -->.
+   </label>
+   <br /> 
+	
+	Un-e utilisateur-trice qui a d&eacute;j&agrave; un profil peut avoir une adresse email d&eacute;j&agrave; confirm&eacute;e. L'utilisateur-trice aura quand m&ecirc;me besoin d'&ecirc;tre connect&eacute;-e pour faire une demande d'abonnement. 
+  </p>
+ </td>
+</tr>
+
+
+<tr>
+   <td>
+    <input type="checkbox" name="limit_sub_confirm" id="limit_sub_confirm" value="1" <!-- tmpl_if limit_sub_confirm -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="limit_sub_confirm">
+      Limiter l'envoi de la confirmation d'abonnement
+     </label>
+     <br />
+	Quand cette option est activ&eacute;e, un seul message de confirmation peut &ecirc;tre envoy&eacute; &agrave; la fois par abonn&eacute;-e, sauf si l'abonn&eacute;-e demande un nouveau message de confirmation manuellement. 
+	Cette option aide &agrave; limiter l'envoi de messages inutiles et l'abus du syst&egrave;me de confirmation d'abonnement. 
+    </p>
+   </td>
+  </tr>
+  
+  
+  
+  
+  <tr>
+   <td>
+    <input type="checkbox" name="email_your_subscribed_msg" id="email_your_subscribed_msg" value="1" <!-- tmpl_if email_your_subscribed_msg -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="email_your_subscribed_msg">
+      Si un-e abonn&eacute;-e essaye de s'abonner &agrave; nouveau, envoyer une message disant "Vous &ecirc;tes d&eacute;j&agrave; abonn&eacute;-e" par email &agrave; la place de montrer cette info dans le navigateur. 
+     </label>
+     <br />
+       Habituellement, si un-e abonn&eacute;-e essaye de s'inscrire &agrave; une liste &agrave; laquelle il ou elle est d&eacute;j&agrave; inscrit-e, un message d'erreur appara&icirc;t &agrave; l'&eacute;cran du navigateur. 
+       Ceci permet &agrave; une tierce personne de v&eacute;rifier que quelqu'un est inscrit &agrave; une liste en entrant simplement l'adresse email &agrave; v&eacute;rifier. 
+      </p>
+      
+      <p>
+       Avec cette option activ&eacute;e, un email sera envoy&eacute; &agrave; l'abonn&eacute;-e &agrave; la place
+      </p> 
+       
+   </td>
+  </tr>
+  
+  
+  <tr>
+   <td>
+         <input type="checkbox" name="use_alt_url_sub_confirm_success" id="use_alt_url_sub_confirm_success" value="1" <!-- tmpl_if use_alt_url_sub_confirm_success -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td>
+  
+  
+  <p>
+        <label for="use_alt_url_sub_confirm_success">
+         Si la premi&egrave;re &eacute;tape du Closed-Loop Opt-In est r&eacute;ussie et qu'un email de confirmation est envoy&eacute;, rediriger vers l'URL&nbsp;:
+        </label>
+        </p>
+        <table cellspacing="5" width="100%">
+         <tr> 
+          <td> 
+           <input type="text" name="alt_url_sub_confirm_success" value="<!-- tmpl_var name="alt_url_sub_confirm_success" escape="HTML" -->" class="full" />
+          </td>
+         </tr> 
+         <tr> 
+          <td>
+           <input type="checkbox" name="alt_url_sub_confirm_success_w_qs" id="alt_url_sub_confirm_success_w_qs" value="1" <!-- tmpl_if alt_url_sub_confirm_success_w_qs -->checked="checked"<!--/tmpl_if--> />
+           <label for="alt_url_sub_confirm_success_w_qs">Rediriger avec une cha&icirc;ne de requ&ecirc;te</label>
+          </td> 
+         </tr> 
+        </table>
+    
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <input type="checkbox" name="use_alt_url_sub_confirm_failed" id="use_alt_url_sub_confirm_failed" value="1" <!-- tmpl_if use_alt_url_sub_confirm_failed -->checked="checked"<!--/tmpl_if--> />
+      </td>
+      <td width="99%">
+       <p>
+        <label for="use_alt_url_sub_confirm_failed">
+         Si la premi&egrave;re &eacute;tape du Closed-Loop Opt-In est un &eacute;chec, rediriger vers cet URL&nbsp;:
+        </label>
+       </p>
+       <table cellspacing="5" width="100%"> 
+        <tr> 
+         <td> 
+          <input type="text" name="alt_url_sub_confirm_failed" value="<!-- tmpl_var name="alt_url_sub_confirm_failed" escape="HTML" -->" class="full" />
+         </td>
+        </tr> 
+        <tr> 
+         <td> 
+          <input type="checkbox" name="alt_url_sub_confirm_failed_w_qs" id="alt_url_sub_confirm_failed_w_qs" value="1" <!-- tmpl_if alt_url_sub_confirm_failed_w_qs -->checked="checked"<!--/tmpl_if--> />
+          <label for="alt_url_sub_confirm_failed_w_qs">Rediriger avec une cha&icirc;ne de requ&ecirc;te</label>
+          </td> 
+         </tr> 
+        </table>
+   </td>
+  </tr>
+ </table>
+</fieldset>
+
+<fieldset>
+
+<legend>
+  Approuver/Refuser une requ&egrave;te d'abonnement (Exp&eacute;rimental)
+</legend>
+<table cellspacing="5">
+
+  <tr>
+   <td>
+    <input type="checkbox" name="enable_subscription_approval_step" id="enable_subscription_approval_step" value="1" <!-- tmpl_if enable_subscription_approval_step -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="enable_subscription_approval_step">
+      Activer l'approbation ou le refus d'une requ&egrave;te d'abonnement
+     </label>
+     <br />
+     Si une confirmation d'abonnement est un succ&egrave;s, bloquer l'adresse &agrave; approuver (ou pas) par le propri&eacute;taire de la liste. 
+    </p>
+
+	<p>
+		Le propri&eacute;taire de la liste sera en mesure de terminer le processus d'abonnement s'il souhaite que cette adresse soit approuv&eacute;e.
+	</p>
+   </td>
+  </tr>
+</table> 
+
+</fieldset> 
+
+
+
+
+
+<fieldset>
+
+<legend>
+  Inscription
+</legend>
+
+
+ 
+   <table cellspacing="5">
+
+  <tr>
+   <td>
+    <input type="checkbox" name="get_sub_notice" id="get_sub_notice" value="1" <!-- tmpl_if get_sub_notice -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="get_sub_notice">
+      Recevoir des notices d'abonnement
+     </label>
+     <br />
+     Soyez averti par un court email &agrave; chaque fois que quelqu'un s'abonne &agrave; votre liste.
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <input type="checkbox" name="send_sub_success_email" id="send_sub_success_email" value="1" <!-- tmpl_if send_sub_success_email -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="send_sub_success_email">
+      Envoi d'email de succ&egrave;s d'abonnement
+     </label>
+     <br />
+     Quand une personne s'abonne, un email lui sera envoy&eacute; pour annoncer l'abonnement.
+    </p>
+   </td>
+  </tr>
+ </table>
+  
+ <table cellspacing="5" <!-- tmpl_unless can_use_captcha -->class="disabled"<!--/tmpl_unless--> >
+
+    <tr>
+   <td>
+    <input type="checkbox" name="captcha_sub" id="captcha_sub" value="1" <!-- tmpl_if captcha_sub -->checked="checked"<!--/tmpl_if--> <!-- tmpl_unless can_use_captcha -->disabled="disabled"<!--/tmpl_unless-->/>
+   </td>
+   <td width="99%">
+    <p>
+     <label for="captcha_sub">
+      Activer les CAPTCHA
+     </label>
+     <br />
+     Avant que quelqu'un soit autoris&eacute; &agrave; s'abonner, il lui faudra r&eacute;ussir le test CAPTCHA. Ceci emp&egrave;che th&eacute;oriquement les machines de s'abonner automatiquement &agrave; votre liste.
+    </p>
+    
+    
+    <!-- tmpl_unless can_use_captcha -->
+	    
+	    <p class="error">
+	     <em>
+	      D&eacute;sactiv&eacute;. Il faut que vous configuriez votre syst&egrave;me de CAPTCHA (<!-- tmpl_var CAPTCHA_TYPE -->)
+	    </em>
+	    </p>
+	    
+    <!--/tmpl_unless-->
+
+
+   </td>
+  </tr>
+ </table>
+ 
+  <table cellspacing="5">
+  <tr>
+   <td>
+    <input type="checkbox" name="use_alt_url_sub_success" id="use_alt_url_sub_success" value="1" <!-- tmpl_if use_alt_url_sub_success -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="use_alt_url_sub_success">
+      Si une inscription est couronn&eacute;e de succ&egrave;s, rediriger vers cette URL:
+     </label>
+    </p>
+    
+    <table cellspacing="5" width="100%">
+     <tr> 
+      <td>
+       <input type="text" name="alt_url_sub_success" value="<!-- tmpl_var name="alt_url_sub_success" escape="HTML" -->" class="full" />
+      </td> 
+     </tr> 
+     <tr> 
+      <td> 
+       <input type="checkbox" name="alt_url_sub_success_w_qs" id="alt_url_sub_success_w_qs" value="1" <!-- tmpl_if alt_url_sub_success_w_qs -->checked="checked"<!--/tmpl_if--> />
+       <label for="alt_url_sub_success_w_qs">Rediriger avec une cha&icirc;ne de requ&ecirc;te</label>
+      </td> 
+     </tr> 
+    </table>      
+    
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <input type="checkbox" name="use_alt_url_sub_failed" id="use_alt_url_sub_failed" value="1" <!-- tmpl_if use_alt_url_sub_failed -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="use_alt_url_sub_failed">
+      Si une inscription &eacute;choue, rediriger vers cet URL:
+     </label>
+    </p>     
+     
+  <table cellspacing="5" width="100%">
+	 <tr> 
+	  <td> 
+       <input type="text" name="alt_url_sub_failed" value="<!-- tmpl_var name="alt_url_sub_failed" escape="HTML" -->" class="full" />
+	  </td>
+	 </tr> 
+	 <tr> 
+	  <td>
+	   <input type="checkbox" name="alt_url_sub_failed_w_qs" id="alt_url_sub_failed_w_qs" value="1" <!-- tmpl_if alt_url_sub_failed_w_qs -->checked="checked"<!--/tmpl_if--> />
+	   <label for="alt_url_sub_failed_w_qs">Rediriger avec une cha&icirc;ne de requ&ecirc;te</label>
+	  </td> 
+	 </tr> 
+	</table>
+
+   </td>
+  </tr>
+ </table>
+
+</fieldset>
+
+
+<fieldset>
+
+<legend>
+Confirmations de d&eacute;sinscription
+</legend>
+  
+
+ <table cellspacing="5">
+  <tr>
+   <td>
+    <input type="checkbox" name="unsub_confirm_email" id="unsub_confirm_email" value="1" <!-- tmpl_if unsub_confirm_email -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="unsub_confirm_email">
+      Envoyer un mail de confirmation de d&eacute;sinscription (Closed-Loop Opt-Out)
+     </label>
+    </p>
+   </td>
+  </tr>
+  
+    
+
+<tr>
+ <td>
+  <input type="checkbox" name="skip_unsub_confirm_if_logged_in" id="skip_unsub_confirm_if_logged_in" value="1" <!-- tmpl_if skip_unsub_confirm_if_logged_in -->checked="checked"<!--/tmpl_if--> />
+ </td>
+ <td width="99%">
+  <p>
+   <label for="skip_unsub_confirm_if_logged_in">
+    Laisser tomber le processus de d&eacute;sinscription si l'abonn&eacute;-e a d&eacute;j&agrave; un profil <!-- tmpl_var PROGRAM_NAME -->.
+   </label>
+   <br /> 
+
+	Un-e utilisateur-trice qui a d&eacute;j&agrave; un profil peut avoir une adresse email d&eacute;j&agrave; confirm&eacute;e. 
+	L'utilisateur-trice  devra quand m&ecirc;me se connecter pour faire sa demande de d&eacute;sabonnement
+  </p>
+ </td>
+</tr>
+
+
+  <tr>
+   <td>
+    <input type="checkbox" name="limit_unsub_confirm" id="limit_unsub_confirm" value="1" <!-- tmpl_if limit_unsub_confirm -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="limit_unsub_confirm">
+      Limiter l'envoi de confirmation de d&eacute;sabonnement 
+     </label>
+     <br />
+	Quand cette option est activ&eacute;e, un seul message de confirmation peut &ecirc;tre envoy&eacute; &agrave; la fois par abonn&eacute;-e, sauf si il ou elle demande qu'un nouveau message lui soit envoy&eacute;. 
+	Ceci permet de limiter l'envoi de messages inutiles. 
+    </p>
+   </td>
+  </tr>
+   
+   
+   
+  <tr>
+   <td>
+
+       <input type="checkbox" name="use_alt_url_unsub_confirm_success" id="use_alt_url_unsub_confirm_success" value="1" <!-- tmpl_if use_alt_url_unsub_confirm_success -->checked="checked"<!--/tmpl_if--> />
+
+
+   </td>
+   <td>
+ 
+       <p>
+        <label for="use_alt_url_unsub_confirm_success">
+         Si la premi&egrave;re &eacute;tape du double opt-out est un succ&egrave;s (et qu'un message de confirmation est envoy&eacute;), rediriger vers cet URL:
+         
+        </label>
+        </p>
+        
+        <table cellspacing="5" width="100%">
+         <tr> 
+          <td> 
+           <input type="text" name="alt_url_unsub_confirm_success" value="<!-- tmpl_var name="alt_url_unsub_confirm_success" escape="HTML" -->" class="full" />
+          </td>
+         </tr> 
+         <tr> 
+          <td>
+           <input type="checkbox" name="alt_url_unsub_confirm_success_w_qs" id="alt_url_unsub_confirm_success_w_qs" value="1" <!-- tmpl_if alt_url_unsub_confirm_success_w_qs -->checked="checked"<!--/tmpl_if--> />
+           <label for="alt_url_unsub_confirm_success_w_qs">Rediriger avec une cha&icirc;ne de requ&ecirc;te</label>
+          </td> 
+         </tr> 
+        </table>
+        
+        
+       
+       
+       
+       
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <input type="checkbox" name="use_alt_url_unsub_confirm_failed" id="use_alt_url_unsub_confirm_failed" value="1" <!-- tmpl_if use_alt_url_unsub_confirm_failed -->checked="checked"<!--/tmpl_if--> />
+      </td>
+      <td width="99%">
+       <p>
+        <label for="use_alt_url_unsub_confirm_failed">
+         Si la premi&egrave;re &eacute;tape du double opt-out &eacute;choue, 
+         rediriger vers cet URL:
+        </label>
+        </p>
+       
+        <table cellspacing="5" width="100%">
+         <tr> 
+          <td> 
+           <input type="text" name="alt_url_unsub_confirm_failed" value="<!-- tmpl_var name="alt_url_unsub_confirm_failed" escape="HTML" -->" class="full" />
+          </td>
+         </tr> 
+         <tr> 
+          <td>
+           <input type="checkbox" name="alt_url_unsub_confirm_failed_w_qs" id="alt_url_unsub_confirm_failed_w_qs" value="1" <!-- tmpl_if alt_url_unsub_confirm_failed_w_qs -->checked="checked"<!--/tmpl_if--> />
+           <label for="alt_url_unsub_confirm_failed_w_qs">Rediriger avec une cha&icirc;ne de requ&ecirc;te</label>
+          </td> 
+         </tr> 
+        </table>       
+       
+       
+       
+       
+    
+   </td>
+  </tr>
+ </table>
+</fieldset>
+
+
+
+<fieldset>
+
+<legend>
+  D&eacute;sinscriptions
+</legend>
+
+
+ <table cellspacing="5">
+  <tr>
+   <td>
+    <input type="checkbox" name="get_unsub_notice" id="get_unsub_notice" value="1" <!-- tmpl_if get_unsub_notice -->checked="checked"<!--/tmpl_if --> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="get_unsub_notice"> 
+      Recevoir des notices de d&eacute;sinscription
+     </label>
+     <br />
+     Soyez averti &agrave; chaque fois que quelqu'un se d&eacute;sinscrit gr&acirc;ce &agrave; un court email.
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <input type="checkbox" name="send_unsub_success_email" id="send_unsub_success_email" value="1" <!-- tmpl_if send_unsub_success_email -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="send_unsub_success_email">
+     Envoi d'emails de succ&egrave;s de d&eacute;sinscription
+     </label>
+     <br />
+     Apr&egrave;s qu'une personne se d&eacute;sinscrive, un email lui sera envoy&eacute;.
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <input type="checkbox" name="use_alt_url_unsub_success" id="use_alt_url_unsub_success" value="1" <!-- tmpl_if use_alt_url_unsub_success -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="use_alt_url_unsub_success">
+      Si la d&eacute;sinscription est un succ&egrave;s, renvoyer vers cette URL:
+     </label>
+     </p>
+
+        <table cellspacing="5" width="100%">
+         <tr> 
+          <td> 
+           <input type="text" name="alt_url_unsub_success" value="<!-- tmpl_var name="alt_url_unsub_success" escape="HTML" -->" class="full" />
+          </td>
+         </tr> 
+         <tr> 
+          <td>
+           <input type="checkbox" name="alt_url_unsub_success_w_qs" id="alt_url_unsub_success_w_qs" value="1" <!-- tmpl_if alt_url_unsub_success_w_qs -->checked="checked"<!--/tmpl_if--> />
+           <label for="alt_url_unsub_success_w_qs">Rediriger avec une cha&icirc;ne de requ&ecirc;te</label>
+          </td> 
+         </tr> 
+        </table>       
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <input type="checkbox" name="use_alt_url_unsub_failed" id="use_alt_url_unsub_failed" value="1" <!-- tmpl_if use_alt_url_unsub_failed -->checked="checked"<!--/tmpl_if--> />
+   </td>
+   <td width="99%">
+    <p>
+     <label for="use_alt_url_unsub_failed">
+      Si la d&eacute;sinscription est un &eacute;chec, renvoyer vers cette URL:
+     </label>
+     </p>
+
+    <table cellspacing="5" width="100%">
+	 <tr> 
+	  <td> 
+	   <input type="text" name="alt_url_unsub_failed" value="<!-- tmpl_var name="alt_url_unsub_failed" escape="HTML" -->" class="full" />
+	  </td>
+	 </tr> 
+	 <tr> 
+	  <td>
+	   <input type="checkbox" name="alt_url_unsub_failed_w_qs" id="alt_url_unsub_failed_w_qs" value="1" <!-- tmpl_if alt_url_unsub_failed_w_qs -->checked="checked"<!--/tmpl_if--> />
+	   <label for="alt_url_unsub_failed_w_qs">Rediriger avec une cha&icirc;ne de requ&ecirc;te</label>
+	  </td> 
+	 </tr> 
+	</table>     
+  
+</td>
+</tr> 
+</table> 
+
+</fieldset>
+
+<hr />
+<div class="floatclear"></div>
+
+<input type="hidden" name="process" value="1" />
+<input type="hidden" name="f"       value="list_options" />
+<div class="buttonfloat">
+ <input type="reset"  class="cautionary" value="Annuler les changements" />
+ <input type="submit" class="processing" value="Enregistrer les options de la liste" />
+</div>
+<div class="floatclear"></div>
+
+</form> 
+
+ 
+
+
+<!-- end list_options_screen.tmpl -->

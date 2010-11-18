@@ -1,0 +1,286 @@
+<!-- begin send_url_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl -->
+
+<!-- tmpl_include mass_mailing_limit_notice_widget.tmpl --> 
+
+
+<form name="send_email" action="<!-- tmpl_var name="S_PROGRAM_URL" -->" method="post">
+ 
+<!-- tmpl_unless can_use_mime_lite_html -->
+	 
+	 <div class="disabled">
+	  <p class="error">
+	   D&eacute;activ&eacute;. La biblioth&egrave;que Perl 'MIME::Lite::HTML' doit &ecirc;tre install&eacute;e, ou il manque un des composants. Plus d'info ci-dessous&nbsp;:
+	   
+	  </p>
+	  
+	  <pre> 
+<!-- tmpl_var mime_lite_html_error -->
+	  </pre> 
+	  
+	  
+	 </div>
+	 
+<!-- tmpl_else-->
+	 
+	 <!-- tmpl_unless can_use_lwp_simple -->
+
+
+		  <div class="disabled">
+		  <p class="error">
+		   D&eacute;sactiv&eacute;. La biblioth&egrave;que Perl 'LWP'doit &ecirc;tre install&eacute;e, ou il manque un des composants. Plus d'info ci-dessous&nbsp;:
+		  </p>
+		  
+		  <pre> 
+<!-- tmpl_var lwp_simple_error --> 
+		  </pre> 
+		  
+		  
+		 </div>
+		 
+			<!-- tmpl_else-->
+
+        <!-- tmpl_if list_settings.group_list --> 
+            <p class="positive">
+				L'assistance aux listes de discussion est activ&eacute;e et les pr&eacute;f&eacute;rences des listes de discussion seront honor&eacute;es.
+        	</p>
+		<!--/tmpl_if--> 
+
+		
+<!-- tmpl_include message_headers_fieldset_widget.tmpl --> 
+
+
+   <fieldset> 
+  
+		 <legend>
+		  Corps du message
+		 </legend>
+		 
+		 
+		 
+  <fieldset style="background:#e6e6e6"> 
+  
+		 <legend>
+		  Version HTML (Votre page web)
+		 </legend>
+		 
+		 <p>
+		  <input type="radio" name="content_from" id="content_from_url" value="url" checked="checked" />
+			  <label for="content_from_url">
+		   Saisir le contenu d'une page web (URL):
+		  </label>
+		  <br />
+		  <input type="text" name="url" id="url" class="full" value="http://" />
+		 </p>
+		 
+		 <p>
+		  <input type="radio" name="content_from" id="content_from_textarea" value="content_from_textarea" />
+			  <label for="content_from_textarea">
+			   Utiliser le HTML suivant comme contenu:
+			  </label>
+		  <br />
+		  
+		<!-- tmpl_include html_message_form_field_widget.tmpl --> 
+		 
+		 </p>
+		 <fieldset>
+		  <legend>
+		   <a href="#" onclick="toggleDisplay('advanced_options');return false;">
+			+/- 
+		   </a>Options avanc&eacute;es
+		  </legend>
+
+		<div id="advanced_options" style="display:none"> 
+		<table>
+		  <tr>
+		   <td>
+			<p>
+			 <strong>
+			  &Agrave; propos des images dans cette page web&nbsp;:
+			 </strong>
+			</p>
+		  
+			<p>
+			 <input type="radio" name="url_options" id="extern" value="extern" checked="checked" />
+			  <label for="extern">
+			   transformer leur URL en URL absolues
+			 </label> 
+			 
+			 
+			 <!-- DEV as far as I can tell, this option doesn't work!
+			 -js
+			 
+			 <br />
+			 <input type="radio" name="url_options" value="location" />
+			 be embedded in the message itself, using the 'Content-Location' header
+			 
+			 --> 
+			 
+			 
+			 <br />
+			 <input type="radio" name="url_options" value="cid" id="cid" />
+			  <label for="cid">
+			   les inclure dans le message. 
+			 </label>
+			 
+		<!-- tmpl_unless can_display_attachments --> 
+				 
+				 <br />
+				 <p class="error"> 
+				  Attention : votre configuration Archive ne permet pas l'archivage de messages contenant des images. Quand ces archives sont consult&eacute;es, les images pourraient manquer ou &ecirc;tre mal formatt&eacute;es.
+				 </p>
+				 
+		<!--/tmpl_unless--> 
+			 
+			</p>
+		   </td>
+		  </tr>
+		  <tr> 
+			<td>
+			<p>	<input type="checkbox" name="remove_javascript" id="remove_javascript" checked="checked" value="1" />
+			 
+			  <label for="remove_javascript">
+				Javascript distant
+			   </label> <em>(Hautement recommand&eacute;)</em>
+			 </p>
+			</td>
+	
+		  </tr> 
+		  <tr>
+		   <td>
+			<table class="simplebox">
+			 <tr>
+			  <td>
+			   <p>
+				<strong>
+				 Information URL restreinte
+				</strong>
+				   </p>
+				  </td>
+				  <td>
+			   <p>
+				(
+				<em>
+				 optionnel
+				</em>
+				)
+			   </p>
+			  </td>
+			 </tr>
+			 <tr>
+			  <td>
+			   <p align="right">
+				<strong>
+				 username:
+				</strong>
+			   </p>
+			  </td>
+			  <td>
+			   <p>
+				<input type="text" name="url_username" />
+			   </p>
+			  </td>
+			 </tr>
+			 <tr>
+			  <td>
+			   <p align="right">
+				<strong>
+				 mot de passe:
+				</strong>
+			   </p>
+			  </td>
+			  <td>
+			   <p>
+				<input type="password" name="url_password" />
+			   </p>
+			  </td>
+			 </tr>
+			 <tr>
+			  <td>
+			   <p align="right">
+				<strong>
+				 proxy:
+				</strong>
+			   </p>
+			  </td>
+			  <td>
+			   <p>
+				<input type="password" name="proxy" />
+			   </p>
+			  </td>
+			 </tr>
+			</table>
+		   </td>
+		  </tr>
+		 </table>
+		</div> 
+	</fieldset>
+
+
+</fieldset> 
+
+
+
+ 
+
+
+
+  <fieldset style="background:#e6e6e6"> 
+
+		 <legend><a href="#" onclick="toggleDisplay('text_message');return false;">+/-</a>
+		  Version texte
+		 </legend>
+  <div id="text_message" style="display:none"> 
+
+ 
+		 <p>
+		  <input type="radio" name="auto_create_plaintext" id="auto_create_plaintext" value="1" checked="checked" />
+		  <label for="auto_create_plaintext">
+		   Cr&eacute;er une version texte automatiquement
+		  </label>
+		  <br />
+		  <em>
+		   Ne fonctionnera pas si vous utilisez un identifiant ou un mot de passe ou un proxy.
+		  </em>
+		 </p>
+		 <p>
+		  <input type="radio" name="auto_create_plaintext" id="no_auto_create_plaintext" value="0" />
+		  <label for="no_auto_create_plaintext">
+		   Utilisez le texte ci-dessous pour la version texte:
+		  </label>
+		 </p>
+		 <p>
+		  <textarea name="text_message_body" cols="80" rows="30">Ce message email n&eacute;c&eacute;ssite que votre client mail supporte le format HTML.</textarea>
+		 </p>
+		 <input type="hidden" name="f" value="send_url_email" />
+		 
+	</div> 
+	</fieldset> 
+	
+	 </fieldset> 
+
+		<!-- tmpl_if list_settings.archive_messages -->
+			 
+			 <!-- tmpl_include send_email_archive_options_widget.tmpl -->
+			 <hr />
+			 
+		<!--/tmpl_if-->
+		 
+		 <!-- tmpl_include multiple_list_sending_widget.tmpl --> 
+		
+		 <!-- tmpl_include partial_sending_options_widget.tmpl --> 
+
+         <!-- tmpl_include subscriber_field_tags_listing_widget.tmpl --> 
+
+		 <!-- tmpl_include send_a_list_message_button_widget.tmpl -->
+		 
+	<!-- /tmpl_unless -->
+ 
+<!-- /tmpl_unless -->
+
+</form> 
+
+ 
+
+<!-- end send_url_screen.tmpl -->

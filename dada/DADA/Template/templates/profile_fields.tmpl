@@ -1,0 +1,454 @@
+<!-- begin profile_fields.tmpl --> 
+
+<!-- tmpl_include help_link_widget.tmpl --> 
+
+
+<p>
+Profils
+ &#187;
+<!-- tmpl_if edit_field --> 
+
+	<a href="<!-- tmpl_var S_PROGRAM_URL -->?f=profile_fields"> 
+	Champs de profils
+	</a>
+	 &#187; 
+	Modifier 
+	&#187;
+
+ <strong><!-- tmpl_var field --></strong>
+
+<!-- tmpl_else --> 
+	Champs de profils
+<!-- /tmpl_if -->
+</p>
+
+
+<!-- tmpl_if deletion --> 
+	<p class="positive">
+		Le champ de profil, "<!-- tmpl_var working_field -->"  a &eacute;t&eacute; effac&eacute;.
+	</p>
+<!-- /tmpl_if --> 
+
+<!-- tmpl_if addition --> 
+	<p class="positive">
+		Le champ de profil, "<!-- tmpl_var working_field -->"  a &eacute;t&eacute; ajout&eacute;.
+	</p>
+<!-- /tmpl_if --> 
+
+<!-- tmpl_if edited --> 
+	<p class="positive">
+		Le champ de profil, "<!-- tmpl_var working_field -->"  a &eacute;t&eacute; modifi&eacute;.
+	</p>
+<!-- /tmpl_if --> 
+
+
+
+
+
+
+
+
+
+<!-- tmpl_if can_have_subscriber_fields --> 
+    
+    <p class="alert">
+     Les champs de profil des abonnements sont globaux, et les modifications sont appliqu&eacute;es &agrave; toutes les listes. Vous ne pouvez modifier les champs des profils que si vous &ecirc;tes connect&eacute;-e &agrave; une liste existante en utilisant le mot de passe administrateur <!-- tmpl_var PROGRAM_NAME -->.
+</p>
+    
+    
+    <!-- tmpl_if field_errors --> 
+    
+		<!-- tmpl_unless edit_field --> 
+		
+	        <p class="error"> 
+	         Un probl&egrave;me est survenu en ajoutant votre nouveau champ&nbsp;!
+	        </p>
+
+		<!-- tmpl_else --> 
+
+			<p class="error"> 
+	         Un probl&egrave;me est survenu en modifiant votre champ, <!-- tmpl_var field -->
+	        </p>
+
+		<!-- /tmpl_unless --> 
+        
+        <ul>
+         <!-- tmpl_if field_error_field_blank -->
+             <li>
+              <p class="error"> 
+                Le nom de champ que vous avez soumis est vide.
+              </p>
+              </li>
+         <!-- /tmpl_if --> 
+         
+          <!-- tmpl_if field_error_field_name_too_long -->
+             <li>
+              <p class="error"> 
+                Le nom de champ est trop long. Veillez &agrave; choisir un nom de moins de 64 caract&egrave;res.
+              </p>
+              </li>
+         <!-- /tmpl_if --> 
+         
+        <!-- tmpl_if field_error_slashes_in_field_name -->
+             <li>
+              <p class="error"> 
+                Le nom de champ contient des barres obliques. 
+              </p>
+              </li>
+         <!-- /tmpl_if --> 
+         
+         
+         <!-- tmpl_if field_error_weird_characters -->
+             <li>
+              <p class="error"> 
+                Le nom de champ contient des caract&egrave;res bizarres. 
+              </p>
+              </li>
+         <!-- /tmpl_if --> 
+         
+         <!-- tmpl_if field_error_quotes -->
+             <li>
+              <p class="error"> 
+                Le nom de champ contient des guillemets. 
+              </p>
+              </li>
+         <!-- /tmpl_if -->  
+        
+        
+         <!-- tmpl_if field_error_field_exists -->
+             <li>
+              <p class="error"> 
+                Le nom de champ existe d&eacute;j&agrave;&nbsp;! 
+              </p>
+              </li>
+         <!-- /tmpl_if -->  
+         
+         
+          <!-- tmpl_if field_error_spaces -->
+             <li>
+              <p class="error"> 
+                Le nom de champ contient des espaces (vous pouvez utiliser un underscore ( _ ) &agrave; la place). 
+              </p>
+              </li>
+         <!-- /tmpl_if -->
+         
+         
+         <!-- tmpl_if field_error_field_is_special_field -->
+             <li>
+              <p class="error"> 
+                Le nom de champ que vous essayer d'ajouter ou de modifier est un champ sp&eacute;cial r&eacute;serv&eacute; (email_id, email, list, list_type, list_status)
+              </p>
+              </li>
+         <!-- /tmpl_if -->   
+        </ul> 
+    
+    
+    <!-- /tmpl_if --> 
+    
+
+		    
+  <!-- tmpl_unless edit_field -->   
+
+	<fieldset> 
+		<legend>Champs de profil d'abonn&eacute;-e</legend>
+		
+    <!-- tmpl_if fields --> 
+
+
+	
+  
+	<div style="max-height: 200px; overflow: auto; border:1px solid black">
+
+	 <table cellpadding="2" cellspacing="0" border="0" width="100%" style="background:#fff">
+		  
+         <tr> 
+                   <!-- tmpl_if root_login --> 
+			 <td> 
+	                <p>
+	                &nbsp;
+	               </p>
+	               </td>
+	         <!-- /tmpl_if --> 
+	
+
+		 <td> 
+           <p>
+            <strong>
+             Nom
+            </strong> 
+           </p> 
+          </td> 
+          
+    
+		 <td> 
+           <p>
+            <strong>
+             &Eacute;tiquette
+            </strong> 
+           </p> 
+          </td>
+
+      
+            <td> 
+           <p>
+            <strong>
+             Valeur de repli
+            </strong> 
+           </p> 
+          </td> 
+          
+           <!-- tmpl_if root_login --> 
+           
+          <td> 
+          </td> 
+         
+            <!--/tmpl_if-->
+            
+         </tr> 
+         
+        <!-- tmpl_loop fields --> 
+  
+
+      
+        <tr <!-- tmpl_if name="__odd__" --> style="background-color:#ccf;"<!--/tmpl_if-->> 
+
+	       <!-- tmpl_if root_login --> 
+				
+
+	             <td style="width:12em"> 
+
+	            <form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post" style="margin: 0pt; display: inline;">
+	             <input type="hidden" name="f" value="profile_fields" /> 
+	             <input type="hidden" name="edit_field" value="1" /> 
+	             <input type="hidden" name="field"  value="<!-- tmpl_var field -->" /> 
+	            <input type="submit" value="[edit]" class="cautionary" style="margin:0px" /> 
+	            </form> 
+	
+	
+				<!-- tmpl_if can_move_columns --> 
+					<form style="margin: 0pt; display: inline;">			
+						<input type="hidden" name="f" value="profile_fields" /> 
+		             	<input type="hidden" name="process" value="edit_field_order" /> 
+		             	<input type="hidden" name="field"  value="<!-- tmpl_var field -->" />
+						<input type="hidden" name="direction" value="up" /> 
+						<input type="submit" value="^" class="cautionary" style="margin: 0pt;" title="move this field up" <!-- tmpl_if __first__ -->disabled="disabled"<!-- /tmpl_if --> />
+				
+					</form>
+					<form style="margin: 0pt; display: inline;">
+					
+						<input type="hidden" name="f" value="profile_fields" /> 
+		             	<input type="hidden" name="process" value="edit_field_order" /> 
+		             	<input type="hidden" name="field"  value="<!-- tmpl_var field -->" />
+						<input type="hidden" name="direction" value="down" />
+					
+						<input type="submit" value="v" class="cautionary" style="margin: 0pt;" title="move this field down"  <!-- tmpl_if __last__ -->disabled="disabled"<!-- /tmpl_if --> />
+					</form>
+				<!-- /tmpl_if --> 
+				
+	             </td> 
+	
+	        <!--/tmpl_if-->
+	
+	
+         <td> 
+          <p>
+           <strong>
+           <!-- tmpl_var field --> 
+           </strong>
+          </p> 
+         </td> 
+         
+
+	    
+         <td> 
+          <p>
+           <!-- tmpl_var label --> 
+          </p>
+         </td>
+
+
+         <td> 
+          <p>
+           <!-- tmpl_var fallback_value --> 
+          </p>
+         </td> 
+         
+         
+         <!-- tmpl_if root_login --> 
+             
+             <td style="width:5em"> 
+            
+            <form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+             <input type="hidden" name="f" value="profile_fields" /> 
+             <input type="hidden" name="process" value="delete_field" /> 
+             <input type="hidden" name="field"  value="<!-- tmpl_var field -->" /> 
+            <input type="submit" value="[X]" class="alertive"  onclick="return removeSubscriberField(this.form);" /> 
+            </form> 
+             </td> 
+        
+        <!--/tmpl_if-->
+        
+        </tr> 
+        
+        
+        
+        <!-- /tmpl_loop --> 
+        </table> 
+   </div> 
+ 
+    <!-- tmpl_else --> 
+    
+    <p class="error"> 
+     Pour l'instant, il n'y a pas de champ de profil d'abonn&eacute;-e.
+    </p>
+    
+    
+    <!-- /tmpl_if --> 
+   
+
+
+
+ <!-- /tmpl_unless --> 
+</fieldset> 
+   
+    <fieldset> 
+<!-- tmpl_unless edit_field --> 
+
+    <legend>
+     Ajouter un nouveau champ
+    </legend> 
+
+<!-- tmpl_else --> 
+
+<legend>
+	Modifier le champ: <!-- tmpl_var field --> 
+</legend>
+
+<!-- /tmpl_unless --> 
+
+    
+    <!-- tmpl_if root_login --> 
+         <form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+             <input type="hidden" name="f" value="profile_fields" /> 
+
+			<!-- tmpl_unless edit_field --> 
+			
+             	<input type="hidden" name="process" value="add_field" /> 
+            <!-- tmpl_else --> 
+
+				<input type="hidden" name="process"    value="edit_field" /> 
+ 				<input type="hidden" name="orig_field" value="<!-- tmpl_var field -->" /> 
+        	
+    		<!-- /tmpl_unless -->
+
+            <table cellpadding="5"> 
+             <tr> 
+				<td> 
+                <p>
+                <label for="field">Nom du champ</label> 
+               </p>
+               </td> 
+               <td> 
+                 <p>
+                  <input type="text" name="field"  id="field" value="<!-- tmpl_var field escape="HTML"  -->" class="full" <!-- tmpl_if using_SQLite --><!-- tmpl_if edit_field -->disabled="disabled"<!-- /tmpl_if --><!-- /tmpl_if --> /><br /> 
+                  <em>
+					Utilisez des underscore ( _ ) &agrave; la place d'espaces, pas de caract&egrave;res sp&eacute;ciaux (y compris les caract&egrave;res accentu&eacute;s) et utilisez des minuscules &agrave; la place des majuscules.
+                  </em><br /> <br /> 
+                  
+
+<!-- tmpl_if using_SQLite -->
+	<!-- tmpl_if edit_field -->
+	
+</p>
+	<p class="error">D&eacute;sactiv&eacute;. SQLite ne permet pas le changement des noms de champ.</p>
+	<p>
+		
+	<!-- /tmpl_if -->
+<!-- /tmpl_if -->
+
+
+                  <em>Les noms de champs pr&eacute;fix&eacute;s par  &quot;<!-- tmpl_var HIDDEN_SUBSCRIBER_FIELDS_PREFIX escape="HTML" -->&quot; n'appara&icirc;tront pas dans les abonnements publics.</em>
+                  
+                </p>
+            </td> 
+            </tr> 
+
+            <tr> 
+             <td> 
+             
+                <p>
+                 <label for="label">&Eacute;tiquettes</label> 
+                </p>
+               </td> 
+               <td> 
+                <p>
+                    <input type="text" name="field_label" id="field_label"  value="<!-- tmpl_var field_label escape="HTML" -->" class="full" /><br />
+                    <em>Cette &eacute;tiquette sera utilis&eacute;e sur les formulaires d'abonnements publics</em>
+                </p>
+            
+            </td>
+              </tr>
+
+
+            <tr> 
+             <td> 
+             
+                <p>
+                 <label for="fallback_field_value">Fallback Value</label> 
+                </p>
+               </td> 
+               <td> 
+                <p>
+                    <input type="text" name="fallback_field_value" id="fallback_field_value"  value="<!-- tmpl_var fallback_field_value escape="HTML" -->" class="full" /><br />
+                    <em>Cette valeur sera utilis&eacute;e pour le Mail Merge quand il n'y a pas d'info sauvegard&eacute;e par l'abonn&eacute;-e. </em>
+                </p>
+            
+            </td>
+              </tr> 
+              </table> 
+                
+                
+            
+            
+            
+            <div class="buttonfloat">
+                
+				<!-- tmpl_unless edit_field --> 
+
+                	<input type="submit" value="Ajouter un champ" class="processing" /> 
+            
+				<!-- tmpl_else --> 
+            	
+					<input type="submit" value="Modifier le champ, &quot;<!-- tmpl_var field -->&quot;" class="processing" /> 
+				
+				<!-- /tmpl_unless --> 
+				</div>
+            <div class="floatclear"></div>
+            
+            
+                </form> 
+        
+        <!-- tmpl_else --> 
+        
+            <p class="error">D&eacute;sactiv&eacute;. Il faut que vous vous connectiez en utilisant le mot de passe administrateur de  <!-- tmpl_var PROGRAM_NAME -->.</p>
+        
+        <!--/tmpl_if-->
+       
+       </fieldset> 
+
+    <!-- tmpl_else --> 
+    
+    
+        <p class="error"> 
+         Votre configuration actuelle ne permet pas les champs de profils. 
+         MySQL, PostgreSQL ou SQLite sont n&eacute;c&eacute;ssaires.  
+        </p> 
+
+<!-- /tmpl_if --> 
+
+
+
+
+
+<!-- end profile_fields.tmpl --> 
+

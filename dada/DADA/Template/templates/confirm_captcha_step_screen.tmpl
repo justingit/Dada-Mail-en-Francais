@@ -1,0 +1,45 @@
+<!-- begin confirm_captcha_step_screen.tmpl --> 
+
+
+<!-- tmpl_unless captcha_auth --> 
+
+<p class="error"> 
+ Les lettres que vous avez entr&eacute; ne correspondent pas aux lettres de l'image. Essayez à nouveau&nbsp;:
+</p>
+
+
+<!-- /tmpl_unless --> 
+
+
+
+<p> 
+ Pour la derni&egrave;re &eacute;tape, tapez les lettres que vous voyez dans l'image ci-dessous dans la case de texte&nbsp;:
+</p>
+
+<form action="<!-- tmpl_var PROGRAM_URL -->" method="post"> 
+
+
+
+<!-- tmpl_var CAPTCHA_string --> 
+
+
+
+
+ <input type="hidden" name="flavor" value="<!-- tmpl_var flavor -->" /> 
+
+ <input type="hidden" name="list" value="<!-- tmpl_var list -->" /> 
+
+ <input type="hidden" name="email" value="<!-- tmpl_var email -->" /> 
+
+ <input type="hidden" name="pin" value="<!-- tmpl_var pin -->" /> 
+
+
+ <p>
+  <input type="submit" value="Abonnez moi !" class="processing" /> 
+ </p>
+
+</form> 
+
+
+
+<!-- end confirm_captcha_step_screen.tmpl --> 

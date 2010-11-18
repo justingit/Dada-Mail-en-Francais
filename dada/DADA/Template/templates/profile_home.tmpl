@@ -1,0 +1,448 @@
+<!-- begin profile_home.tmpl --> 
+
+
+<script> 
+function toggleDisplay(target) {
+	if (document.getElementById){
+		var togglin = document.getElementById( target );
+		if(togglin.style.display == ""){
+			togglin.style.display = "none";
+		}else{
+			togglin.style.display = "";
+		}
+	}
+}
+
+function confirm_profile_removal(form_name) {
+		
+	
+	var confirm_msg =  "Are you sure you want to ";
+	    confirm_msg += " remove this profile?";
+	    confirm_msg += " This profile removal cannot be undone.";
+	if(!confirm(confirm_msg)){
+		alert('Profile not removed.');
+		return false;
+	}	
+}
+
+
+
+</script> 
+
+<p style="text-align:right"> 
+	[ <a href="<!-- tmpl_var PROGRAM_URL -->/profile_logout/">D&eacute;connection</a>]
+</p>
+
+
+<!-- tmpl_if welcome --> 
+	<p class="alert">
+	 Bienvenue dans votre profil. d'ici, vous pouvez vous abonner ou vous d&eacute;sabonner des diff&eacute;rentes listes disponibles, et aussi modifier vos informations.
+	</p> 
+<!-- /tmpl_if --> 
+<!-- tmpl_if edit --> 
+	<p class="positive">
+		Vos changement ont &eacute;t&eacute; enregistr&eacute;s&nbsp;!
+	</p> 
+<!-- /tmpl_if --> 
+
+
+
+
+
+
+<!-- tmpl_if errors --> 
+	<p class="error"> 
+		Il y a eu une erreur lors de votre derni&egrave;re requ&egrave;te&nbsp;:
+	</p> 
+<!-- /tmpl_if --> 
+
+
+
+<!-- tmpl_if errors_change_password --> 
+	<p class="error">Changer votre mot de passe:</p>
+	<ul> 
+		<li>
+		<p class="error">
+			Assurez-vous que vous avez bien retap&eacute; votre mot de passe correctement. 
+		</p>
+	</li> 
+	</ul> 
+
+<!-- /tmpl_if -->
+
+
+
+<!-- tmpl_if errors_update_email --> 
+	
+	<p class="error">
+		Mettre &agrave; jour votre profil&nbsp;: 
+	</p>
+	<ul> 
+	<!-- tmpl_if error_invalid_email --> 
+		<li>
+			<p class="error"> 
+			L'adresse email que vous avez soumise n'est pas valable.
+		</p>
+		</li> 
+		 
+	<!-- /tmpl_if --> 
+	
+	<!-- tmpl_if error_profile_exists --> 
+		<li>
+			
+		 <p class="error"> 
+		 	Un profil avec cette adresse email existe d&eacute;j&agrave;, <!-- tmpl_var updated_email -->.
+		 </p>
+		</li> 
+		
+	<!-- /tmpl_if --> 
+	</ul> 
+
+<!-- tmpl_else --> 
+
+<!-- /tmpl_if --> 
+
+
+
+
+
+
+<div class="positive_greeting">
+	<h1>
+		
+		<!-- tmpl_if gravators_enabled --> 
+			<!-- tmpl_if gravatar_img_url --> 
+			
+					<a href="http://gravatar.com/" target="_blank">
+						<img src="<!-- tmpl_var gravatar_img_url -->" style="float:left; padding:5px;padding-top:0px;border:0px" />
+					</a>
+		
+			<!-- /tmpl_if -->
+		<!-- /tmpl_if -->
+				
+		Bonjour, <!-- tmpl_var profile.email -->!
+		
+	</h1> 
+
+
+
+<div class="floatclear"></div>
+
+</div> 
+
+
+<!-- tmpl_if subscriber_fields --> 
+
+   
+<fieldset> 
+	
+<legend>
+	Champs du profil des abonn&eacute;-es
+</legend> 
+	<form action="<!-- tmpl_var PROGRAM_URL -->" method="post"> 
+		<input type="hidden" name="f"        value="profile" /> 
+		<input type="hidden" name="process"  value="edit_subscriber_fields" /> 
+
+		
+    <!-- tmpl_loop subscriber_fields --> 
+    
+        <p>
+        <label for="<!-- tmpl_var name escape=HTML -->" style="width: 10em;float: left;text-align: right;margin-right: 0.5em;display: block">
+        
+        <!-- tmpl_if label --> 
+			<!-- tmpl_var label escape=HTML -->: 
+        <!-- tmpl_else --> 
+			<!-- tmpl_var name escape=HTML -->: 
+		<!-- /tmpl_if -->
+		
+        </label>
+        <input type="text" name="<!-- tmpl_var name escape=HTML -->" id="<!-- tmpl_var name escape=HTML -->" value="<!-- tmpl_var value escape=HTML -->"  />
+        </p>
+
+    <!-- /tmpl_loop -->
+	<div class="buttonfloat">	
+    <input type="submit" value="Mettre les informations &agrave; jour" /> 
+	</div>
+	<div class="floatclear"></div>
+	</form>
+
+<!-- /tmpl_if --> 
+
+</fieldset> 
+
+
+	
+<h1>
+Vos abonnements
+</h1> 
+
+	<!-- tmpl_if has_subscriptions --> 
+
+	<!-- tmpl_else --> 
+		<p class="alert">
+			Vous n'&ecirc;tes pour l'instant abonn&eacute;-e &agrave; aucune liste.
+		</p>
+	<!-- /tmpl_if --> 
+
+
+
+
+<!-- tmpl_loop subscriptions --> 
+
+	
+
+	<!-- tmpl_if subscribed --> 
+	
+		<h2>
+			<a href="<!-- tmpl_var PROGRAM_URL -->/list/<!-- tmpl_var list_settings.list -->">
+				<!-- tmpl_var list_settings.list_name --> 
+			</a>
+		</h2>
+	
+	
+	<div style="max-height: 200px; overflow: auto;background:#fff; padding:5px;border:1px solid black">
+		<p>
+			<!-- tmpl_var list_settings.info -->
+		</p>
+	</div> 
+
+
+	<ul> 
+	    <!-- tmpl_if list_settings.group_list --> 
+			<li>
+				<p>Liste de discussion</p> 
+				<ul> 
+					<li> 
+						 <a href="mailto:<!-- tmpl_var list_settings.discussion_pop_email -->">
+							Commencer un nouveau fil - 
+								<!-- tmpl_var list_settings.discussion_pop_email -->
+							</a>
+					</li> 
+	            <!-- tmpl_if list_settings.enable_moderation --> 
+	               <li>Liste mod&eacute;r&eacute;e</li> 
+	            <!-- tmpl_else -->
+	                   <li>Liste non mod&eacute;r&eacute;e</li> 
+	            <!-- /tmpl_if --> 
+			</ul> 
+			
+	        </li>
+	    <!-- tmpl_else --> 
+
+	        <li>
+	         Liste d'annonces uniquement.
+	        </li>
+
+	     <!-- /tmpl_if --> 
+	</ul>
+	
+	
+<ul>
+		<li>
+				<p><a href="<!-- tmpl_var PROGRAM_URL -->/archive/<!-- tmpl_var list_settings.list -->">
+			Voir les Archives
+		</a>
+		</p>
+	</li>
+	<li>
+		<p>
+		<a href="<!-- tmpl_var PROGRAM_URL -->?f=u&amp;list=<!-- tmpl_var list_settings.list -->&amp;email=<!-- tmpl_var profile.email -->">
+			Se d&eacute;sinscrire de cette liste
+		</a>
+	</p>
+</li>	
+</ul>
+
+
+
+	
+	<!-- tmpl_if comment --> 
+	
+		<!-- tmpl_if list_owner --> 
+		<p class="alert"> 
+			Vous &ecirc;tes le propri&eacute;taire de cette liste. 
+			<a href="<!-- tmpl_var S_PROGRAM_URL -->/sign_in/<!-- tmpl_var list_settings.list -->/"> 
+				Connexion...
+			</a>  
+		</p>
+		<!-- /tmpl_if -->
+	
+	<!-- /tmpl_if -->
+	
+	
+	
+	
+
+	<!-- /tmpl_if --> 
+
+
+	
+	
+	
+<!-- /tmpl_loop -->
+
+
+<!-- tmpl_if comment --> 
+
+	<!-- tmpl_if has_subscriptions --> 
+
+	<h1>Se d&eacute;sinscrire de TOUTES les listes</h1> 
+
+	<form><input type="submit" value="Zoom!" /> </form> 
+
+
+	<!-- /tmpl_if -->  
+
+<!-- /tmpl_if --> 
+
+<hr /> 
+
+
+	
+<fieldset> 
+	<legend> 
+	    <a href="#" onclick="toggleDisplay('update_profile_email');return false;">+/-</a>Mettre &agrave; jour votre adresse email
+	   </legend>
+
+	 
+	<div id="update_profile_email" <!-- tmpl_if errors_update_email --><!-- tmpl_else -->style="display:none"<!-- /tmpl_if --> >
+
+<p class="alert">
+	L'adresse email de votre profil ainsi que celle des abonnements utilisant votre adresse actuelle (<!-- tmpl_var profile.email -->) 
+	sera remplac&eacute;e par cette nouvelle adresse partout o&ugrave; c'est autoris&eacute;&nbsp;: 
+</p>
+
+
+
+<form action="<!-- tmpl_var PROGRAM_URL -->" method="post"> 
+	<input type="hidden" name="f"        value="profile" /> 
+	<input type="hidden" name="process"  value="update_email" />
+	
+
+		<!-- tmpl_if errors_update_email --> 
+			<!-- tmpl_if error_invalid_email --> 
+				<p class="error"> 
+					* L'adresse email que vous avez entr&eacute;e n'est pas valable.
+				</p> 
+			<!-- /tmpl_if --> 
+
+			<!-- tmpl_if error_profile_exists --> 
+
+				<p class="error"> 
+					* Un profil existe d&eacute;j&agrave; avec cette adresse email, <!-- tmpl_var updated_email -->.
+				</p> 
+
+			<!-- /tmpl_if --> 
+
+
+		<!-- tmpl_else --> 
+
+		<!-- /tmpl_if -->
+	  <p>
+        <label for="updated_email" style="width: 10em;float: left;text-align: right;margin-right: 0.5em;display: block">
+        La nouvelle adresse de votre profil&nbsp;: 
+        </label>
+        <input type="text" name="updated_email" id="updated_email" value=""  />
+        </p>
+
+	<div class="buttonfloat">	
+    <input type="submit" value="Confirmer et mettre à jour l'adresse email de votre nouveau profil" /> 
+	</div>
+	<div class="floatclear"></div>
+
+
+</form>
+</div> 
+
+</fieldset>
+
+
+
+
+
+
+<fieldset> 
+	
+<legend> 
+    <a href="#" onclick="toggleDisplay('change_profile_password');return false;">+/-</a> Changer le mot de passe de votre profil
+   </legend>
+     
+		
+<div id="change_profile_password" <!-- tmpl_if errors_change_password --><!-- tmpl_else -->style="display:none"<!-- /tmpl_if -->>
+
+<form action="<!-- tmpl_var PROGRAM_URL -->" method="post"> 
+	<input type="hidden" name="f"        value="profile" /> 
+	<input type="hidden" name="process"  value="change_password" />
+	
+	<!-- tmpl_if errors_change_password --> 
+			<p class="error">
+				Assurez-vous que vous avez tap&eacute; votre mot de passe correctement. 
+			</p>
+	<!-- /tmpl_if -->
+	
+	
+	  <p>
+        <label for="password" style="width: 10em;float: left;text-align: right;margin-right: 0.5em;display: block">
+        Nouveau mot de passe&nbsp;: 
+        </label>
+        <input type="password" name="password" id="password" value=""  />
+        </p>
+
+	  <p>
+        <label for="again_password" style="width: 10em;float: left;text-align: right;margin-right: 0.5em;display: block">
+        Nouveau mot de passe une deuxi&egrave;me fois&nbsp;: 
+        </label>
+        <input type="password" name="again_password" id="again_password" value=""  />
+       </p>
+
+	<div class="buttonfloat">	
+    <input type="submit" value="Changer le mot de passe" /> 
+	</div>
+	<div class="floatclear"></div>
+
+
+</form>
+
+</div> 
+
+</fieldset> 
+
+
+
+
+
+<fieldset> 
+
+   <legend>
+    <a href="#" onclick="toggleDisplay('delete_profile');return false;">+/-</a> Effacer ce profil
+   </legend>
+     
+		
+<div id="delete_profile" style="display:none">
+	
+	
+	
+<form action="<!-- tmpl_var PROGRAM_URL -->" method="post"> 
+	<input type="hidden" name="f"        value="profile" /> 
+	<input type="hidden" name="process"  value="delete_profile" />
+	
+	<p>
+		Effacer votre profil enlevera toutes les informations que votre profil contient. Mais vous resterez abonn&eacute;-e &agrave; vos listes.
+	</p> 
+	
+	<div class="buttonfloat">	
+    <input type="submit" value="Delete Your Profile" class="alertive" onclick="return confirm_profile_removal(this.form);" /> 
+	</div>
+	<div class="floatclear"></div>
+
+
+</form>
+
+</div> 
+	
+</fieldset>
+
+
+
+
+<!-- end profile_home.tmpl --> 
+

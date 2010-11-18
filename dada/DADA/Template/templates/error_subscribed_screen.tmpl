@@ -1,0 +1,48 @@
+<!-- begin error_subscribed_screen.tmpl --> 
+<h1>
+ Vous &ecirc;tes d&eacute;j&agrave; abonn&eacute;-e&nbsp;!
+</h1>
+
+<p>
+ Votre adresse email, 
+ <strong>
+  <!-- tmpl_var subscriber.email --> 
+ </strong>
+ , est d&eacute;j&agrave; inscrite &agrave;&nbsp;: 
+ <br />
+ <br /> 
+  <strong>
+	<!-- tmpl_var list_settings.list_name --> 
+  </strong>
+
+</p>
+
+<p>
+ Ceci peut &ecirc;tre caus&eacute; par une de ces raisons&nbsp;:
+</p>
+
+<ul>
+ <li>Vous vous &ecirc;tes d&eacute;j&agrave; abonn&eacute; dans le pass&eacute;.</li>
+ <li>Vous avez cliqu&eacute; deux fois sur le lien de confirmation que vous avez re&ccedil;u par email.</li>
+ <li>Le propri&eacute;taire de la liste vous a d&eacute;j&agrave; abonn&eacute;.</li>
+</ul>
+
+<p>
+ Si vous voulez vous abonner &agrave; une autre liste, visitez <!-- tmpl_var PROGRAM_NAME --> 
+	<a href="<!-- tmpl_var PROGRAM_URL -->?email=<!-- tmpl_var subscriber.email -->">
+		l'&eacute;cran principal
+    </a>, 
+qui vous montrera toutes les listes disponibles.
+</p>
+
+<p>Si vous voulez plut&ocirc;t vous d&eacute;sabonner de cette liste, visitez 
+ <a href="<!-- tmpl_var PROGRAM_URL -->?f=list&amp;l=<!-- tmpl_var list_settings.list escape="HTML" -->&amp;email=<!-- tmpl_var subscriber.email escape="HTML" -->&amp;set_flavor=u">
+	la page principale de cette liste
+ </a>
+.
+</p>
+
+<!-- tmpl_include error_footer_widget.tmpl -->
+
+
+<!-- end error_subscribed_screen.tmpl --> 

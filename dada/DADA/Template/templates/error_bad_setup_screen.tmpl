@@ -1,0 +1,54 @@
+<!-- begin error_bad_setup_screen.tmpl --> 
+
+<h1>
+ Bienvenue chez <!-- tmpl_var PROGRAM_NAME -->!
+</h1> 
+
+<p>
+ <!-- tmpl_var PROGRAM_NAME --> fonctionne sur votre compte, mais n'est pas configur&eacute; correctement.</p>
+
+<p>Si vous n'avez pas configur&eacute; <!-- tmpl_var PROGRAM_NAME -->, utilisez l'installateur inclus&nbsp;:</p> 
+
+<p>	
+	<ul> 
+		<li>
+			<p>Changez le nom du dossier  <em>dada/<strong>installer-disabled</strong></em> directory en <em>dada/<strong>installer</strong></em></p> 
+		</li>
+		<li>
+			<p>
+				Changez les permissions du script cgi  <em>dada/installer/<strong>install.cgi</strong></em> en  <strong>755</strong>
+			</p>
+		</li> 
+		<li>
+			<p>
+				Visitez le script  <em>dada/installer/<strong>install.cgi</strong></em>  &agrave; l'aide de votre navigateur web (essayez en cliquant  <a href="./installer/install.cgi">ICI</a>) puis suivez les instructions. 
+			</p>
+		</li> 
+		
+		
+	</ul> 
+	
+<p>
+	Si vous avez d&eacute;j&agrave; configur&eacute; <!-- tmpl_var PROGRAM_NAME -->, votre environment d'h&eacute;bergement a pu changer et <!-- tmpl_var PROGRAM_NAME --> peut n&eacute;c&eacute;ssiter une reconfiguration.
+</p> 
+
+
+<div style="text-align:center">
+	<form>
+		<input type="hidden" name="f" value="setup_info" /> 
+		<input type="submit" value="Cliquez ici pour plus d'info..." class="cautionary" /> 
+	</form>
+</div>
+
+<!-- tmpl_if unknown_dirs --> 
+	
+	<h2>Dossiers manquants</h2> 
+	<p>Ces dossiers sont configur&eacute;s dans Dada Mail, mais sont introuvables&nbsp;:</p> 
+	<ul> 
+	<!-- tmpl_loop unknown_dirs --> 
+		<li><p><!-- tmpl_var dir --></p></li>
+	<!-- /tmpl_loop --> 
+	</ul>
+<!-- /tmpl_if --> 
+
+<!-- end error_bad_setup_screen.tmpl --> 

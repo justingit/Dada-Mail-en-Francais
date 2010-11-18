@@ -1,0 +1,191 @@
+<!-- begin archive_options_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl -->
+
+<!-- tmpl_if done -->
+	<!-- tmpl_var GOOD_JOB_MESSAGE -->
+<!--/tmpl_if-->
+
+
+<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post" name="default_form">
+
+<fieldset> 
+	<legend>Options de base</legend> 
+	
+<table cellpadding="5">
+ <tr>
+  <td>
+   <input type="checkbox" name="archive_messages" id="archive_messages" value="1" <!-- tmpl_if list_settings.archive_messages -->checked="checked"<!--/tmpl_if--> />
+  </td>
+  <td>
+   <p>
+    <label for="archive_messages">
+     Archivez Vos Messages
+    </label>
+    <br />
+    Tous les messages archiv&eacute;s seront disponibles pour les visiteurs.
+   </p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <input type="checkbox" name="show_archives" id="show_archives" value="1" <!-- tmpl_if list_settings.show_archives -->checked="checked"<!--/tmpl_if--> />
+  </td>
+  <td>
+   <p>
+    <label for="show_archives">
+     Rendre vos archives publiques
+    </label>
+    <br />
+    Les visiteurs de votre site pourront voir la liste de vos messages archiv&eacute;s
+    <a href="<!-- tmpl_var PROGRAM_URL -->/archive/<!-- tmpl_var list -->" target="_blank">
+     ici</a>. 
+    Les messages archiv&eacute;s sont toujours visibles dans le tableau de bord des listes.
+   </p>
+
+
+
+
+ <table cellspacing="5" <!-- tmpl_unless PROFILE_ENABLED -->class="disabled"<!--/tmpl_unless--> >
+     <tr>
+      <td>
+       <input type="checkbox" name="archives_available_only_to_subscribers" id="archives_available_only_to_subscribers" value="1" <!-- tmpl_if list_settings.archives_available_only_to_subscribers -->checked="checked"<!--/tmpl_if--> />
+      </td>
+      <td>
+       <p>
+        <label for="archives_available_only_to_subscribers">
+         Autorisez uniquement les abonn&eacute;s &agrave; voir les messages archiv&eacute;s
+        </label><br /> 
+		Seuls les abonn&eacute;s connect&eacute;s pourront voir les archives. 
+       </p>
+
+       <!-- tmpl_unless PROFILE_ENABLED -->
+
+	    <p class="error">
+	     <em>
+	      Désactiv&eacute;. <!-- tmpl_var PROGRAM_NAME --> Les profils ne sont pas activ&eacute;s.
+	     </em>
+	    </p>
+
+        <!--/tmpl_unless-->
+
+
+
+      </td>
+     </tr>
+    </table>
+
+
+
+
+
+
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <input type="checkbox" name="archive_subscribe_form" id="archive_subscribe_form" value="1" <!-- tmpl_if list_settings.archive_subscribe_form -->checked="checked"<!--/tmpl_if--> />
+  </td>
+  <td>
+   <p>
+    <label for="archive_subscribe_form">
+     Ajouter un formulaire d'inscription &agrave; la Page des Archives
+    </label>
+    <br />
+    Un formulaire d'inscription sera ajout&eacute; avec le nom de la liste et sa description au bas de chaque page.
+   </p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <input type="checkbox" name="archive_search_form" id="archive_search_form" value="1" <!-- tmpl_if list_settings.archive_search_form -->checked="checked"<!--/tmpl_if--> />
+  </td>
+  <td>
+   <p>
+    <label for="archive_search_form">
+     Ajouter un formulaire de recherche &agrave; la Page des Archives
+    </label>
+    <br />
+    Permettre &agrave; vos visiteurs de facilement faire une recherche dans les archives.
+   </p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <input type="checkbox" name="archive_send_form" id="archive_send_form" value="1" <!-- tmpl_if list_settings.archive_send_form -->checked="checked"<!--/tmpl_if--> />
+  </td>
+  <td>
+   <p>
+    <label for="archive_send_form">
+     Ajouter un formulaire &quot;Envoyer ce formulaire &agrave; un ami&quot;
+    </label>
+    <br />
+    Les visiteurs seront capables d'envoyer des messages archiv&eacute;s &agrave; des amis.
+   </p>
+   
+    <table cellspacing="5" <!-- tmpl_unless can_use_captcha -->class="disabled"<!--/tmpl_unless--> >
+     <tr>
+      <td>
+       <input type="checkbox" name="captcha_archive_send_form" id="captcha_archive_send_form" value="1" <!-- tmpl_if list_settings.captcha_archive_send_form -->checked="checked"<!--/tmpl_if--> <!-- tmpl_unless can_use_captcha -->disabled="disabled"<!--/tmpl_unless-->/>
+      </td>
+      <td>
+       <p>
+        <label for="captcha_archive_send_form">
+         Activer un CAPTCHA sur le formulaire &quot;Envoyer cette archive &agrave; un ami&quot;
+         </label>
+       </p>
+       
+       <!-- tmpl_unless can_use_captcha -->
+	    
+	    <p class="error">
+	     <em>
+	      D&eacute;sactiv&eacute;. Il faut que vous configuriez vos syst&egrave;me de CAPTCHA (<!-- tmpl_var CAPTCHA_TYPE -->)
+	     </em>
+	    </p>
+	    
+        <!--/tmpl_unless-->
+
+
+
+      </td>
+     </tr>
+    </table>
+
+
+  </td>
+ </tr>
+ 
+  <tr>
+  <td>
+   <input type="checkbox" name="send_newest_archive" id="send_newest_archive" value="1" <!-- tmpl_if list_settings.send_newest_archive -->checked="checked"<!--/tmpl_if--> />
+  </td>
+  <td>
+   <p>
+    <label for="send_newest_archive">
+     Envoyer le message archiv&eacute; le plus r&eacute;cent &agrave; tous les nouveaux inscrits. 
+    </label>
+    <br />
+    Les visiteurs qui s'inscrivent eux-m&ecirc;mes recevront une copie du message archiv&eacute; le plus r&eacute;cent apr&egrave;s qu'ils aient termin&eacute; leur inscription. 
+   </p>
+  </td>
+ </tr>
+ 
+ 
+</table>
+
+</fieldset> 
+
+
+<input type="hidden" name="process" value="1" />
+<input type="hidden" name="f"       value="archive_options" />
+<div class="buttonfloat">
+ <input type="reset"  class="cautionary" value="Clear Changes">
+ <input type="submit" class="processing" value="Change Archive Options">
+</div>
+<div class="floatclear"></div>
+
+</form> 
+
+ 
+
+<!-- end archive_options_screen.tmpl -->

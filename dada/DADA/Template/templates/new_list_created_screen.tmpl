@@ -1,0 +1,172 @@
+<!-- begin new_list_created_screen.tmpl -->
+
+<h1>
+ Les informations suivantes ont &eacute;t&eacute enregistr&eacute;es&nbsp;: 
+</h1>
+<table align="center">
+ <tr>
+  <td>
+   <p>
+    <strong>
+     Nom de la liste&nbsp;:
+    </strong>
+   </p>
+  </td>
+  <td>
+   <p>
+    <!-- tmpl_var list_name -->
+   </p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <p>
+    <strong>
+     Nom Court de la liste&nbsp;:
+    </strong>
+   </p>
+  </td>
+  <td>
+   <p>
+    <!-- tmpl_var list -->
+   </p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <p>
+    <strong>
+      Mot de passe&nbsp;:
+    </strong>
+   </p>
+  </td>
+  <td>
+   <p>
+    <em>
+     (cach&eacute;)
+    </em>
+   </p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <p>
+    <strong>
+     Adresse du propri&eacute;taire de la liste&nbsp;:
+    </strong>
+   </p>
+  </td>
+  <td>
+   <p>
+    <!-- tmpl_var list_owner_email -->
+   </p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <p>
+    <strong>
+     Information:
+    </strong>
+   </p>
+  </td>
+  <td>
+   <p>
+    <!-- tmpl_var info -->
+   </p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <p>
+    <strong>
+     Politique de confidentialit&eacute;&nbsp;:
+    </strong>
+   </p>
+  </td>
+  <td>
+   <p>
+    <!-- tmpl_var privacy_policy -->
+   </p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <p>
+    <strong>
+     Adresse physique&nbsp;:
+    </strong>
+   </p>
+  </td>
+  <td>
+   <p>
+    <!-- tmpl_var physical_address -->
+   </p>
+  </td>
+ </tr>
+</table>
+<hr />
+
+<p>
+ Pour r&eacute;f&eacute;rence ult&eacute;rieure, voici quelques liens int&eacute;ressants &agrave; propos de cette liste. Vous aurez peut &ecirc;tre envie de cr&eacute;er des signets pour ces liens pour plus de facilit&eacute; (une nouvelle fen&egrave;tre s'ouvrira pour chaque lien)&nbsp;:
+</p>
+
+<ul> 
+	<li>
+ <strong>
+  <a href="<!-- tmpl_var S_PROGRAM_URL -->?flavor=<!-- tmpl_var SIGN_IN_FLAVOR_NAME -->&amp;list=<!-- tmpl_var escaped_list -->" target="_blank">
+   Connectez vous &agrave; votre tableau de bord
+  </a>
+</strong>
+</li> 
+ <li>
+ <strong>
+  <a href="<!-- tmpl_var PROGRAM_URL -->/archive/<!-- tmpl_var escaped_list -->/" target="_blank">
+   Voir vos messages archiv&eacute;s
+  </a>
+ </strong>
+</li> 
+
+</ul> 
+
+
+<hr />
+
+<p>
+ Veuiller entrer votre mot de passe correctement pour acc&eacute;der &agrave; votre tableau de bord.
+</p>
+
+<table>
+ <tr>
+  <td>
+   <p>
+    <strong>
+     Connectez vous &agrave; votre tableau de bord pour la liste&nbsp;: <!-- tmpl_var list_name -->
+    </strong>
+   </p>
+  </td>
+ </tr>
+ <tr>
+ <td>
+  <p>
+   <label for="admin_password">
+    Mot de passe&nbsp;:
+   </label>
+   <form action="<!-- tmpl_var S_PROGRAM_URL -->" method="POST"> 
+    <input type="hidden"   name="f"          value="login" />
+    <input type="hidden"   name="admin_list" value="<!-- tmpl_var list -->" />
+    <input type="password" name="admin_password" id="admin_password" maxlength="24" />
+   
+   
+   <input type="hidden" name="auth_state" value="<!-- tmpl_var auth_state -->" /> 
+   
+   
+   
+   <input type="submit" class="plain" value="Connexion à votre nouvelle liste" />
+   
+   </form>
+  </td>
+ </tr>
+</table>
+
+<!-- end new_list_created_screen.tmpl -->

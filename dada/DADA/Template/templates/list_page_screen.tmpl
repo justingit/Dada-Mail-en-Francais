@@ -1,0 +1,94 @@
+<!-- begin list_page_screen.tmpl -->
+
+<!-- tmpl_include name="list_breadcrumbs_widget.tmpl" -->
+<h1>
+ <!-- tmpl_var name="list_settings.list_name" -->
+</h1>
+
+<!-- tmpl_if error_no_email --> 
+    <p class="error">
+     Veuillez entrer votre adresse email dans le formulaire ci-dessous&nbsp;:
+    </p>
+<!--/tmpl_if--> 
+
+
+<!-- tmpl_var subscription_form --> 
+	
+
+<div id="list_information"><!-- tmpl_if comment -->Pas s&ucirc;r-e de l'utilit&eacute; de cet id&nbsp;!<!-- /tmpl_if -->
+
+<h2>Informations de la liste&nbsp;:</h2>
+
+ <!-- tmpl_var list_settings.info -->
+
+<ul> 
+
+
+    <!-- tmpl_if list_settings.group_list --> 
+        <li>
+         Ceci est une liste de discution de groupe
+         
+            <!-- tmpl_if list_settings.enable_moderation --> 
+                (Mod&eacute;r&eacute;e)
+            <!-- tmpl_else -->
+                (Non mod&eacute;r&eacute;e)
+            <!-- /tmpl_if --> 
+            
+        </li>
+    <!-- tmpl_else --> 
+        
+        <li>
+         Ceci est uniquement une liste d'annonces.
+        </li>
+
+
+     <!-- /tmpl_if --> 
+
+
+    
+
+</ul>
+
+
+</div> 
+
+
+
+
+	
+	<h2>
+	 Politique de confidentialit&eacute;&nbsp;:
+	</h2>
+	<p>
+	 <!-- tmpl_var list_settings.privacy_policy -->
+	</p>
+	
+
+<!-- tmpl_if list_settings.show_archives -->
+	
+	<h2>Archives&nbsp;:</h2> 
+	
+	
+		<!-- tmpl_var html_archive_list -->
+	    <!-- tmpl_if list_settings.publish_archives_rss --> 
+	 	    <!-- tmpl_include newsfeed_widget.tmpl -->
+	    <!-- /tmpl_if --> 
+
+
+
+    
+<!-- /tmpl_if -->
+
+<!-- tmpl_if SHOW_ADMIN_LINK -->
+	
+	<p style="text-align:center">
+	 <a href="<!-- tmpl_var S_PROGRAM_URL -->/<!-- tmpl_var SIGN_IN_FLAVOR_NAME -->/<!-- tmpl_var list_settings.list -->/">
+	  <strong>
+	   Administration
+	  </strong>
+	 </a>
+	</p>
+	
+<!-- /tmpl_if -->
+
+<!-- end list_page_screen.tmpl -->

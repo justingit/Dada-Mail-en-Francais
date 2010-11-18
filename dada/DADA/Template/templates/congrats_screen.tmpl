@@ -1,0 +1,104 @@
+<!-- begin congrats_screen.tmpl -->
+
+<form action="<!-- tmpl_var name="PROGRAM_URL" -->" method="post">
+ 
+<!-- tmpl_unless ROOT_PASS_IS_ENCRYPTED -->
+	 
+	 <p class="error">
+	  <strong>
+	   Attention !
+	  </strong>
+	Votre mot de passe administrateur <!-- tmpl_var name="PROGRAM_NAME" -->
+	  ($PROGRAM_ROOT_PASSWORD) n'a pas &eacute;t&eacute; crypt&eacute;. Pensez &agrave; crypter votre <!-- tmpl_var name="PROGRAM_NAME" --> Mot de Passe Administrateur d&egrave;s que possible.
+	  <a href="<!-- tmpl_var name="PROGRAM_URL" -->?f=pass_gen" target="_blank">
+	   Cliquez ici 
+	  </a>
+	  (s'ouvre dans une nouvelle fen&egrave;tre) pour crypter votre mot de passe, puis revenez sur cette page et rafraichissez cette page quand vous avez fini. Pour plus d'info, consultez la documentation Config.pm.
+	 </p>
+	 
+<!-- /tmpl_unless -->
+ 
+ <h1>
+  F&eacute;licitation et bienvenue dans <!-- tmpl_var name="PROGRAM_NAME" -->!
+ </h1>
+ <p>
+  Vous avez install&eacute; <!-- tmpl_var name="PROGRAM_NAME" --> correctement. La prochaine chose &agrave; faire est de configurer une Mailing List. Soyez s&ucirc;r-e de conna&icirc;tre votre <!-- tmpl_var PROGRAM_NAME --> Mot de Passe Administrateur avant de cr&eacute;er une nouvelle liste.
+ </p>
+ <p>
+  <strong>
+   Premi&egrave;rement lisez et approuvez la <em>License Publique GNU</em>, et promettez de ne pas utiliser <!-- tmpl_var PROGRAM_NAME --> pour envoyer des messages non sollicit&eacute;s (SPAM):
+  </strong>
+ </p>
+ <p align="center">
+  <div style="width:95%;height:150px;overflow:auto;border:1px solid black;padding:5px;margin:5px">
+   <!-- tmpl_include name="gpl.tmpl" -->
+  </div>
+ </p>
+ <p align="center">
+  <div style="width:95%;height:150px;overflow:auto;border:1px solid black;padding:5px;margin:5px">
+   <!-- tmpl_include name="no_spam.tmpl" -->
+  </div>
+ </p>
+ 
+<!-- tmpl_if havent_agreed -->
+	 
+	 <p class="error">
+	   Prière d'approuver les termes de la license GPL et de la politique anti-SPAM en cliquant sur la case ci-dessous&nbsp;:
+	 </p>
+	 
+<!-- /tmpl_if -->
+ 
+ <p>
+  <input type="checkbox" name="agree" value="yes" />
+  j'approuve la license GPL et la condition anti-SPAM.
+ </p>
+ <input type="hidden" name="f" value="new_list" />
+
+
+ <p>
+  <label for="root_password">
+   Mot de Passe Administrateur&nbsp;:
+  </label>
+  <br />
+  
+  <input type="password" name="root_password" id="root_password" maxlength="24" />
+  
+  <input type="submit" class="processing" value="Set Up a New Mailing List" />
+ </p>
+
+
+
+	 <!-- tmpl_if DISABLE_OUTSIDE_LOGINS --> 
+	     <input type="hidden" name="auth_state" value="<!-- tmpl_var auth_state -->" /> 
+	 <!--/tmpl_if--> 
+
+
+
+</form>
+
+
+<hr /> 
+
+<h2>Configuration du Programme</h2>
+
+<form action="<!-- tmpl_var name="PROGRAM_URL" -->" method="post">
+
+
+Si vous désirez plus d'information sur la configuration actuelle du programme, entrez votre <!-- tmpl_var PROGRAM_NAME --> mot de passe Administrateur ci-dessous&nbsp;:
+
+<p>
+ <label for="root_password">
+  mot de passe administrateur&nbsp;:
+ </label>
+ <br />
+ 
+<input type="hidden" name="f" value="setup_info" /> 
+
+ <input type="password" name="root_password" id="root_password" maxlength="24" />
+ 
+ <input type="submit" class="processing" value="Program Configuration Settings" />
+</p>
+
+</form> 
+
+<!-- end congrats_screen.tmpl -->

@@ -1,0 +1,96 @@
+<!-- begin list_invite_process_screen.tmpl -->
+
+<!--
+	
+<!-- tmpl_if process_test -->
+	
+	<p>
+	 Les messages d'invitation tests sont envoy&eacute;s au destinataire test <!-- tmpl_var test_recipient -->
+
+	 
+	<!-- 
+	 and your Testers list (a href="<!-- tmpl_var PROGRAM_URL -->?f=view_list&amp;type=testers"view/a).
+	--> 
+	
+	.</p>
+	
+<!--tmpl_else-->
+	
+	<p>
+	 <!-- tmpl_var new_email_count --> les messages d'invitation sont en train d'&ecirc;tre envoy&eacute;s. Le propri&eacute;taire de la liste recevra une copie du message.
+	</p>
+	
+<!--/tmpl_if-->
+
+--> 
+
+
+<div style="text-align:center">
+ <!-- tmpl_include sending_monitor_button_widget.tmpl -->
+</div> 
+
+<!-- tmpl_if comment --> 
+	
+<div class="simplebox" style="width:100%">
+ <p>
+ 
+ 
+
+ 
+ 	<!-- tmpl_if process_test -->
+		   
+		   &Agrave;: 
+		   <em>
+			<!-- tmpl_var test_recipient -->
+		   </em>
+		   
+	<!-- tmpl_else -->
+		   
+		   &Agrave;: Liste d'invit&eacute;s
+		   
+	<!-- /tmpl_if -->
+	
+	
+ 
+ 
+  <br />
+  <strong>
+   De: <!-- tmpl_var list_owner_email -->
+  </strong>
+  <br />
+  <strong>
+   Sujet: <!-- tmpl_var message_subject -->
+  </strong>
+ </p>
+ 
+<!-- tmpl_if text_message_body -->
+	 
+	 <hr />
+	 <p>
+	  <strong>
+	   Message (mode texte):
+	  </strong>
+	  <br />
+	  <!-- tmpl_var screen_text_message -->
+	 </p>
+	 
+<!--/tmpl_if-->
+
+<!-- tmpl_if html_message_body -->
+	 
+	 <hr />
+	 <p>
+	  <strong>
+	   Message (mode HTML):
+	  </strong>
+	  <br />
+	  <!-- tmpl_var screen_html_message -->
+	 </p>
+	 
+<!--/tmpl_if-->
+ 
+</div>
+
+<!-- /tmpl_if --> 
+
+<!-- end list_invite_process_screen.tmpl -->

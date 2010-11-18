@@ -1,0 +1,24 @@
+<!-- begin setup_info_login_screen.tmpl -->
+
+<!-- tmpl_if incorrect_root_password -->
+	
+	<p class="error">
+	 mot de passe administrateur incorrect. Veuillez r&eacute;essayer.
+	</p>
+	  
+<!--/tmpl_if-->
+
+<form action="<!-- tmpl_var program_url_guess -->" method="post">
+ <p>
+  Veuillez entrer le <label for="root_password">mot de passe administrateur <!-- tmpl_var PROGRAM_NAME -->  
+  </label> correct
+   
+  pour continuer&nbsp;:
+  <br />
+  <input type="hidden" name="f" value="setup_info" />
+  <input type="password" name="root_password" id="root_password" value="" maxlength="24" />
+  <input type="submit" value="Continue..." class="cautionary" />
+ </p>
+</form>
+
+<!-- end setup_info_login_screen.tmpl -->

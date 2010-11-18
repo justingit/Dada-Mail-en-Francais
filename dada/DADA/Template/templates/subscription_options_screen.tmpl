@@ -1,0 +1,70 @@
+<!-- begin subscription_options_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl -->
+
+<!-- tmpl_if done -->
+	<!-- tmpl_var GOOD_JOB_MESSAGE -->
+<!--/tmpl_if-->
+
+<!-- tmpl_if SUBSCRIPTION_QUOTA --> 
+
+    <p class="alert">
+     Il y a une limite globale de <!-- tmpl_var SUBSCRIPTION_QUOTA --> abonn&eacute;-es par liste.
+    </p>
+<!-- tmpl_else --> 
+
+    <p class="positive"> 
+     Il n'y a pas de limite du nombre d'anonn&eacute;-es!
+    </p>
+
+<!--/tmpl_if--> 
+
+<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post" name="default_form">
+	
+<fieldset>
+	<legend>Options d'abonnement</legend>
+	
+<table cellpadding="5">
+ <tr>
+  <td>
+   <p>
+    <input type="checkbox" name="use_subscription_quota" id="use_subscription_quota" value="1" <!-- tmpl_if use_subscription_quota -->checked="checked"<!--/tmpl_if--> />
+   </p>
+  </td>
+  <td>
+   <p>
+    <label for="use_subscription_quota">
+     Limiter le nombre d'abonn&eacute;-es
+    </label>
+   </p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <p>&nbsp;</p>
+  </td>
+  <td>
+   <p>
+    Limiter &agrave;: <!-- tmpl_var subscription_quota_menu --> abonn&eacute;-es
+   </p>
+  </td>
+ </tr>
+</table>
+<p>&nbsp;</p>
+
+
+</fieldset>
+	
+<input type="hidden" name="process" value="1" />
+<input type="hidden" name="f"       value="subscription_options" />
+<div class="buttonfloat">
+ <input type="reset"  class="cautionary" value="Annuler les changements" />
+ <input type="submit" class="processing" value="Enregistrer les options" />
+</div>
+<div class="floatclear"></div>
+</form> 
+
+ 
+
+
+<!-- end subscription_options_screen.tmpl -->

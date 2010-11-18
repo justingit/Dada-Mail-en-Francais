@@ -1,0 +1,231 @@
+<!-- being profile_login.tmpl --> 
+
+
+
+<p style="text-align:right">
+	<a href="<!-- tmpl_var PROGRAM_URL -->/profile_help/">
+		Qu'est ce que c'est que les profils <!-- tmpl_var PROGRAM_NAME -->?
+	</a> 
+</p>
+
+<!-- tmpl_if removal --> 
+	<p class="positive"> 
+		Votre profil a &eacute;t&eacute; enlev&eacute;.
+	</p> 
+<!-- /tmpl_if --> 
+
+<!-- tmpl_if welcome --> 
+	<p class="positive">
+		Vous vous &ecirc;tes enregistr&eacute;-e avec succ&egrave;s&nbsp;! Veuillez vous connecter gr&acirc;ce &agrave; votre identifiant et mot de passe&nbsp;:
+	</p> 
+<!-- /tmpl_if --> 
+
+<!-- 
+
+	<!-- tmpl_if errors --> 
+		<h1>Il Y A DES ERREURS!!!</h1> 
+		<ul>
+		<!-- tmpl_loop errors --> 
+			<li><p><!-- tmpl_var error --></p></li>
+		<!-- /tmpl_loop --> 
+		</ul>
+	<!-- /tmpl_if --> 
+	
+	<h1>error_profile_login: <!-- tmpl_var error_profile_login --> </h1> 
+	<h1>error_profile_register: <!-- tmpl_var error_profile_register --></h1>
+<hr /> 
+<hr /> 
+<hr /> 
+
+--> 
+
+<!-- tmpl_if logged_out --> 
+	<p class="positive">
+		Vous &ecirc;tes d&eacute;connect&eacute;-e. 
+	</p> 
+<!-- /tmpl_if --> 
+<!-- tmpl_if password_changed --> 
+	<p class="positive"> 
+		Vous avez chang&eacute; votre mot de passe avec succ&egrave;s. Veuillez vous connecter &agrave; nouveau:
+	</p> 
+<!-- /tmpl_if --> 
+
+
+	<!-- tmpl_if errors --> 
+		<h1>Probl&egrave;mes avec votre requ&egrave;te</h1>
+	<p class="error">Les erreurs concernant votre derni&egrave;res requ&egrave;tes sont list&eacute;es ci-dessous.</p> 
+	
+	<!-- /tmpl_if --> 
+
+
+<h1>Connectez-vous &agrave; votre tableau de bord&nbsp;:</h1> 
+
+	<!-- tmpl_if error_profile_login --> 
+		<ul> 
+			<!-- tmpl_if errors_not_logged_in --> 
+				
+			<!-- /tmpl_if --> 
+			<li>
+				<p class="error">
+					Vous devez vous connecter pour acc&eacute;der &agrave; votre profil.
+				</p>
+			</li>			
+			<!-- tmpl_if error_unknown_user --> 
+			<li>
+				<p class="error">
+					Utilisateur inconnu - vous &ecirc;tes vous enregistr&eacute;-e&nbsp;?
+				</p>
+			</li>
+			<!-- /tmpl_if --> 
+			<!-- tmpl_if error_incorrect_pass --> 
+			<li>
+				<p class="error">
+					Mot de passe inconnu - nouvel essai&nbsp;?
+				</p>
+			</li>
+			<!-- /tmpl_if --> 
+			
+		</ul> 
+	<!-- /tmpl_if --> 
+
+<fieldset> 
+	
+<form action="<!-- tmpl_var PROGRAM_URL -->" method="post" > 
+	
+	<input type="hidden" name="f" value="profile_login" /> 
+	<input type="hidden" name="process" value="1" /> 
+
+	<p>
+		<label for="login_email" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block">Email Address:</label><input type="text" name="email" id="login_email" value="<!-- tmpl_var email -->" /> 
+	</p>
+	<p>
+		<label for="login_password" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block">Mot de passe:</label><input type="password" name="password" id="login_password" value="" /> 
+
+
+	<div class="buttonfloat">
+		<input type="submit" value="Connection à votre profil" /> 
+	</div>
+	<div class="floatclear"></div>
+
+</form> 
+
+</fieldset> 
+
+
+
+<hr /> 
+
+
+<h1>Cr&eacute;er un nouveau profil <!-- tmpl_var PROGRAM_NAME --></h1> 
+
+<p>
+	Cr&eacute;er un profil pour g&eacute;rer vos abonnements <!-- PROGRAM_NAME -->.
+</p> 
+
+<!-- tmpl_if error_profile_register --> 
+	<ul> 
+		<!-- tmpl_if error_invalid_email -->
+		<li>
+			<p class="error">
+				L'adresse que vous avez entr&eacute; n'est pas valable.
+			</p> 
+		</li>		
+		<!-- /tmpl_if --> 
+		<!-- tmpl_if error_password_blank --> 
+			<li>
+				<p class="error">
+					Vous avez oubli&eacute; d'entrer un mot de passe.
+				</p> 
+			</li>
+		<!-- /tmpl_if --> 
+		<!-- tmpl_if error_email_no_match --> 
+		<li>
+			<p class="error">
+				Les deux adresses mail que vous avez entr&eacute; ne sont pas les m&ecirc;mes.
+			</p> 
+		</li>		
+		<!-- /tmpl_if --> 
+		<!-- tmpl_if error_captcha_failed --> 
+		<li>
+			<p class="error">
+				Echec du CAPTCHA. 
+			</p> 
+		</li>
+		<!-- /tmpl_if --> 
+	</ul> 
+<!-- /tmpl_if --> 
+
+<fieldset> 
+
+
+<form action="<!-- tmpl_var PROGRAM_URL -->" method="post"> 
+	<input type="hidden" name="f" value="profile_register" /> 
+	<p>
+		<label for="register_email" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block">Adresse Email:</label><input type="text" name="email" id="register_email" value="<!-- tmpl_var email -->" /> 
+	</p>
+	<p>
+		<label for="register_email_again" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block">Adresse Email une seconde fois:</label><input type="text" name="email_again" id="register_email_again" value="<!-- tmpl_var email_again -->" /> 
+	</p>
+	<p>
+		<label for="register_password" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block">Mot de passe:</label><input type="password" name="password" id="register_password" value="" /> 
+	</p>
+	
+	
+	<!-- tmpl_if can_use_captcha --> 
+		<p> 
+		 Veuillez entrer la série de caractères que vous voyez dans l'image ci-dessous:
+		</p>
+	
+		<!-- tmpl_var CAPTCHA_string --> 
+	<!-- tmpl_else --> 
+		<!-- 
+			<p>
+			CAPTCHA inutilisable.
+		</p>
+		-->  
+	<!-- /tmpl_if --> 
+	
+	
+	<div class="buttonfloat">	
+		<input type="submit" value="Cr&eacute;er un nouveau profil" /> 
+	</div>
+	<div class="floatclear"></div>
+		
+</form> 
+
+</fieldset> 
+
+<hr /> 
+
+<h1>Vous avez oubli&eacute; votre mot de passe?</h1> 
+
+<!-- tmpl_if error_profile_reset_password --> 
+	 <p class="error">
+		Utilisateur inconnu. Vous êtes vous enregistré-e?
+	</p>
+<!-- /tmpl_if --> 
+
+<fieldset> 
+
+<form action="<!-- tmpl_var PROGRAM_URL -->" method="post" > 
+	<input type="hidden" name="f" value='profile_reset_password' /> 
+	<p>
+		<label for="reset_email" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block">
+			Adresse Email:
+		</label>
+		 <input type="text" id="reset_email" name="email" value="<!-- tmpl_var email -->" />
+	</p> 
+	
+
+	<div class="buttonfloat">	
+		<input type="submit" value="R&eacute;initialiser votre mot de passe" /> 
+	</div>
+	<div class="floatclear"></div>
+
+</form>
+
+</fieldset> 
+
+
+
+<!-- end profile_login.tmpl --> 

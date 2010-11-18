@@ -1,0 +1,42 @@
+<!-- begin list_login_form.tmpl -->
+
+<form action="<!-- tmpl_var name="S_PROGRAM_URL" -->" method="post">
+ <input type="hidden" name="f"       value="login" />
+ <input type="hidden" name="process" value="true" />
+
+ <h1>
+  Acc&eacute;der &agrave; votre tableau de bord
+ </h1>
+ <p>
+  Il faudra conna&icirc;tre votre mot de passe pour acc&eacute;der &agrave; votre tableau de bord.
+ </p>
+
+ <table align="center" cellpadding="5">
+  <tr>
+   <td valign="top">
+    <p>
+     Entrez votre
+     <label for="admin_password">
+      mot de passe:
+     </label>
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td valign="top" align="right">
+    <input type="hidden"   name="admin_list" value="<!-- tmpl_var name="list" -->" style="vertical-align:top;" /><!-- HACK: vertical-align is for IE -->
+    <input type="password" name="admin_password" id="admin_password" size="16" maxlength="24" />
+    <input type="submit" class="plain" value="Login" />
+   </td>
+  </tr>
+ </table>
+ 
+	 <!-- tmpl_if DISABLE_OUTSIDE_LOGINS --> 
+	     <input type="hidden" name="auth_state" value="<!-- tmpl_var auth_state -->" /> 
+	 <!--/tmpl_if--> 
+
+
+ 
+</form>
+
+<!-- end list_login_form.tmpl -->

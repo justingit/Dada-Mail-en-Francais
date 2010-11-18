@@ -1,0 +1,234 @@
+<!-- begin edit_template_screen.tmpl -->
+
+<!-- tmpl_include help_link_widget.tmpl -->
+
+<!-- tmpl_if done -->
+	<!--tmpl_var GOOD_JOB_MESSAGE -->
+<!--/tmpl_if-->
+
+<p>
+	Le mod&egrave;le de mailing list est utlis&eacute; pour personaliser l'apparence de votre liste quand vous la voyez &agrave; l'aide d'un navigateur. 
+</p> 
+<p>
+	Par exemple, votre conception sera refl&eacute;t&eacute;e dans votre 
+	<a href="<!-- tmpl_var PROGRAM_URL -->/list/<!-- tmpl_var list_settings.list -->/"  target="_blank">
+		page de listes</a> et vos 
+	<a href="<!-- tmpl_var PROGRAM_URL -->/archive/<!-- tmpl_var list_settings.list -->/" target="_blank">
+		pages d'archives</a>.
+</p>
+
+<!-- tmpl_if template_oldstyle_backwards_compatibility --> 
+	<p class="alert">Old Style template tag support is enabled.</p>
+<!-- tmpl_else --> 
+	<p class="alert">Old Style template tag support has been disabled.</p>
+<!-- /tmpl_if --> 
+
+<form name="the_form" action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+
+<fieldset> 
+	<legend>Votre mod&egrave;le de liste</legend> 
+
+
+
+ <p>
+  <input type="radio" name="get_template_data" id="from_default_template" value="from_default_template" <!-- tmpl_if get_template_data_from_default_template -->checked="checked"<!--/tmpl_if--> />
+  <label for="from_default_template">
+   Utiliser le mod&egrave;le de liste par d&eacute;faut pour votre liste:
+  </label>
+ </p>
+
+ <p>
+  <input type="radio" name="get_template_data" id="from_template_file" value="from_template_file" <!-- tmpl_if get_template_data_from_template_file -->checked="checked"<!--/tmpl_if--> />
+  <label for="from_template_file">
+   Utiliser ce mod&egrave;le personalis&eacute; pour votre liste: 
+  </label>
+  <br />
+  <textarea name="template_info" cols="70" rows="20" wrap="off"><!-- tmpl_var edit_this_template --></textarea>
+ </p>
+<!-- tmpl_if template_saved --> 
+	<p class="alert">
+		Enregistr&eacute; &agrave;: <em><!-- tmpl_var TEMPLATES -->/<!-- tmpl_var list_settings.list -->.template</em>
+	</p>
+<!-- /tmpl_if --> 
+ 
+ <!-- tmpl_if can_use_lwp_simple -->
+	 
+	 <p>
+	  <input type="radio" name="get_template_data" id="from_url" value="from_url" <!-- tmpl_if get_template_data_from_url -->checked="checked"<!--/tmpl_if--> />
+	  <label for="from_url">
+	   Utiliser le mod&egrave;le personalis&eacute; &agrave; situ&eacute; &agrave; cette URL pour votre liste:
+	  </label>
+	  <!-- tmpl_unless template_url_check --> 
+          </p> 
+          <p class="error">* Probl&egrave;me de connexion avec cette URL. Veuillez v&eacute;rifier l'URL et r&eacute;essayer:</p><p>
+	  <!--/tmpl_unless-->
+	  
+	  <br />
+	  
+	  <input type="text" id="url_template" name="url_template" value="<!-- tmpl_var url_template escape="HTML" -->" size="65" />
+	 </p>
+	 
+<!--/tmpl_if -->
+
+
+</fieldset> 
+
+<fieldset> 
+	<legend>Options</legend> 
+
+<table cellpadding="5">
+ <tr>
+  <td>
+   <p>
+    <input type="checkbox" id="apply_list_template_to_html_msgs" name="apply_list_template_to_html_msgs" value="1" <!-- tmpl_if apply_list_template_to_html_msgs -->checked="checked"<!--/tmpl_if--> />
+   </p>
+  </td>
+  <td>
+   <p>
+    <label for="apply_list_template_to_html_msgs">
+     	Ins&eacute;rer vos messages sous format HTML dans votre mod&egrave;le de liste
+    </label>
+  </td>
+ </tr>
+</table>
+
+
+ 
+</fieldset> 
+
+
+ <p>
+	
+	<input type="hidden" name="process" value="true" />
+	<input type="hidden" name="f"       value="edit_template" />
+
+  <input type="hidden" name="default_template" value="<!-- tmpl_var default_template escape="HTML" -->" />
+  <div class="buttonfloat">
+   <input type="submit" class="plain"      value="Preview Template"  onclick="preview_template();" />
+   <input type="submit" class="processing" value="Change Template"   onclick="change_template();" />
+   <input type="reset"  class="cautionary" value="Clear Changes" />
+   <input type="button" class="alertive"   value="Revert to Default" onclick="set_to_default();">
+  </div>
+ </p>
+</form> 
+<div class="floatclear"></div>
+<hr />
+
+<table class="tagchart">
+	
+	
+ <tr align="center">
+  <td>
+   <strong>
+    Cette balise
+   </strong>
+  </td>
+  <td>
+   <strong>
+    est remplac&eacute;e par
+   </strong>
+  </td>
+ </tr>
+
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var title  --&gt;</code>
+  </td>
+  <td>
+   Une br&egrave;ve ent&ecirc;te d&eacute;crivant ce que dit le message sur l'&eacute;cran.
+  </td>
+ </tr>
+
+
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var content  --&gt;</code>
+  </td>
+  <td>
+  
+Le contenu de l'&eacute;cran. 
+
+Cette balise est 
+   <strong>n&eacute;c&eacute;ssaire</strong>. Imaginez cette balise comme &eacute;tant le contenu de votre page web.
+  </td>
+ </tr>
+
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var PROGRAM_NAME --&gt;</code>
+  </td>
+  <td>
+   Le nom du programme (<!-- tmpl_var PROGRAM_NAME -->).
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <code>&lt;!-- tmpl_var VER --&gt; </code> 
+  </td>
+  <td>
+   La version du programme (<!-- tmpl_var VER -->).
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var  PROGRAM_URL --&gt;</code>
+  </td>
+  <td>
+   L'URL de <!-- tmpl_var PROGRAM_NAME -->
+   (<a href="<!-- tmpl_var PROGRAM_URL -->" target="_blank"><!-- tmpl_var PROGRAM_URL --></a>).
+  </td>
+ </tr>
+
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var default_css --&gt;</code>  
+</td>
+  <td>
+   Le fichier CSS utilis&eacute; dans <!-- tmpl_var PROGRAM_NAME -->.
+   (<a href="<!-- tmpl_var PROGRAM_URL -->/css" target="_blank">view</a>)
+  </td>
+ </tr>
+
+
+
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var show_profile_widget --&gt;</code>  
+</td>
+  <td>
+  Aura une valeur de 1 si les profils sont activ&eacute;s, 0 sinon. 
+  </td>
+ </tr>
+
+
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var profile_widget --&gt;</code>  
+</td>
+  <td>
+  Le widget du profil
+  </td>
+ </tr>
+
+ <tr>
+  <td>
+   <code>&lt;!-- tmpl_var subscribed_to_list --&gt;</code>  
+</td>
+  <td>
+  Aura une valeur de 1 si le visiteur de <!-- tmpl_var PROGRAM_NAME --> est inscrit &agrave; votre liste. 
+  </td>
+ </tr>
+
+
+
+
+
+
+
+
+
+</table>
+
+ 
+
+<!-- end edit_template_screen.tmpl -->

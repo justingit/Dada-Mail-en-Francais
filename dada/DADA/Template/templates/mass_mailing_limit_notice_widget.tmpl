@@ -1,0 +1,20 @@
+<!-- begin mass_mailing_limit_notice_widget.tmpl --> 
+
+<!-- tmpl_if MAILOUT_AT_ONCE_LIMIT --> 
+	<!-- tmpl_if mailout_will_be_queued --> 
+		<p class="error">
+		 Cet envoi massif sera <strong>en liste d'attente</strong>. 
+		
+		<p class="error">Il y a pour l'instant 
+		 <strong><!-- tmpl_var active_mailouts --></strong> envois massifs actifs (sur un total de <!-- tmpl_var num_total_mailouts -->)
+		  (<strong><!-- tmpl_var num_list_mailouts --></strong> de cette liste). 
+		
+			<p class="error">Une limite de <strong><!-- tmpl_var MAILOUT_AT_ONCE_LIMIT --></strong> envois massif actifs &agrave; un moment donn&eacute; est pour l'instant configur&eacute;e	.</p>
+	<!-- tmpl_else --> 
+		<p class="positive">Votre envoi massif peut commencer imm&eacute;diatement.</p> 
+	<!-- /tmpl_if --> 
+<!-- tmpl_else --> 
+	<p class="positive">Votre envoi massif peut commencer imm&eacute;diatement.</p> 
+<!-- /tmpl_if -->
+
+<!-- end mass_mailing_limit_notice_widget.tmpl --> 

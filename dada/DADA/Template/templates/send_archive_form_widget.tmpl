@@ -1,0 +1,88 @@
+<!-- begin send_archive_form_widget.tmpl --> 
+
+
+
+<fieldset>
+	
+<legend>Envoyer ce message &agrave; un-e ami-e</legend>
+
+
+
+<!-- tmpl_if send_archive_form_error --> 
+
+    <p class="error">
+     Ce formulaire a &eacute;t&eacute; rempli incorrectement.
+    </p>
+    
+<!-- /tmpl_if --> 
+
+
+
+<form action="<!-- tmpl_var PROGRAM_URL -->" method="post">
+ <input type="hidden" name="list"    value="<!-- tmpl_var list -->" />
+ <input type="hidden" name="entry"   value="<!-- tmpl_var id -->" /> 
+ <input type="hidden" name="flavor"  value="send_archive" /> 
+ <input type="hidden" name="process" value="true" /> 
+ 
+ <p>
+  <label for="from_email">
+  Votre adresse email :
+  </label>
+  <br /> 
+  <input type="text" name="from_email" id="from_email" maxlength="1024" />
+ </p>
+ <p>
+  <label for="to_email">
+  L'adresse email de votre ami-e :
+  </label>
+  <br />
+  <input type="text" name="to_email" id="to_email" maxlength="1024" />
+ </p>
+ <p>
+  <label for="note">
+  Note:
+  </label>
+  <br />
+  <textarea rows="5" cols="40" name="note" id="note"></textarea>
+ </p>
+ 
+ 
+
+
+<!-- tmpl_if captcha_fail --> 
+     <p class="error"> 
+      Les lettres que vous avez entr&eacute;es ne correspondent pas &agrave; l'image. Veuillez r&eacute;essayer:
+    </p>
+<!-- /tmpl_if --> 
+
+<!-- tmpl_if can_use_captcha --> 
+	<!-- tmpl_if CAPTCHA_string --> 
+	
+		<p>
+		 Comme &eacute;tape finale, veuillez entrer les lettres que vous voyez dans l'image:
+		</p>
+	
+
+	<!-- tmpl_var CAPTCHA_string --> 
+	
+	<!-- /tmpl_if --> 
+	
+<!-- /tmpl_if --> 
+
+
+
+<div class="buttonfloat">
+<input type="submit" class="processing" value="Envoyer le message archiv&eacute;" />
+<div class="floatclear"></div>
+</div> 
+
+
+</form>
+
+</fieldset> 
+
+
+
+
+<!-- end send_archive_form_widget.tmpl  --> 
+

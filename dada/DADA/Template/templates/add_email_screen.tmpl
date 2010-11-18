@@ -1,0 +1,549 @@
+<!-- begin add_email_screen.tmpl -->
+
+
+<p>
+G&eacute;rer les abonn&eacute;s (<!-- tmpl_var type_title -->) 
+&#187; 
+ Ajouter 
+&#187; 
+ <strong>V&eacute;rifier</strong>
+&#187;
+ S'inscrire/Inviter
+</p>
+
+
+<!-- tmpl_if going_over_quota -->
+	
+	<p class="error">
+	 Attention ! Vous ne pouvez pas inscrire toutes les adresses que vous avez soumises car vous iriez au-del&agrave; de votre limite de <!-- tmpl_var subscription_quota -->
+	 abonn&eacute;s. Merci de soumettre un plus petit nombre d'adresses &agrave; inscrire.
+	</p>
+	
+<!--/tmpl_if-->
+
+<form name="email_form" action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+ <input type="hidden" name="f"       value="add_email" />
+ <input type="hidden" name="type"    value="<!-- tmpl_var type -->" />
+ 
+ 
+
+<!-- tmpl_if not_subscribed -->
+	 
+	 
+	
+
+
+<fieldset> 
+ <legend>
+  Adresses v&eacute;rifi&eacute;es
+ </legend>
+
+
+ <div style="max-height: 200px; overflow: auto; border:1px solid black;background:#fff">
+
+ <table cellpadding="2" cellspacing="0" border="0" width="100%">
+  <tr>
+   <td width="25">
+    <p>&nbsp;</p>
+   </td>
+   <td>
+   <p>
+    <strong>
+     Email
+   </strong>
+  </p>
+ </td>
+
+<!-- tmpl_loop name="field_names" --> 
+    
+    <td>
+     <p>
+      <strong>
+       <!-- tmpl_var name --> 
+      </strong>
+     </p>
+    </td> 
+<!--/tmpl_loop --> 
+
+  </tr>
+  
+  <!-- tmpl_loop name="not_subscribed" -->
+
+    <tr <!-- tmpl_if __odd__ -->style="background-color:#ccf;"<!--/tmpl_if-->>
+     <td width="25">
+      <input type="checkbox" name="address" value="<!-- tmpl_var csv_info escape="HTML" -->" id="<!-- tmpl_var email escape="HTML" -->" checked="checked" />
+     </td>
+     <td>
+      <p>
+<label for="<!-- tmpl_var email -->">
+       <!-- tmpl_var email -->
+</label>
+      </p>
+     </td>
+
+     <!-- tmpl_loop name="fields" --> 
+        
+        <td>
+         <p>
+          <!-- tmpl_var value default="&nbsp;"  escape="HTML"  -->
+         </p>
+        </td>
+    <!-- /tmpl_loop --> 
+  </tr>
+  
+  <!-- tmpl_if __last__ --> 
+  
+  </table>
+  <p style="text-align:right"><strong>Total:</strong> <!-- tmpl_var __counter__ -->&nbsp;</p> 
+  
+  <!-- /tmpl_if --> 
+  
+<!-- /tmpl_loop -->
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+
+</fieldset> 
+
+	 
+	 
+<!--/tmpl_if-->
+ 
+
+<!-- tmpl_if black_list -->
+	 
+	<!-- tmpl_if black_listed -->
+
+
+<fieldset> 
+ <legend>
+  Adresses de la liste noire
+ </legend>
+ 
+ 
+		 <p>
+		  Ces adresses sont sur votre 
+		  <strong>
+		   liste noire.
+		  </strong>
+		  Elle ne seront pas ajout&eacute;es &agrave; moins de le faire manuellement:
+		 </p>
+	
+		  
+		  
+<div style="max-height: 200px; overflow: auto; border:1px solid black;background:#fff">
+
+ <table cellpadding="2" cellspacing="0" border="0" width="100%">
+  <tr>
+   <td width="25">
+    <p>&nbsp;</p>
+   </td>
+   <td>
+   <p>
+    <strong>
+     Email
+   </strong>
+  </p>
+ </td>
+
+<!-- tmpl_loop name="field_names" --> 
+    
+    <td>
+     <p>
+      <strong>
+       <!-- tmpl_var name --> 
+      </strong>
+     </p>
+    </td> 
+<!--/tmpl_loop --> 
+
+  </tr>
+  
+  <!-- tmpl_loop name="black_listed" -->
+
+    <tr <!-- tmpl_if __odd__ -->style="background-color:#ccf;"<!--/tmpl_if-->>
+     <td width="25">
+      <input type="checkbox" name="address" value="<!-- tmpl_var csv_info escape="HTML" -->" id="<!-- tmpl_var email escape="HTML" -->" />
+     </td>
+     <td>
+      <p>
+<label for="<!-- tmpl_var email -->">
+       <!-- tmpl_var email -->
+</label>
+      </p>
+     </td>
+
+     <!-- tmpl_loop name="fields" --> 
+        
+        <td>
+         <p>
+          <!-- tmpl_var value default="&nbsp;"  escape="HTML" -->
+         </p>
+        </td>
+    <!-- /tmpl_loop --> 
+  </tr>
+ 
+ 
+   <!-- tmpl_if __last__ --> 
+  
+  </table>
+  <p style="text-align:right"><strong>Total:</strong> <!-- tmpl_var __counter__ -->&nbsp;</p> 
+  
+  <!-- /tmpl_if --> 
+  
+  
+<!-- /tmpl_loop -->
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+</fieldset> 
+
+<!--/tmpl_if-->
+	
+<!--/tmpl_if-->
+
+
+
+<!-- tmpl_if enable_white_list --> 
+
+<!-- 
+	<p> White list is enabled.</p> 
+--> 
+
+    <!-- tmpl_if not_white_listed --> 
+
+<!-- 
+	<p>There's un-white listed subscribers to show </p> 
+--> 
+
+<fieldset> 
+ <legend>
+ Adresses qui ne sont pas sur votre liste blanche
+ </legend>
+ 
+ 
+    Ces adresses ne sont pas sur votre  
+		  <strong>
+		   liste blanche.
+		  </strong>
+		  Elle ne seront pas ajout&eacute;es &agrave; moins de le faire manuellement:
+		 </p>    
+
+
+<div style="max-height: 200px; overflow: auto; border:1px solid black;background:#fff">
+
+ <table cellpadding="2" cellspacing="0" border="0" width="100%">
+  <tr>
+   <td width="25">
+    <p>&nbsp;</p>
+   </td>
+   <td>
+   <p>
+    <strong>
+     Email
+   </strong>
+  </p>
+ </td>
+
+<!-- tmpl_loop name="field_names" --> 
+    
+    <td>
+     <p>
+      <strong>
+       <!-- tmpl_var name --> 
+      </strong>
+     </p>
+    </td> 
+<!--/tmpl_loop --> 
+
+  </tr>
+  
+  <!-- tmpl_loop name="not_white_listed" -->
+
+    <tr <!-- tmpl_if __odd__ -->style="background-color:#ccf;"<!--/tmpl_if-->>
+     <td width="25">
+      <input type="checkbox" name="address" value="<!-- tmpl_var csv_info escape="HTML" -->" id="<!-- tmpl_var email escape="HTML" -->" />
+     </td>
+     <td>
+      <p>
+<label for="<!-- tmpl_var email -->">
+       <!-- tmpl_var email -->
+</label>
+      </p>
+     </td>
+
+     <!-- tmpl_loop name="fields" --> 
+        
+        <td>
+         <p>
+          <!-- tmpl_var value escape="HTML"  default="&nbsp;"  -->
+         </p>
+        </td>
+    <!-- /tmpl_loop --> 
+  </tr>
+
+  <!-- tmpl_if __last__ --> 
+  
+  </table>
+  <p style="text-align:right"><strong>Total:</strong> <!-- tmpl_var __counter__ -->&nbsp;</p> 
+  
+
+
+
+
+  <!-- /tmpl_if --> 
+  
+<!-- /tmpl_loop -->
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+
+</fieldset> 
+
+<!-- tmpl_else --> 
+
+	<!--
+		<p>There's NO un-white listed subscribers to show </p> 
+	--> 
+
+<!--/tmpl_if--> 
+
+
+<!-- tmpl_else --> 
+
+	<!-- 
+		<p> White list is NOT enabled.</p>
+	--> 
+
+<!--/tmpl_if-->
+
+
+
+
+
+<!-- tmpl_if subscribed -->
+	
+	
+	<fieldset> 
+	 <legend>
+		Adresses d&eacute;j&agrave; inscrites
+	</legend> 
+	 
+	<p>
+	 Ces adresses sont d&eacute;j&agrave; abonn&eacute;es &agrave; votre liste. Elles ne seront pas ajout&eacute;es &agrave; nouveau:
+	</p>
+	
+
+
+<div style="max-height: 200px; overflow: auto; border:1px solid black;background:#fff">
+
+ <table cellpadding="2" cellspacing="0" border="0" width="100%">
+  <tr>
+   <td width="25">
+    <p>&nbsp;</p>
+   </td>
+   <td>
+   <p>
+    <strong>
+     Email
+   </strong>
+  </p>
+ </td>
+
+<!-- tmpl_loop name="field_names" --> 
+    
+    <td>
+     <p>
+      <strong>
+       <!-- tmpl_var name --> 
+      </strong>
+     </p>
+    </td> 
+<!--/tmpl_loop --> 
+
+  </tr>
+  
+  <!-- tmpl_loop name="subscribed" -->
+
+    <tr <!-- tmpl_if __odd__ -->style="background-color:#ccf;"<!--/tmpl_if-->>
+     <td width="25">
+      &nbsp;
+     </td>
+     <td>
+      <p>
+<label for="<!-- tmpl_var email -->">
+       <!-- tmpl_var email -->
+</label>
+      </p>
+     </td>
+
+     <!-- tmpl_loop name="fields" --> 
+        
+        <td>
+         <p>
+          <!-- tmpl_var value default="&nbsp;"  escape="HTML"  -->
+         </p>
+        </td>
+    <!-- /tmpl_loop --> 
+  </tr>
+
+  <!-- tmpl_if __last__ --> 
+  
+  </table>
+  <p style="text-align:right"><strong>Total:</strong> <!-- tmpl_var __counter__ -->&nbsp;</p> 
+  
+  <!-- /tmpl_if --> 
+  
+<!-- /tmpl_loop -->
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+</fieldset> 
+	
+<!--/tmpl_if-->
+
+
+<!-- tmpl_if invalid -->
+
+
+<fieldset> 
+ <legend>
+Adresses emails non valables
+ </legend>
+ 
+ 
+	<p>
+	 Ces adresses n'ont pas &eacute;t&eacute; valid&eacute;es.
+	 </p>
+	
+	<div style="max-height: 200px; overflow: auto; border:1px solid black;background:#fff">
+
+ <table cellpadding="2" cellspacing="0" border="0" width="100%">
+  <tr>
+   <td width="25">
+    <p>&nbsp;</p>
+   </td>
+   <td>
+   <p>
+    <strong>
+     Email
+   </strong>
+  </p>
+ </td>
+
+<!-- tmpl_loop name="field_names" --> 
+    
+    <td>
+     <p>
+      <strong>
+       <!-- tmpl_var name --> 
+      </strong>
+     </p>
+    </td> 
+<!--/tmpl_loop --> 
+
+  </tr>
+  
+  <!-- tmpl_loop name="invalid" -->
+
+    <tr <!-- tmpl_if __odd__ -->style="background-color:#ccf;"<!--/tmpl_if-->>
+     <td width="25">
+&nbsp;     </td>
+     <td>
+      <p>
+<label for="<!-- tmpl_var email -->">
+       <!-- tmpl_var email -->
+</label>
+      </p>
+     </td>
+
+     <!-- tmpl_loop name="fields" --> 
+        
+        <td>
+         <p>
+          <!-- tmpl_var value default="&nbsp;"   escape="HTML"  -->
+         </p>
+        </td>
+    <!-- /tmpl_loop --> 
+  </tr>
+
+  <!-- tmpl_if __last__ --> 
+  
+  </table>
+  <p style="text-align:right"><strong>Total:</strong> <!-- tmpl_var __counter__ -->&nbsp;</p> 
+  
+  <!-- /tmpl_if --> 
+  
+<!-- /tmpl_loop -->
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+
+</fieldset> 
+
+
+<!-- /tmpl_if --> 
+
+
+ <div class="buttonfloat">
+ <!-- tmpl_unless root_login -->
+ 	<p class="error">D&eacute;sactiv&eacute;. Il faut &ecirc;tre connect&eacute; &agrave; cette liste avec le mot de passe administrateur <!-- tmpl_var PROGRAM_NAME -->.</p>
+<!-- /tmpl_unless --> 
+
+		<p><input type="checkbox" id="fields_options_mode" name="fields_options_mode" value="preserve" <!-- tmpl_unless root_login -->disabled="disabled"<!-- /tmpl_unless --> />
+			<label for="fields_options_mode">
+		Pr&eacute;server les informations des profils des abonn&eacute;-es
+	</label>
+	
+  </p>
+
+  <input type="button" class="cautionary" value="<< R&eacute;entrer les adresses" onclick="history.back();return false;" />
+
+<!-- tmpl_if type_isa_list --> 
+  <input type="submit" class="processing" name="process" value="Inviter les adresses coch&eacute;es... >>" />
+<!-- /tmpl_if -->
+
+
+
+<!-- tmpl_if type_isa_list --> 
+	<!-- tmpl_if list_settings.enable_mass_subscribe --> 
+	
+  		<input type="submit" class="processing" name="process"  value="Inscrire les adresses coch&eacute;es >>" onclick="return warnAboutMassSubscription(this.form);" />
+
+	<!-- tmpl_else --> 
+	
+	<input type="button" class="disabled" disabled="disabled"  name="process"  value="Inscrire les adresses coch&eacute;es (Désactivé) >>" />
+	<div class="alert" style="text-align:right">(Le bouton <strong>Inscrire les Adresses Coch&eacute;es</strong> peut &ecirc;tre activ&eacute; dans: <a href="<!-- tmpl_var S_PROGRAM_URL -->?f=list_cp_options">Les options du tableau de bord de votre liste</a>)</div> 
+		
+	<!-- /tmpl_if --> 
+	
+		
+
+<!-- tmpl_else --> 
+	<input type="submit" class="processing" name="process"  value="Subscribe Checked Subscribers >>" />
+
+<!-- /tmpl_if -->
+
+
+
+ </div>
+ <div class="floatclear"></div>
+ 
+
+ </form>
+ 
+<!-- end add_email_screen.tmpl -->

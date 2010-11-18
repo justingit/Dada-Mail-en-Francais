@@ -1,0 +1,232 @@
+<!-- begin test_layout_screen.tmpl -->
+
+<h1>
+ Taille H1
+</h1>
+<h2>
+Taille H2
+</h2>
+<h3>
+Taille H3
+</h3>
+
+<p>
+ Ceci est du texte normal. Ceci est du texte normal. Ceci est du texte normal.
+</p>
+<p>
+ <a href="http://www.zombo.com/">
+  Ceci est un lien sur lequel vous n'avez jamais cliqu&eacute;. 
+ </a>
+</p>
+<p>
+ <a href="<!-- tmpl_var PROGRAM_URL -->?flavor=test_layout">
+ Cliquez sur ce lien pour voir &agrave; quoi ressemble un lien sur lequel vous avez cliqu&eacute;.
+ </a>
+</p>
+<p class="error">
+ Ceci est une erreur. Ceci est une erreur. Ceci est une erreur. Ceci est une erreur. 
+</p>
+<p class="positive">
+ Ceci donne un renforcement positif. Ceci donne un renforcement positif. 
+</p>
+<p class="small">
+ Voici du petit texte. Voici du petit texte. Voici du petit texte. Voici du petit texte. 
+</p>
+
+<code>
+ Voici du code. Voici du code. Voici du code. Voici du code.
+</code>
+<pre>Voici du texte pr&eacute;-format&eacute; (&lt;pre&gt;).
+Et  en voici un peu plus.</pre>
+
+<p style="text-align:center;">
+ Ci-dessous, une barre horizontale.
+</p>
+
+<hr />
+
+<table>
+ <tr>
+  <td>
+   <input type="checkbox" id="test" name="test" />
+  </td>
+  <td>
+   <label for="test">
+    Ceci est une case &agrave; cocher.
+   </label>
+   <br />
+   Ceci est les description de ce que la case &agrave; cocher fait.
+  </td>
+ </tr>
+</table>
+<p>
+ Remarquez que si vous cliquez &quot;Ceci est une case &agrave; cocher&quot;, 
+ cela changera l'&eacute;tat de la case. Ceci fonctionne en utilisant la balise &quot;label&quot; comme ceci:
+</p>
+<code>
+&lt;label pour=&quot;test&quot;&gt;Ceci est une case de test&lt;/label&gt;
+</code>
+<p>
+ La case &agrave; cocher a un attribu &quot;id&quot; li&eacute; &agrave; &quot;test&quot;.
+</p>
+
+<p>
+ <label for="textfield1">
+  Ceci est un champ de texte:
+ </label>
+ <br />
+ <input type="text" id="textfield1" />
+</p>
+<p>
+ <label for="textfield2">
+  Ceci est un GROS champ de texte:
+ </label>
+ <br />
+ <input type="text" id="textfield2" class="full" />
+</p>
+<p>
+ <label for="textarea1">
+  Ceci est une zone de texte:
+ </label>
+ <br />
+ <textarea name="textarea1" id="textarea1" rows="5">Du texte dans une zone de texte.</textarea>
+</p>
+
+<p>
+ Et voici quelques autres sortes de formulaires:
+</p>
+<table>
+ <tr>
+  <td>
+   <input type="checkbox" name="checkbox2" id="checkbox2">
+   <label for="checkbox2">
+    J'aime les gateaux.
+   </label>
+  </td>
+  <td>
+   <p>
+    <strong>
+     Une autre case &agrave; cocher avec label
+    </strong>
+    (pas contenu dans une table)
+   </p>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <input type="radio" name="radiogroup" id="radiobutton1" />
+   <input type="radio" name="radiogroup" />
+   <input type="radio" name="radiogroup" />
+  </td>
+  <td>
+   <label for="radiobutton1">
+    des boutons radios
+   </label>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <input type="text" id="textfield3" />
+   <input type="submit" class="plain" value="Press me!" />
+  </td>
+  <td>
+   <label for="textfield3">
+    Un champ de texte avec un bouton
+   </label>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <input type="file" id="filewidget" />
+  </td>
+  <td>
+   <label for="filewidget">
+    Un widget pour l'importation de fichiers
+   </label>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <input type="password" id="passwordfield" />
+  </td>
+  <td>
+   <label for="passwordfield">
+    un champ pour mot de passe
+   </label>
+  </td>
+ </tr>
+ <tr>
+  <td>
+   <select id="dropdown">
+    <option>Oui</option>
+    <option>Non</option>
+    <option>Peut-&ecirc;tre</option>
+    <option>Redemandez plus tard</option>
+   </select>
+   <input type="submit" class="plain" value="Non, cliquez moi!" />
+  </td>
+  <td>
+   <label for="dropdown">
+    un menu d&eacute;roulant avec un bouton
+   </label>
+  </td>
+ </tr>
+</table>
+<hr />
+
+<!-- REMOVE BELOW THIS (OR COMMENT IT OUT) **BEFORE** A STABLE RELEASE! 
+
+<h2>
+ Layout Bugs to Squash:
+</h2>
+
+<hr />
+
+ REMOVE ABOVE THIS (OR COMMENT IT OUT) **BEFORE** A STABLE RELEASE! -->
+
+<input type="hidden" name="f" value="test_layout" />
+<div class="buttonfloat">
+ <input type="submit" class="plain"      value="Brut" />
+ <input type="submit" class="processing" value="Traitement" />
+ <input type="submit" class="cautionary" value="Pr&eacute;caution" />
+ <input type="submit" class="alertive"   value="Alertif" />
+</div>
+
+<p>&nbsp;</p>
+<table class="tagchart">
+ <tr>
+  <td>
+   <strong>une table</strong>
+  </td>
+  <td>
+   contenu, contenu, contenu, contenu, contenu, contenu
+  </td>
+ </tr>
+ <tr>
+  <td>
+   avec un
+  </td>
+  <td>
+  contenu, contenu, contenu, contenu, contenu, contenu
+  </td>
+ </tr>
+ <tr>
+  <td>
+   classe de
+  </td>
+  <td>
+   contenu, contenu, contenu, contenu, contenu
+  </td>
+ </tr>
+ <tr>
+  <td>
+   &quot;tagchart&quot;
+  </td>
+  <td>
+   contenu, contenu, contenu, contenu, contenu, contenu
+  </td>
+ </tr>
+</table>
+
+
+<!-- end test_layout_screen.tmpl -->

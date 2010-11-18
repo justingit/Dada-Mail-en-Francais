@@ -1,0 +1,18 @@
+<!-- begin previewBatchSendingSpeed_widget.tmpl --> 
+
+<!-- tmpl_if enable_bulk_batching --> 
+<!-- tmpl_if somethings_wrong --> 
+<p class="error">
+	Quel genre d'info me donnez vous&nbsp;?!
+</p><!-- tmpl_else -->
+<p class="positive">
+	Les messages seront envoy&eacute;s &agrave; une fr&eacute;quence allant jusqu'&agrave;  <strong><!-- tmpl_var per_hour --> Messages/heure</strong> . L'envoi &agrave; <strong><!-- tmpl_var num_subscribers --> abonn&eacute;-es</strong> prendra au moins  <strong><!-- tmpl_var time_to_send --></strong>.
+</p><!-- /tmpl_if -->
+
+<!-- tmpl_else -->
+<p class="error">
+	Les envois par paquets ne seront pas utilis&eacute;s.
+</p><!-- /tmpl_if -->
+
+
+<!-- end previewBatchSendingSpeed_widget.tmpl --> 

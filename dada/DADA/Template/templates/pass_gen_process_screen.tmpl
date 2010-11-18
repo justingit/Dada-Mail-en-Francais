@@ -1,0 +1,36 @@
+<!-- begin pass_gen_process_screen.tmpl --> 
+
+
+<p>
+ Votre mot de passe cod&eacute; est&nbsp;:
+</p>
+
+<blockquote> 
+ <p>
+  <!-- tmpl_var encrypted_password --> 
+ </p>
+</blockquote>
+
+
+<p>
+ Dans votre fichier de configuration, utilisez ce mot de passe comme votre
+  <strong> 
+   $PROGRAM_ROOT_PASSWORD
+  </strong>
+  
+  et changez
+  <strong> 
+   $ROOT_PASS_IS_ENCRYPTED
+  </strong> 
+  en  
+  <strong> 
+   1
+  </strong> 
+  .
+ </p>
+ 
+ <p>
+  Quand vous devrez entrer votre mot de passe administrateur <!-- tmpl_var PROGRAM_NAME -->, entrez votre mot de passe non cod&eacute;, pas cette cha&icirc;ne de caract&egrave;re bizarre.
+ </p>
+ 
+<!-- end pass_gen_process_screen.tmpl --> 

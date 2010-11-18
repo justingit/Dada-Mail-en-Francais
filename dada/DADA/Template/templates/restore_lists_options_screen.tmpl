@@ -1,0 +1,41 @@
+<!-- begin restore_lists_options_screen.tmpl --> 
+
+<form action="<!-- tmpl_var S_PROGRAM_URL -->" method="post">
+	
+
+<p>
+ <strong> 
+  Avant de restaiurer un de vos r&eacute;glage de liste, faites un backup sur le serveur et &agrave; distance  de tous vos fichiers de liste <!-- tmpl_var PROGRAM_NAME -->.
+</strong>
+</p>
+
+
+<p>
+	Assurez-vous aussi que vos fichiers sont bien corrompus, et pas juste illisibles parce que les permissions auraient &eacute;t&eacute; alt&eacute;r&eacute;es @AnyDBM_File Config.pm settings.
+</p>
+   
+<!-- tmpl_var restore_list_options --> 
+
+
+<p>
+ <em>
+	*Le backup le plus r&eacute;cent est g&eacute;n&eacute;ralement le meilleur
+ </em> 
+</p> 
+
+
+<input type="hidden" name="flavor"        value="restore_lists"                   />
+<input type="hidden" name="root_password" value="<!-- tmpl_var root_password -->" /> 
+<input type="hidden" name="process"       value="true"                            /> 
+ 
+
+<div class="buttonfloat">
+<input type="reset"  class="cautionary" value="Annuler les changements" />
+<input type="submit" class="processing" value="Restaurer l'information des listes coch&eacute;es" />
+</div> 
+<div class="floatclear"></div>
+
+
+
+
+<!-- end restore_lists_options_screen.tmpl --> 
