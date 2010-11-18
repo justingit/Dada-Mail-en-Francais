@@ -15,13 +15,13 @@
 
 <fieldset>
 <legend>
- S'inscrire ou se d&eacute;sinscrire <!-- tmpl_if single_list --> &agrave; <!-- tmpl_var list_name --><!-- tmpl_else --> &agrave; notre liste<!-- /tmpl_if single_list -->
+ S'inscrire/Se d&eacute;sinscrire <!-- tmpl_if single_list --> &agrave; <!-- tmpl_var list_name --><!-- tmpl_else --> une liste<!-- /tmpl_if single_list -->
 </legend>
 
 <!-- tmpl_if single_list --> 
     <!-- tmpl_if closed_list -->
     <p class="error"> 
-     Cette liste est ferm&eacute;e &agrave; de nouvelles inscriptions. Vous pouvez toujours vous d&eacute;sinscrire.
+     Cette liste est ferm&eacute;e aux nouveaux abonnements. Vous pouvez toujours vous d&eacute;sinscrire si vous le souhaitez.
     </p>
     <!-- /tmpl_if -->
 
@@ -31,7 +31,7 @@
     
     <!-- tmpl_if multiple_lists --> 
     
-       <p><strong>Choisissez parmi les listes suivantes&nbsp;:</strong></p>
+       <p><strong>Choisir la liste&nbsp;:</strong></p>
        
        <!-- tmpl_var list_checkbox_menu --> 
     
@@ -39,7 +39,7 @@
     
         <p>
         <label for="list" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block" >
-        Choisissez une liste&nbsp;: 
+        Choisir la liste&nbsp;: 
         </label>
         <!-- tmpl_var list_popup_menu -->
         </p>
@@ -49,7 +49,7 @@
 <!-- /tmpl_if -->
 <p>
 <label for="email" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block" >
-Adresse&nbsp;Email&nbsp;: 
+Adresse&nbsp;email&nbsp;: 
 </label>
 <!-- tmpl_if profile_logged_in --> 
 	<span style="padding:5px;border:1px solid black"><em><!-- tmpl_var email escape=HTML --></em></span>
@@ -102,12 +102,12 @@ Adresse&nbsp;Email&nbsp;:
     <label for="f_s" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block">
     S'inscrire
     </label>
-    <input type="radio" name="f" id="f_s" value="S'inscrire" <!-- tmpl_if flavor_is_subscribe -->checked="checked"<!-- /tmpl_if --> />
+    <input type="radio" name="f" id="f_s" value="subscribe" <!-- tmpl_if flavor_is_subscribe -->checked="checked"<!-- /tmpl_if --> />
     </p> 
     
     <p> 
     <label for="f_u" style="width: 7em;float: left;text-align: right;margin-right: 0.5em;display: block">Se d&eacute;sinscrire</label> 
-    <input type="radio" name="f"  id="f_u"  value="Se d&eacute;sinscrire" <!-- tmpl_if flavor_is_unsubscribe -->checked="checked"<!-- /tmpl_if --> />
+    <input type="radio" name="f"  id="f_u"  value="unsubscribe" <!-- tmpl_if flavor_is_unsubscribe -->checked="checked"<!-- /tmpl_if --> />
     </p>   
 
 <!-- /tmpl_if --> 
@@ -115,13 +115,13 @@ Adresse&nbsp;Email&nbsp;:
 <hr style="border-top: 1px solid black;" /> 
 
 <p style="text-align:right;display:block">
-<input type="submit" value="Soumettez l'information" class="processing" />
+<input type="submit" value="Soumettre" class="processing" />
 </p> 
 
 
 <!-- tmpl_if give_props --> 
 
-    <p style="font-size:10px;font-family:Verdana,Arial,sans-serif;"></p>
+    <p style="font-size:10px;font-family:Verdana,Arial,sans-serif;"><a href="http://dadamailproject.com" target="_blank" style="font-size:10px;font-family:Verdana,Arial,sans-serif;">Powered by <!-- tmpl_var name="PROGRAM_NAME" --> <!-- tmpl_var VER --> Mailing List Manager</a></p>
 
 <!-- /tmpl_if --> 
 
